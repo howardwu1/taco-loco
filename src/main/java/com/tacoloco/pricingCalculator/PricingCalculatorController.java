@@ -8,17 +8,26 @@ import org.springframework.http.ResponseEntity;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.tacoloco.pricingCalculatorService.PricingCalculatorService;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.model.*;
 
 @Controller
 public class PricingCalculatorController {
   
+  private static final Logger logger = LogManager.getLogger(PricingCalculatorController.class);
+
   @ResponseStatus(code = HttpStatus.BAD_REQUEST)
  class BadRequestException extends RuntimeException {}
 
+  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="No such item or counts not all whole numbers")
+  class UnprocessableEntityException extends RuntimeException {}
 //   @ExceptionHandler(BadRequestException.class)
 //   @ResponseStatus(HttpStatus.BAD_REQUEST)
 //   @ResponseBody
@@ -50,10 +59,16 @@ public class PricingCalculatorController {
 
   @GetMapping("/total")
   @ResponseStatus(HttpStatus.OK)
-  public @ResponseBody double getTotal(@RequestBody Order order) throws BadRequestException, URISyntaxException{
+  public @ResponseBody String getTotal(@RequestBody Order order) throws BadRequestException, URISyntaxException {
 
-    return pricingCalculatorService.getTotal(order);
-     
+      
+      if (pricingCalculatorService.isEmpty(order)) { 
+      
+        throw new UnprocessableEntityException();
+      }
+
+      return pricingCalculatorService.getTotal(order);
+  
   }
 
 }

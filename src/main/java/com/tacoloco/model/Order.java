@@ -15,15 +15,20 @@ public class Order{
   public static final double BEEFPRICE = 3;
   public static final double CHORIZPRICE = 3.50;
   
-  public double getTotalPrice(){
+  public String getTotalPrice(){
+
     double totalPrice = veggie*VEGPRICE + chicken*CHICKPRICE + beef*BEEFPRICE + chorizo*CHORIZPRICE;
 
     if (veggie + chicken + beef + chorizo >= 4) {
-      return (totalPrice * 80.0)/100.0;
+      return String.format("%.2f",totalPrice * 0.80);
     }
     else {
-      return (totalPrice * 100.0)/100.0;
+      return String.format("%.2f",totalPrice);
     }
+  }
+
+  public boolean isEmpty(){
+    return this.getTotalPrice().equals("0.00");
   }
 }
 

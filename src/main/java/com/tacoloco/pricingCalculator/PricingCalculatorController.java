@@ -11,12 +11,13 @@ import java.net.URISyntaxException;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import com.tacoloco.pricingCalculatorService.PricingCalculatorService;
+import com.tacoloco.pricingCalculator.pricingCalculatorService.PricingCalculatorService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.model.*;
+
 
 @Controller
 public class PricingCalculatorController {
@@ -59,15 +60,19 @@ public class PricingCalculatorController {
 
   @GetMapping("/total")
   @ResponseStatus(HttpStatus.OK)
-  public @ResponseBody String getTotal(@RequestBody Order order) throws BadRequestException, URISyntaxException {
-
+  public @ResponseBody String getTotal(@RequestBody String jsonString) throws BadRequestException, URISyntaxException, JsonProcessingException{
       
-      if (pricingCalculatorService.isEmpty(order)) { 
       
-        throw new UnprocessableEntityException();
-      }
+      if (pricingCalculatorService.isInvalidOrder(jsonString)) { 
+      
+         throw new UnprocessableEntityException();
+       }
+       else{
+          Order order = new ObjectMapper().readValue(jsonString, Order.class);
+          return pricingCalculatorService.getTotal(order);
 
-      return pricingCalculatorService.getTotal(order);
+       }
+
   
   }
 

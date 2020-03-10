@@ -27,9 +27,6 @@ public class Order{
     }
   }
 
-  public boolean isEmpty(){
-    return this.getTotalPrice().equals("0.00");
-  }
 }
 
 

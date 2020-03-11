@@ -27,7 +27,7 @@ class PricingCalculatorServiceTest {
 
     Order mockOrder = new ObjectMapper().readValue(mockJson, Order.class);
     
-    Assertions.assertTrue(service.isInvalidOrder(mockJson)==false);
+    Assertions.assertTrue(!service.isInvalidOrder(mockJson));
     Assertions.assertTrue(service.getTotal(mockOrder).equals("2.50"));
   }
 
@@ -38,7 +38,7 @@ class PricingCalculatorServiceTest {
 
     Order mockOrder = new ObjectMapper().readValue(mockJson, Order.class);
     
-    Assertions.assertTrue(service.isInvalidOrder(mockJson)==false);
+    Assertions.assertTrue(!service.isInvalidOrder(mockJson));
     Assertions.assertTrue(service.getTotal(mockOrder).equals("3.00"));
   }
 
@@ -49,8 +49,20 @@ class PricingCalculatorServiceTest {
 
     Order mockOrder = new ObjectMapper().readValue(mockJson, Order.class);
     
-    Assertions.assertTrue(service.isInvalidOrder(mockJson)==false);
+    Assertions.assertTrue(!service.isInvalidOrder(mockJson));
     Assertions.assertTrue(service.getTotal(mockOrder).equals("6.00"));
+  }
+
+
+  @Test
+  @DisplayName("Return a post-20%-discount total of $10.40 for 2 Chicken Burritos and 2 Chorizo Burritos and is a valid order")
+  void returnCorrectAmountForTwoChickenBurritoAndTwoChorizoBurito() throws JsonProcessingException {
+    String mockJson = "{\"chicken\":2, \"chorizo\":2}";
+
+    Order mockOrder = new ObjectMapper().readValue(mockJson, Order.class);
+    
+    Assertions.assertTrue(!service.isInvalidOrder(mockJson));
+    Assertions.assertTrue(service.getTotal(mockOrder).equals("10.40"));
   }
 
   @Test
@@ -58,14 +70,30 @@ class PricingCalculatorServiceTest {
   void returnIsInvalidOrderAsTrueForOneBurger() {
     String mockJson = "{\"burger\":1}";
     
-    Assertions.assertTrue(service.isInvalidOrder(mockJson)==true);
+    Assertions.assertTrue(service.isInvalidOrder(mockJson));
   }
 
-   @Test
+  @Test
   @DisplayName("Return true for isInvalidOrder for 1 Burger and 2 chicken tacos")
   void returnIsInvalidOrderAsTrueForOneBurgerAndTwoChicken() {
     String mockJson = "{\"burger\":1, \"chicken\":2}";
     
-    Assertions.assertTrue(service.isInvalidOrder(mockJson)==true);
+    Assertions.assertTrue(service.isInvalidOrder(mockJson));
+  }
+
+  @Test
+  @DisplayName("Return true for isInvalidOrder for 2.5 chicken tacos")
+  void returnIsInvalidOrderAsTrueForNonWholeNumberOrder() {
+    String mockJson = "{\"chicken\":2.5}";
+
+    Assertions.assertTrue(service.isInvalidOrder(mockJson));
+  }
+
+  @Test
+  @DisplayName("Return true for isInvalidOrder for -2 chicken tacos")
+  void returnIsInvalidOrderAsTrueForNegativeNumberOrder() {
+    String mockJson = "{\"chicken\":-2}";
+
+    Assertions.assertTrue(service.isInvalidOrder(mockJson));
   }
 }

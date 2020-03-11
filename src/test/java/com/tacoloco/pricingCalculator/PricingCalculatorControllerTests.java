@@ -58,7 +58,9 @@ class PricingCalculatorControllerTests {
 	public void getTotalValid() throws Exception {
       
       String mockJson = "{\"veggie\":1}";
+      
       Order mockOrder = new ObjectMapper().readValue(mockJson, Order.class);
+      
       doReturn(false).when(service).isInvalidOrder(mockJson);
 
       doReturn("2.50").when(service).getTotal(mockOrder);

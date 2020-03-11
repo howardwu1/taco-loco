@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.478 s - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 25.288 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+getTotalValid  Time elapsed: 0.507 s  <<< FAILURE!
+java.lang.AssertionError: 
+Response content
+Expected: a string containing "2.50"
+     but: was ""
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.getTotalValid(PricingCalculatorControllerTests.java:72)
+

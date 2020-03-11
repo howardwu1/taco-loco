@@ -19,12 +19,16 @@ public class PricingCalculatorService {
   }
 
   public boolean isInvalidOrder(String json) {
-  
+
     try{
        Order order = new ObjectMapper().readValue(json, Order.class);
        return false;
     }
     catch (JsonProcessingException e){
+      return true;
+    }
+    catch (NumberFormatException e) {
+      
       return true;
     }
 

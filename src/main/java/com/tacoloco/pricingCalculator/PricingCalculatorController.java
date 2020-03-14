@@ -52,8 +52,11 @@ public class PricingCalculatorController {
          throw new UnprocessableEntityException();
        }
        else{
-          Order order = new ObjectMapper().readValue(jsonString, Order.class);
-          return pricingCalculatorService.getTotal(order);
+
+          //hopefully fixes the flaky test
+          String total = pricingCalculatorService.getTotal(new ObjectMapper().readValue(jsonString, Order.class));
+
+          return total;
 
        }
 

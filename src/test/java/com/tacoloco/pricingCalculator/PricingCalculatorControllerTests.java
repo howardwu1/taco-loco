@@ -7,8 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
@@ -60,9 +58,12 @@ class PricingCalculatorControllerTests {
       
       doReturn(false).when(service).isInvalidOrder(mockJson);
 
-      //flaky doReturn 
-      doReturn("2.50").when(service).getTotal(new ObjectMapper().readValue(mockJson, Order.class));
-      
+      //flaky doReturn -- sometimes any of the following 3 return statements work, sometimes only the third one.
+      //doReturn("2.50").when(service).getTotal(new ObjectMapper().readValue(mockJson, Order.class));
+      //doReturn("2.50").when(service).getTotal(mockOrder);
+      //doReturn("2.50").when(service).getTotal(any(Order.class));
+	    doReturn("2.50").when(service).getTotal(mockJson);
+
       mockMvc.perform(get("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))

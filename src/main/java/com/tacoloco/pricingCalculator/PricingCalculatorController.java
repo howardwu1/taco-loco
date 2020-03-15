@@ -53,10 +53,9 @@ public class PricingCalculatorController {
        }
        else{
 
-          //hopefully fixes the flaky test
-          String total = pricingCalculatorService.getTotal(new ObjectMapper().readValue(jsonString, Order.class));
-
-          return total;
+          //changing implementation to help with flaky test -- probably because order objects rhave different references even though they have the same values. Thus using jsonString since that is passed in. The alternative is to use any order.class in my test.
+          //return pricingCalculatorService.getTotal(new ObjectMapper().readValue(jsonString, Order.class));
+          return pricingCalculatorService.getTotal(jsonString);
 
        }
 

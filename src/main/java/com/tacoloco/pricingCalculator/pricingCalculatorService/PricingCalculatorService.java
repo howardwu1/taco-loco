@@ -17,7 +17,12 @@ public class PricingCalculatorService {
   public String getTotal(Order order) { 
     return order.getTotalPrice();
   }
-
+  
+  //flaky test so implementing an alternative getTotal
+  public String getTotal(String json) throws JsonProcessingException {
+    return (new ObjectMapper().readValue(json, Order.class)).getTotalPrice();
+  }
+  
   public boolean isInvalidOrder(String json) {
 
     try{
@@ -32,7 +37,6 @@ public class PricingCalculatorService {
       return true;
     }
 
-    //return this.getTotal(order).equals(null);
   }
 
 }

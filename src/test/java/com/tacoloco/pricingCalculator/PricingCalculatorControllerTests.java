@@ -17,6 +17,8 @@ import static org.mockito.Mockito.doReturn;
 
 import org.springframework.http.MediaType;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,7 +51,7 @@ class PricingCalculatorControllerTests {
 
 
   @Test
-  @DisplayName("get /total/ valid order")
+  @DisplayName("post /total/ valid order")
 	public void getTotalValid() throws Exception {
       
       String mockJson = "{\"veggie\":1}";
@@ -64,7 +66,7 @@ class PricingCalculatorControllerTests {
       //doReturn("2.50").when(service).getTotal(any(Order.class));
 	    doReturn("2.50").when(service).getTotal(mockJson);
 
-      mockMvc.perform(get("/total")
+      mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk())
@@ -85,13 +87,13 @@ class PricingCalculatorControllerTests {
 	}
 
   @Test
-  @DisplayName("get /total/ invalid order")
-	public void getTotalInvalid() throws Exception {
+  @DisplayName("post /total/ invalid order")
+	public void postTotalInvalid() throws Exception {
       
       String mockJson = "{\"burger\":1}";
       doReturn(true).when(service).isInvalidOrder(mockJson);
 
-      mockMvc.perform(get("/total") 
+      mockMvc.perform(post("/total") 
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().is(422))

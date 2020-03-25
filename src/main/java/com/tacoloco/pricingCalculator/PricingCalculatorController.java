@@ -17,6 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.model.*;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Content;
 
 @Controller
 public class PricingCalculatorController {
@@ -42,12 +45,15 @@ public class PricingCalculatorController {
 		return pricingCalculatorService.sayHello();
 	}
 
-  @GetMapping("/total")
+//because of flaky tests I needed to use a String of the json instead of the actual Order object and I have to utilize RequestBody annoataion from swagger.
+  @PostMapping(value = "/total", consumes = { "application/json", "application/xml" })
   @ResponseStatus(HttpStatus.OK)
-  public @ResponseBody String getTotal(@RequestBody String jsonString) throws BadRequestException, URISyntaxException, JsonProcessingException{
+  public @ResponseBody String getTotal(
+  @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Order with names of items and quantity of each",
+                    content = @Content(schema = @Schema(implementation = Order.class)), required = true) @RequestBody String order) throws BadRequestException, URISyntaxException, JsonProcessingException{
       
       
-      if (pricingCalculatorService.isInvalidOrder(jsonString)) { 
+      if (pricingCalculatorService.isInvalidOrder(order)) { 
       
          throw new UnprocessableEntityException();
        }
@@ -55,7 +61,7 @@ public class PricingCalculatorController {
 
           //changing implementation to help with flaky test -- probably because order objects rhave different references even though they have the same values. Thus using jsonString since that is passed in. The alternative is to use any order.class in my test.
           //return pricingCalculatorService.getTotal(new ObjectMapper().readValue(jsonString, Order.class));
-          return pricingCalculatorService.getTotal(jsonString);
+          return pricingCalculatorService.getTotal(order);
 
        }
 

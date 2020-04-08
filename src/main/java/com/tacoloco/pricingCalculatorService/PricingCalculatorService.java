@@ -10,8 +10,11 @@ public class PricingCalculatorService {
     return "hello world";
   }
 
-  public double getTotal(Order order) {
-    
+  public String getTotal(Order order) { 
     return order.getTotalPrice();
+  }
+
+  public Boolean isEmpty(Order order) {
+    return order.isEmpty();
   }
 }

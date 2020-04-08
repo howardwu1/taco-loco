@@ -25,6 +25,12 @@ import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper; 
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+
+import com.tacoloco.model.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 class IntegrationTest {
@@ -38,6 +44,7 @@ class IntegrationTest {
       
       String json = "{\"veggie\":1, \"beef\":2}";
       
+  
       mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(json))
@@ -76,10 +83,25 @@ class IntegrationTest {
 	}
 
   @Test
+  @DisplayName("post /total/ negative invalid")
+	public void getTotalNegativeNumber() throws Exception {
+      
+      String json = "{\"veggie\":-1, \"beef\":2, \"chorizo\":1 }";
+      
+      mockMvc.perform(post("/total")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(json))
+        .andExpect(status().is(422))
+        .andExpect(status().reason(containsString("No such item or counts not all whole numbers")))
+        .andExpect(jsonPath("$.body").doesNotExist());
+
+	}
+
+  @Test
   @DisplayName("get /total/ invalid 400")
 	public void postTotalInvalid400() throws Exception {
       
-      String json = "";
+      String json = "{";
       
       mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)

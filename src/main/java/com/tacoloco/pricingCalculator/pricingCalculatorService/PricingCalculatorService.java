@@ -6,6 +6,8 @@ import com.tacoloco.model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+
 @Service
 public class PricingCalculatorService {
   
@@ -19,23 +21,26 @@ public class PricingCalculatorService {
   
   //flaky test so implementing an alternative getTotal
   public String getTotal(String json) throws JsonProcessingException {
-    return (new ObjectMapper().readValue(json, Order.class)).calculateTotalPrice();
+
+    Order order = new ObjectMapper().reader(Order.class).without(DeserializationFeature.ACCEPT_FLOAT_AS_INT).readValue(json);
+    
+    return order.calculateTotalPrice();
   }
   
-  public boolean isInvalidOrder(String json) {
+  // public boolean isInvalidOrder(String json) {
 
-    try{
-       Order order = new ObjectMapper().readValue(json, Order.class);
-       return false;
-    }
-    catch (JsonProcessingException e){
-      return true;
-    }
-    catch (NumberFormatException e) {
+  //   try{
+  //      Order order = new ObjectMapper().reader(Order.class).without(DeserializationFeature.ACCEPT_FLOAT_AS_INT).readValue(json);
+  //      return false;
+  //   }
+  //   catch (JsonProcessingException e){
+  //     return true;
+  //   }
+  //   catch (NumberFormatException e) {
       
-      return true;
-    }
+  //     return true;
+  //   }
 
-  }
+  // }
 
 }

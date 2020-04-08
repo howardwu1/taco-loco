@@ -52,19 +52,11 @@ class PricingCalculatorControllerTests {
 
   @Test
   @DisplayName("post /total/ valid order")
-	public void getTotalValid() throws Exception {
+	public void getTotalValid() throws Exception{
       
       String mockJson = "{\"veggie\":1}";
       
-      Order mockOrder = new ObjectMapper().readValue(mockJson, Order.class);
-      
-      doReturn(false).when(service).isInvalidOrder(mockJson);
-
-      //flaky doReturn -- sometimes any of the following 3 return statements work, sometimes only the third one.
-      //doReturn("2.50").when(service).getTotal(new ObjectMapper().readValue(mockJson, Order.class));
-      //doReturn("2.50").when(service).getTotal(mockOrder);
-      //doReturn("2.50").when(service).getTotal(any(Order.class));
-	    doReturn("2.50").when(service).getTotal(mockJson);
+      doReturn("2.50").when(service).getTotal(any(Order.class));
 
       mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -87,11 +79,24 @@ class PricingCalculatorControllerTests {
 	}
 
   @Test
-  @DisplayName("post /total/ invalid order")
-	public void postTotalInvalid() throws Exception {
+  @DisplayName("post /total/ invalid order item not on menu")
+	public void postTotalInvalidNotOnMenu() throws Exception {
       
       String mockJson = "{\"burger\":1}";
-      doReturn(true).when(service).isInvalidOrder(mockJson);
+      
+      mockMvc.perform(post("/total") 
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422))
+        .andExpect(status().reason(containsString("No such item or counts not all whole numbers")))
+        .andExpect(jsonPath("$.body").doesNotExist());
+  }
+
+   @Test
+  @DisplayName("post /total/ invalid order negative quantity")
+	public void postTotalInvalidNegativeQuantity() throws Exception {
+      
+      String mockJson = "{\"veggie\":-1}";
 
       mockMvc.perform(post("/total") 
                     .contentType(MediaType.APPLICATION_JSON)

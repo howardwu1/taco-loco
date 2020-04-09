@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="25.288" tests="3" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="4.788" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -56,52 +56,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="getHelloWorld" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.604"/>
-  <testcase name="getTotalValid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.507">
-    <failure message="Response content&#10;Expected: a string containing &quot;2.50&quot;&#10;     but: was &quot;&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Response content
-Expected: a string containing "2.50"
-     but: was ""
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.getTotalValid(PricingCalculatorControllerTests.java:72)
-</failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = GET
-      Request URI = /total
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"12"]
-             Body = {"veggie":1}
-    Session Attrs = {}
-
-Handler:
-             Type = com.tacoloco.pricingCalculator.PricingCalculatorController
-           Method = com.tacoloco.pricingCalculator.PricingCalculatorController#getTotal(String)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = []
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-]]></system-out>
-  </testcase>
-  <testcase name="getTotalInvalid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.297"/>
+  <testcase name="returnIsInvalidOrderAsTrueForNegativeNumberOrder" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0.015"/>
+  <testcase name="returnCorrectAmountForTwoChickenBurritoAndTwoChorizoBurito" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0.081"/>
+  <testcase name="returnIsInvalidOrderAsTrueForOneBurger" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0.003"/>
+  <testcase name="returnCorrectAmountForBeefBurrito" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0.003"/>
+  <testcase name="returnCorrectAmountForTwoChickenBurrito" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0.004"/>
+  <testcase name="returnIsInvalidOrderAsTrueForOneBurgerAndTwoChicken" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0.009"/>
+  <testcase name="returnCorrectAmountForVeggieBurrito" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0.085"/>
+  <testcase name="returnIsInvalidOrderAsTrueForNonWholeNumberOrder" classname="com.tacoloco.pricingCalculator.PricingCalculatorServiceTest" time="0"/>
 </testsuite>

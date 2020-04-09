@@ -3,7 +3,6 @@ package com.tacoloco.pricingCalculator.pricingCalculatorService;
 import org.springframework.stereotype.Service;
 import com.tacoloco.model.*;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 
@@ -15,12 +14,12 @@ public class PricingCalculatorService {
   }
 
   public String getTotal(Order order) { 
-    return order.getTotalPrice();
+    return order.calculateTotalPrice();
   }
   
   //flaky test so implementing an alternative getTotal
   public String getTotal(String json) throws JsonProcessingException {
-    return (new ObjectMapper().readValue(json, Order.class)).getTotalPrice();
+    return (new ObjectMapper().readValue(json, Order.class)).calculateTotalPrice();
   }
   
   public boolean isInvalidOrder(String json) {

@@ -18,6 +18,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 import org.springframework.http.MediaType;
 
 
@@ -31,12 +33,12 @@ class IntegrationTest {
   private MockMvc mockMvc;
 
   @Test
-  @DisplayName("get /total/ valid order no discount")
-	public void getTotalValid() throws Exception {
+  @DisplayName("post /total/ valid order no discount")
+	public void postTotalValid() throws Exception {
       
       String json = "{\"veggie\":1, \"beef\":2}";
       
-      mockMvc.perform(get("/total")
+      mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(json))
         .andExpect(status().isOk())
@@ -45,12 +47,12 @@ class IntegrationTest {
 	}
 
   @Test
-  @DisplayName("get /total/ valid order with discount")
-	public void getTotalValidWithDiscount() throws Exception {
+  @DisplayName("post /total/ valid order with discount")
+	public void postTotalValidWithDiscount() throws Exception {
       
       String json = "{\"veggie\":1, \"beef\":2, \"chorizo\":1 }";
       
-      mockMvc.perform(get("/total")
+      mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(json))
         .andExpect(status().isOk())
@@ -59,12 +61,12 @@ class IntegrationTest {
 	}
 
   @Test
-  @DisplayName("get /total/ invalid")
+  @DisplayName("post /total/ invalid")
 	public void getTotalInvalid() throws Exception {
       
       String json = "{\"Burger\":1, \"veggie\":1, \"beef\":2, \"chorizo\":1 }";
       
-      mockMvc.perform(get("/total")
+      mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(json))
         .andExpect(status().is(422))
@@ -75,11 +77,11 @@ class IntegrationTest {
 
   @Test
   @DisplayName("get /total/ invalid 400")
-	public void getTotalInvalid400() throws Exception {
+	public void postTotalInvalid400() throws Exception {
       
       String json = "";
       
-      mockMvc.perform(get("/total")
+      mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(json))
         .andExpect(status().is(400))

@@ -2,12 +2,22 @@ package com.tacoloco.model;
 
 import lombok.Data;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Taco Order")
 @Data
 public class Order{
-
+  
+  @Schema(description = "Number of Veggie Burritos", example = "2", required = false)
   private int veggie = 0;
+
+  @Schema(description = "Number of Chicken Burritos", example = "1", required = false)
   private int chicken = 0;
+
+  @Schema(description = "Number of Beef Burritos", example = "2", required = false)
   private int beef = 0;
+
+  @Schema(description = "Number of Chorizo Burritos", example = "2", required = false)
   private int chorizo = 0;
 
   private static final double VEGPRICE = 2.50;
@@ -65,7 +75,7 @@ public class Order{
            throw new IllegalArgumentException("chorizo must be a whole number");
         }
   }
-  public String getTotalPrice(){
+  public String calculateTotalPrice(){
 
     double totalPrice = veggie*VEGPRICE + chicken*CHICKPRICE + beef*BEEFPRICE + chorizo*CHORIZPRICE;
 

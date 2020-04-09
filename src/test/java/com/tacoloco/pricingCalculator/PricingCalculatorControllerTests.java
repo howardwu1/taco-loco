@@ -2,7 +2,9 @@ package com.tacoloco.pricingCalculator;
 import com.tacoloco.pricingCalculator.pricingCalculatorService.PricingCalculatorService;
 
 import org.junit.jupiter.api.Test;
+
 import org.springframework.boot.test.context.SpringBootTest;
+
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 import static org.mockito.Mockito.doReturn;
+
 import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -25,12 +28,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.ArgumentMatchers.any;
 
 import org.junit.jupiter.api.DisplayName;
-
                                                           
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.model.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
                                     
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class PricingCalculatorControllerTests {
@@ -41,17 +47,6 @@ class PricingCalculatorControllerTests {
   @MockBean
   private PricingCalculatorService service;
 
-	@Test
-  @DisplayName("get / -- hello world")
-	public void getHelloWorld() throws Exception {
-      
-      doReturn("hello world").when(service).sayHello();
-
-      mockMvc.perform(get("/"))
-        .andExpect(status().isOk())
-        .andExpect(content().string(containsString("hello world")));
-
-	}
 
   @Test
   @DisplayName("get /total/ valid order")
@@ -63,13 +58,29 @@ class PricingCalculatorControllerTests {
       
       doReturn(false).when(service).isInvalidOrder(mockJson);
 
-      doReturn("2.50").when(service).getTotal(mockOrder);
-      
+      //flaky doReturn -- sometimes any of the following 3 return statements work, sometimes only the third one.
+      //doReturn("2.50").when(service).getTotal(new ObjectMapper().readValue(mockJson, Order.class));
+      //doReturn("2.50").when(service).getTotal(mockOrder);
+      //doReturn("2.50").when(service).getTotal(any(Order.class));
+	    doReturn("2.50").when(service).getTotal(mockJson);
+
       mockMvc.perform(get("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk())
         .andExpect(content().string(containsString("2.50")));
+
+	}
+
+	@Test
+  @DisplayName("get / -- hello world")
+	public void getHelloWorld() throws Exception {
+      
+      doReturn("hello world").when(service).sayHello();
+
+      mockMvc.perform(get("/"))
+        .andExpect(status().isOk())
+        .andExpect(content().string(containsString("hello world")));
 
 	}
 

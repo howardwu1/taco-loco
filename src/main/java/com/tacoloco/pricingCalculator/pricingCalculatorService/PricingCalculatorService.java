@@ -20,6 +20,7 @@ public class PricingCalculatorService {
   }
   
   //flaky test so implementing an alternative getTotal
+  //tood: get of this in case I am no longer using "strings"
   public String getTotal(String json) throws JsonProcessingException {
 
     Order order = new ObjectMapper().reader(Order.class).without(DeserializationFeature.ACCEPT_FLOAT_AS_INT).readValue(json);

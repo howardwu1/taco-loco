@@ -55,7 +55,6 @@ class PricingCalculatorControllerTests {
 	public void getTotalValid() throws Exception{
       
       String mockJson = "{\"veggie\":1}";
-      
       doReturn("2.50").when(service).getTotal(any(Order.class));
 
       mockMvc.perform(post("/total")

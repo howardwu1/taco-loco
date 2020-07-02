@@ -3,14 +3,18 @@ package com.tacoloco.services;
 import org.springframework.stereotype.Service;
 import com.tacoloco.model.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
+import com.tacoloco.repository.*;
 @Service
 public class PricingCalculatorService {
   
+  @Autowired PricingCalculatorRepository pricingCalculatorRepository;
+
   public String sayHello() {
     return "hello world";
   }
@@ -28,6 +32,17 @@ public class PricingCalculatorService {
     return order.calculateTotalPrice();
   }
   
+  public void queryForFirstName(String firstName)
+  {
+    pricingCalculatorRepository.queryForSingleQualifier("first_name", "Josh");
+    //pricingCalculatorRepository.queryForMultipleQualifier(new String[]{"first_name", "last_name"}, new String[]{firstName, "Long"});
+  }
+
+    public void queryForMultipleQualifier(String[] qualifiers, Object[] values )
+  {
+  
+    pricingCalculatorRepository.queryForMultipleQualifier(qualifiers, values);
+  }
   // public boolean isInvalidOrder(String json) {
 
   //   try{

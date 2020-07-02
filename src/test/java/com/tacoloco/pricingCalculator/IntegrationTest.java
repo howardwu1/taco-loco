@@ -16,21 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import org.springframework.http.MediaType;
 
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper; 
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-
-import com.tacoloco.model.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 class IntegrationTest {
@@ -44,7 +35,6 @@ class IntegrationTest {
       
       String json = "{\"veggie\":1, \"beef\":2}";
       
-  
       mockMvc.perform(post("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(json))

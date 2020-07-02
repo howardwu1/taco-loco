@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 
-import com.tacoloco.pricingCalculator.pricingCalculatorService.PricingCalculatorService;
+import com.tacoloco.services.PricingCalculatorService;
 
 import com.tacoloco.model.*;
 

@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 
 //needed to import Customer class since we put it in a different folder (model)
 import com.tacoloco.model.Customer;
-import com.tacoloco.repository.*;
+import com.tacoloco.services.*;
 
 @SpringBootApplication
 public class PricingCalculatorApplication implements CommandLineRunner {
 
-  @Autowired PricingCalculatorRepository pricingCalculatorRepository;
+  @Autowired PricingCalculatorService pricingCalculatorService;
 
   private static final Logger log = LoggerFactory.getLogger(PricingCalculatorApplication.class);
 
@@ -54,7 +54,9 @@ public class PricingCalculatorApplication implements CommandLineRunner {
     jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES (?,?)", splitUpNames);
 
     log.info("Querying for customer records where first_name = 'Josh':");
-    pricingCalculatorRepository.queryForFirstName("Josh");
+    pricingCalculatorService.queryForFirstName("Josh");
+
+    pricingCalculatorService.queryForMultipleQualifier(new String[]{"first_name", "last_name"},new String[]{"Josh","Long"});
   }
 }
 

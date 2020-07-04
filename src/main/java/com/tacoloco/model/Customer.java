@@ -1,7 +1,15 @@
 package com.tacoloco.model;
 
+import lombok.Data;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Customer")
+@Data
 public class Customer {
-  private long id;
+  
+  // default value because the id is determined by the database 
+  private long id = 0;
   private String firstName, lastName;
 
   public Customer(long id, String firstName, String lastName) {

@@ -43,6 +43,10 @@ public class PricingCalculatorService {
   
     pricingCalculatorRepository.queryForMultipleQualifier(qualifiers, values);
   }
+
+  public void insertIntoCustomers(String firstName, String lastName){
+    pricingCalculatorRepository.insertIntoCustomers(firstName, lastName);
+  }
   // public boolean isInvalidOrder(String json) {
 
   //   try{

@@ -48,14 +48,18 @@ public class PricingCalculatorApplication implements CommandLineRunner {
         .collect(Collectors.toList());
 
     // Use a Java 8 stream to print out each tuple of the list
-    splitUpNames.forEach(name -> log.info(String.format("Inserting customer record for %s %s", name[0], name[1])));
+    splitUpNames.forEach(name -> 
+      {
+        log.info(String.format("Inserting customer record for %s %s", name[0], name[1]));
+        pricingCalculatorService.insertIntoCustomers((String)name[0],(String)name[1]);
+      });
 
     // Uses JdbcTemplate's batchUpdate operation to bulk load data
-    jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES (?,?)", splitUpNames);
+    //jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES (?,?)", splitUpNames);
 
     log.info("Querying for customer records where first_name = 'Josh':");
     pricingCalculatorService.queryForFirstName("Josh");
-
+log.info("querying for Josh Long:");
     pricingCalculatorService.queryForMultipleQualifier(new String[]{"first_name", "last_name"},new String[]{"Josh","Long"});
   }
 }

@@ -10,12 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.sql.*;
-
-import com.tacoloco.repository.*;
 
 import com.tacoloco.model.Customer;
 @Repository
@@ -47,30 +41,33 @@ public class PricingCalculatorRepository {
     ).forEach(customer -> log.info(customer.toString()));
     
   }
-public void queryForMultipleQualifier(String[] qualifier, Object[] value)
-  {
-    // String query = "SELECT id, first_name, last_name FROM customers WHERE ";
-    Object[] inputs = new Object[qualifier.length*2];
+  public void queryForMultipleQualifier(String[] qualifier, Object[] value) {
+    String query = "SELECT id, first_name, last_name FROM customers WHERE ";
+    
     for(int i = 0; i < qualifier.length; i++){
-      //query = query.concat("? = ? AND ");
-      inputs[2*i] = qualifier[i];
-      inputs[2*i+1] = value[i];
+      query = query.concat(qualifier[i]).concat(" = ? AND ");
     }
-    // query = query.substring(0,query.length()-5);
+    query = query.substring(0,query.length()-5);
     
     // log.info(query);
-    // for(int i = 0; i < inputs.length; i++){
+    //for(int i = 0; i < inputs.length; i++){
     // log.info((String)inputs[i]);
 
     // }
 
-    log.info("querying for Josh Long:");
-    String query = "SELECT id, first_name, last_name FROM customers WHERE ? = ? AND ? = ?";
+    //log.info("querying for Josh Long:");
+ 
     jdbcTemplate.query(
-        query, inputs,
+        query, value,
         (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
     ).forEach(customer -> log.info(customer.toString()));
     
+  }
+
+
+  public void insertIntoCustomers(String firstName, String lastName){
+  
+    jdbcTemplate.update("INSERT INTO customers(first_name, last_name) VALUES (?,?)", new Object[]{firstName, lastName});
   }
 
 }

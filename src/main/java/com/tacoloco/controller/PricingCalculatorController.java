@@ -67,6 +67,13 @@ public class PricingCalculatorController {
 		return pricingCalculatorService.sayHello();
 	}
 
+  @PutMapping(value = "/insertCustomer", consumes = {"application/json"})
+  @ResponseStatus(HttpStatus.OK)
+  public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "First name and last name of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
+
+
+    pricingCalculatorService.insertIntoCustomers(customer.getFirstName(), customer.getLastName());
+  }
 
   @PostMapping(value = "/total", consumes = { "application/json", "application/xml" })
   @ResponseStatus(HttpStatus.OK)
@@ -76,5 +83,8 @@ public class PricingCalculatorController {
         
   return pricingCalculatorService.getTotal(order);
   }
+
+
+  
 
 }

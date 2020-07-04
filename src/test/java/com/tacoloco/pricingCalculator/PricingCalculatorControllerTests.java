@@ -15,10 +15,15 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
 
 import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -52,7 +57,25 @@ class PricingCalculatorControllerTests {
 
 
   @Test
-  @DisplayName("post /total/ valid order")
+  @DisplayName("put /insertCustomer valid user info")
+	public void putInsertCustomerValid() throws Exception{
+      
+      String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\"}";
+
+    //todo replace customers with users 
+      doNothing().when(service).insertIntoCustomers("Joe", "Cool");
+
+      mockMvc.perform(put("/insertCustomer")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+      
+      verify(service).insertIntoCustomers("Joe", "Cool");
+
+	}
+
+  @Test
+  @DisplayName("post /total valid order")
 	public void getTotalValid() throws Exception{
       
       String mockJson = "{\"veggie\":1}";
@@ -79,7 +102,7 @@ class PricingCalculatorControllerTests {
 	}
 
   @Test
-  @DisplayName("post /total/ invalid order item not on menu")
+  @DisplayName("post /total invalid order item not on menu")
 	public void postTotalInvalidNotOnMenu() throws Exception {
       
       String mockJson = "{\"burger\":1}";
@@ -93,7 +116,7 @@ class PricingCalculatorControllerTests {
   }
 
    @Test
-  @DisplayName("post /total/ invalid order negative quantity")
+  @DisplayName("post /total invalid order negative quantity")
 	public void postTotalInvalidNegativeQuantity() throws Exception {
       
       String mockJson = "{\"veggie\":-1}";

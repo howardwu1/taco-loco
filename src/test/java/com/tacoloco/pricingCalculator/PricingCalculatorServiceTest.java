@@ -11,7 +11,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.services.PricingCalculatorService;
 
+import com.tacoloco.repository.PricingCalculatorRepository;
+
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import static org.mockito.Mockito.doNothing;
+
+
 import com.tacoloco.model.*;
+
+import static org.mockito.Mockito.verify;
 
 
 @SpringBootTest
@@ -19,6 +28,25 @@ class PricingCalculatorServiceTest {
   
   @Autowired
   private PricingCalculatorService service;
+
+  @MockBean
+  private PricingCalculatorRepository repository;
+
+  @Test
+  @DisplayName("Call repository with 'Joe Cool' and is a valid JSON")
+  void callRepositoryWithJoeCool() throws JsonProcessingException {
+    String mockJson = "{\"firstName\": \"Joe\", \"lastName\": \"Cool\"}";
+
+    Customer mockCustomer = new ObjectMapper().readValue(mockJson, Customer.class);
+    
+    doNothing().when(repository).insertIntoCustomers("Joe", "Cool");
+
+    //todo: look up to verfy that service returns nothing
+    // Assertions.assertTrue(service.insertIntoCustomers(mockCustomer.getFirstName(),mockCustomer.getLastName()).equals(null));
+    service.insertIntoCustomers(mockCustomer.getFirstName(),mockCustomer.getLastName());
+
+    verify(repository).insertIntoCustomers("Joe", "Cool");
+  }
 
   @Test
   @DisplayName("Return $2.50 for 1 Veggie and is a valid order")

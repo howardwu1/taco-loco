@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.PricingCalculatorServiceTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.639 s - in com.tacoloco.pricingCalculator.PricingCalculatorServiceTest
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 11.733 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorServiceTest
+callRepositoryWithJoeCool  Time elapsed: 0.023 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: 
+Cannot construct instance of `com.tacoloco.model.Customer` (no Creators, like default construct, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+ at [Source: (String)"{"firstName": "Joe", "lastName": "Cool"}"; line: 1, column: 2]
+	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTest.callRepositoryWithJoeCool(PricingCalculatorServiceTest.java:40)
+

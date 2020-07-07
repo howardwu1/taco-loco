@@ -61,7 +61,7 @@ class PricingCalculatorControllerTests {
 	public void putInsertCustomerValid() throws Exception{
       
       String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\"}";
-
+    
     //todo replace customers with users 
       doNothing().when(service).insertIntoCustomers("Joe", "Cool");
 

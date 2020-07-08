@@ -1,3 +1,4 @@
-com/tacoloco/pricingCalculator/IntegrationTest.class
-com/tacoloco/pricingCalculator/PricingCalculatorServiceTest.class
+com/tacoloco/pricingCalculator/PricingCalculatorRepositoryTests.class
 com/tacoloco/pricingCalculator/PricingCalculatorControllerTests.class
+com/tacoloco/pricingCalculator/IntegrationTests.class
+com/tacoloco/pricingCalculator/PricingCalculatorServiceTests.class

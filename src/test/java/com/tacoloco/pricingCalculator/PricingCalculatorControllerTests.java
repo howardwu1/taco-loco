@@ -36,8 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.ArgumentMatchers.any;
 
 import org.junit.jupiter.api.DisplayName;
-                                                          
-import com.fasterxml.jackson.databind.ObjectMapper;
+                                
 
 import com.tacoloco.model.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,7 +60,7 @@ class PricingCalculatorControllerTests {
 	public void putInsertCustomerValid() throws Exception{
       
       String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\"}";
-    
+      
     //todo replace customers with users 
       doNothing().when(service).insertIntoCustomers("Joe", "Cool");
 

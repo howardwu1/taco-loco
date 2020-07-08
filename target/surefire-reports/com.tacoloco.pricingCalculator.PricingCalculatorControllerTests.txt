@@ -1,18 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 16.393 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
-putInsertCustomerValid  Time elapsed: 0.13 s  <<< ERROR!
-org.springframework.web.util.NestedServletException: 
-Request processing failed; nested exception is org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class com.tacoloco.model.Customer]; nested exception is com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.tacoloco.model.Customer` (no Creators, like default construct, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
- at [Source: (PushbackInputStream); line: 1, column: 2]
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertCustomerValid(PricingCalculatorControllerTests.java:68)
-Caused by: org.springframework.http.converter.HttpMessageConversionException: 
-Type definition error: [simple type, class com.tacoloco.model.Customer]; nested exception is com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct instance of `com.tacoloco.model.Customer` (no Creators, like default construct, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
- at [Source: (PushbackInputStream); line: 1, column: 2]
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertCustomerValid(PricingCalculatorControllerTests.java:68)
-Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: 
-Cannot construct instance of `com.tacoloco.model.Customer` (no Creators, like default construct, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
- at [Source: (PushbackInputStream); line: 1, column: 2]
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertCustomerValid(PricingCalculatorControllerTests.java:68)
-
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.915 s - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests

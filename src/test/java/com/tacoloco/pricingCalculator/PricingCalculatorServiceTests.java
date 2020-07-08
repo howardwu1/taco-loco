@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 
 
 @SpringBootTest
-class PricingCalculatorServiceTest {
+class PricingCalculatorServiceTests {
   
   @Autowired
   private PricingCalculatorService service;

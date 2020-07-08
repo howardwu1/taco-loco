@@ -19,9 +19,6 @@ public class Customer {
   }
 
   public Customer() {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
   }
 
   @Override

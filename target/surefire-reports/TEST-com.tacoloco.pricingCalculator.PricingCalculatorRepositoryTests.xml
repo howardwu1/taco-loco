@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="12.915" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests" time="46.668" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -56,9 +56,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="postTotalInvalidNotOnMenu" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.924"/>
-  <testcase name="getHelloWorld" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.103"/>
-  <testcase name="getTotalValid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.612"/>
-  <testcase name="putInsertCustomerValid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.098"/>
-  <testcase name="postTotalInvalidNegativeQuantity" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.016"/>
+  <testcase name="sendDatabaseWithJoeCool" classname="com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests" time="2.604"/>
 </testsuite>

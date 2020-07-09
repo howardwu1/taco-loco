@@ -42,8 +42,6 @@ class PricingCalculatorRepositoryTests {
   @DisplayName("Send to database with name 'Joe Cool' and is valid SQL")
   void sendDatabaseWithJoeCool() throws JsonProcessingException {
 
-
-
     log.info("Creating tables");
 
     jdbcTemplate.execute("DROP TABLE customers IF EXISTS");

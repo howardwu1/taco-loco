@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 34.766 s - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 13.75 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+putInsertInvalidFirstNameIntCustomer  Time elapsed: 0.213 s  <<< FAILURE!
+java.lang.AssertionError: Response status expected:<422> but was:<200>
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertInvalidFirstNameIntCustomer(PricingCalculatorControllerTests.java:90)
+

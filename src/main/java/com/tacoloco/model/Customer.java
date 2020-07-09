@@ -10,7 +10,7 @@ public class Customer {
   
   // default value because the id is determined by the database 
   private long id = 0;
-  private String firstName = "", lastName = "";
+  private String firstName, lastName;
 
   public Customer(long id, String firstName, String lastName) {
     this.id = id;

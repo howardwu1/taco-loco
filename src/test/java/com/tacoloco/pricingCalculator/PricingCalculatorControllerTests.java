@@ -42,6 +42,8 @@ import com.tacoloco.model.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.mockito.Mockito.never;
+
                                     
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -72,6 +74,25 @@ class PricingCalculatorControllerTests {
       verify(service).insertIntoCustomers("Joe", "Cool");
 
 	}
+
+  @Test
+  @DisplayName("put /insertCustomer invalid user info first name int")
+	public void putInsertInvalidFirstNameIntCustomer() throws Exception{
+      
+      String mockJson = "{\"firstName\":2, \"lastName\": \"Cool\"}";
+      
+      //todo replace customers with users 
+      // doNothing().when(service).insertIntoCustomers(2, "Cool");
+
+      mockMvc.perform(put("/insertCustomer")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422));
+      
+      verify(service, never()).insertIntoCustomers(any(),any());
+
+	}
+
 
   @Test
   @DisplayName("post /total valid order")

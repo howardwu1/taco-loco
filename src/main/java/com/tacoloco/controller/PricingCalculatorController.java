@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 @Controller
 public class PricingCalculatorController {
   
-  private static final Logger logger = LogManager.getLogger(PricingCalculatorController.class);
+  private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
   @ResponseStatus(code = HttpStatus.BAD_REQUEST)
  class BadRequestException extends RuntimeException {}
@@ -70,6 +70,8 @@ public class PricingCalculatorController {
   @PutMapping(value = "/insertCustomer", consumes = {"application/json"})
   @ResponseStatus(HttpStatus.OK)
   public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "First name and last name of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
+
+    log.warn(customer.getFirstName());    
     pricingCalculatorService.insertIntoCustomers(customer.getFirstName(), customer.getLastName());
   }
 

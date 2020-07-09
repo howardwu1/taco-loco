@@ -18,9 +18,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
 import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.*;
+
+import com.tacoloco.model.*;
+
+import org.junit.jupiter.api.Assertions;
+
+import com.tacoloco.repository.PricingCalculatorRepository;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -28,6 +41,47 @@ class IntegrationTests {
 
   @Autowired
   private MockMvc mockMvc;
+
+  @Autowired
+  private PricingCalculatorRepository repository;
+
+  @Autowired
+  JdbcTemplate jdbcTemplate;
+
+  @Test
+  @DisplayName("put /insertCustomer valid user info")
+	public void putInsertCustomerValid() throws Exception {
+    
+    jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+    jdbcTemplate.execute("CREATE TABLE customers(" +
+        "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
+
+    String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\"}";
+    
+    mockMvc.perform(put("/insertCustomer")
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .content(mockJson))
+      .andExpect(status().isOk());
+    
+
+    String query = "SELECT * FROM customers";
+    
+    List<Customer> customerlist = new ArrayList<Customer>();
+    
+    customerlist = jdbcTemplate.query(
+        query,
+        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
+    );
+    
+    Assertions.assertTrue(customerlist.size()==1);
+
+    Assertions.assertTrue(customerlist.get(0).getId()==1);
+
+    Assertions.assertTrue(customerlist.get(0).getFirstName().equals("Joe"));
+
+    Assertions.assertTrue(customerlist.get(0).getLastName().equals("Cool"));
+
+	}
 
   @Test
   @DisplayName("post /total/ valid order no discount")

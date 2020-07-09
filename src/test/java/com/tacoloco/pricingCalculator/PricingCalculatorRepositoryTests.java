@@ -65,5 +65,10 @@ class PricingCalculatorRepositoryTests {
     
     Assertions.assertTrue(customerlist.size()==1);
 
+    Assertions.assertTrue(customerlist.get(0).getId()==1);
+
+    Assertions.assertTrue(customerlist.get(0).getFirstName().equals("Joe"));
+
+    Assertions.assertTrue(customerlist.get(0).getLastName().equals("Cool"));
   }
 }

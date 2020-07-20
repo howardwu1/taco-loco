@@ -26,6 +26,8 @@ import javax.validation.Valid;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
 import 
@@ -37,6 +39,7 @@ com.tacoloco.customDeserializer.StringOnlyDeserializer;
 import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.databind.Module;
+
 
 @Controller
 public class PricingCalculatorController {
@@ -76,9 +79,9 @@ public class PricingCalculatorController {
     return new ResponseEntity(ex, HttpStatus.UNPROCESSABLE_ENTITY);
   }
 
-  @ExceptionHandler(com.fasterxml.jackson.databind.exc.MismatchedInputException.class)
-  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="No such item or counts not all whole numbers")
-  public ResponseEntity<?> processHandler(com.fasterxml.jackson.databind.exc.MismatchedInputException ex) {
+  @ExceptionHandler(MismatchedInputException.class)
+  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Datatype incompatibility with Json input")
+  public ResponseEntity<?> processHandler(MismatchedInputException ex) {
     return new ResponseEntity(ex, HttpStatus.UNPROCESSABLE_ENTITY);
   }
   

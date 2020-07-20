@@ -28,8 +28,25 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
+import 
+com.fasterxml.jackson.databind.module.SimpleModule;
+
+import
+com.tacoloco.customDeserializer.StringOnlyDeserializer;
+
+import org.springframework.context.annotation.Bean;
+
+import com.fasterxml.jackson.databind.Module;
+
 @Controller
 public class PricingCalculatorController {
+
+  @Bean
+  public Module customModule() {
+      SimpleModule customModule = new SimpleModule();
+      customModule.addDeserializer(String.class, new StringOnlyDeserializer());
+      return customModule;
+  }
   
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
@@ -59,7 +76,12 @@ public class PricingCalculatorController {
     return new ResponseEntity(ex, HttpStatus.UNPROCESSABLE_ENTITY);
   }
 
-
+  @ExceptionHandler(com.fasterxml.jackson.databind.exc.MismatchedInputException.class)
+  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="No such item or counts not all whole numbers")
+  public ResponseEntity<?> processHandler(com.fasterxml.jackson.databind.exc.MismatchedInputException ex) {
+    return new ResponseEntity(ex, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+  
  
   @GetMapping("/")
   @ResponseStatus(HttpStatus.OK)

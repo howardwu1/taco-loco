@@ -4,13 +4,20 @@ import lombok.Data;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import javax.validation.constraints.NotNull;
+
 @Schema(description = "Customer")
 @Data
 public class Customer {
   
   // default value because the id is determined by the database 
   private long id = 0;
+
+  @NotNull
   private String firstName, lastName;
+
+  @NotNull
+  private String password, matchingPassword;
 
   public Customer(long id, String firstName, String lastName) {
     this.id = id;

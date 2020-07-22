@@ -40,6 +40,13 @@ import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.databind.Module;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+//todo: create more fields for storing passwords for the user -- or the hashed value?
+//todo: figure out if I need to salt the hash?
+
 
 @Controller
 public class PricingCalculatorController {
@@ -50,8 +57,14 @@ public class PricingCalculatorController {
       customModule.addDeserializer(String.class, new StringOnlyDeserializer());
       return customModule;
   }
+
+  @Autowired
+  private BCryptPasswordEncoder passwordEncoder;
   
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
+
+  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Passwords do not match")
+  class PasswordMismatchException extends RuntimeException {}
 
   @ResponseStatus(code = HttpStatus.BAD_REQUEST)
  class BadRequestException extends RuntimeException {}
@@ -94,15 +107,19 @@ public class PricingCalculatorController {
 
   @PutMapping(value = "/insertCustomer", consumes = {"application/json"})
   @ResponseStatus(HttpStatus.OK)
-  public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "First name and last name of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
+  public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "First name, last name, password, and matching password of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
 
-    log.warn(customer.getFirstName());    
-    pricingCalculatorService.insertIntoCustomers(customer.getFirstName(), customer.getLastName());
+    //todo: encode the password here using bcrypt
+    //todo: do validation on the password and matching password
+    //todo: create another endpoint to login
+    if(customer.getPassword() != customer.getMatchingPassword()){
+      throw new PasswordMismatchException();
+    }
+
+    String encodedPassword = passwordEncoder.encode(customer.getPassword());
+ 
+    pricingCalculatorService.insertIntoCustomers(customer.getFirstName(), customer.getLastName(), encodedPassword);
   }
-
-  //public void insertCustomer(Customer customer){
-//  pricingCalculatorService.insertIntoCustomers(customer.getFirstName(), customer.getLastName());
-  //}
 
 
   @PostMapping(value = "/total", consumes = { "application/json", "application/xml" })

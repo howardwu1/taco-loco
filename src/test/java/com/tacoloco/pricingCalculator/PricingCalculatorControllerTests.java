@@ -56,22 +56,21 @@ class PricingCalculatorControllerTests {
   @MockBean
   private PricingCalculatorService service;
 
-
   @Test
   @DisplayName("put /insertCustomer valid user info")
 	public void putInsertCustomerValid() throws Exception{
       
-      String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\"}";
+      String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       
     //todo replace customers with users 
-      doNothing().when(service).insertIntoCustomers("Joe", "Cool");
+      doNothing().when(service).insertIntoCustomers("Joe", "Cool", any(String.class));
 
       mockMvc.perform(put("/insertCustomer")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
-      
-      verify(service).insertIntoCustomers("Joe", "Cool");
+
+      verify(service).insertIntoCustomers("Joe", "Cool", any(String.class));
 
 	}
 
@@ -79,7 +78,7 @@ class PricingCalculatorControllerTests {
   @DisplayName("put /insertCustomer invalid user info first name int")
 	public void putInsertInvalidFirstNameIntCustomer() throws Exception{
       
-      String mockJson = "{\"firstName\":2, \"lastName\": \"Cool\"}";
+      String mockJson = "{\"firstName\":2, \"lastName\": \"Cool\",, \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       
       //todo replace customers with users 
       // doNothing().when(service).insertIntoCustomers(2, "Cool");
@@ -89,7 +88,7 @@ class PricingCalculatorControllerTests {
                     .content(mockJson))
         .andExpect(status().is(422));
       
-      verify(service, never()).insertIntoCustomers(any(),any());
+      verify(service, never()).insertIntoCustomers(any(),any(), any());
 
 	}
 

@@ -35,6 +35,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.mockito.ArgumentMatchers.any;
 
+import static org.mockito.ArgumentMatchers.eq;
+
+
 import org.junit.jupiter.api.DisplayName;
                                 
 
@@ -63,14 +66,14 @@ class PricingCalculatorControllerTests {
       String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       
     //todo replace customers with users 
-      doNothing().when(service).insertIntoCustomers("Joe", "Cool", any(String.class));
+      doNothing().when(service).insertIntoCustomers(eq("Joe"), eq("Cool"), any(String.class));
 
       mockMvc.perform(put("/insertCustomer")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
 
-      verify(service).insertIntoCustomers("Joe", "Cool", any(String.class));
+      verify(service).insertIntoCustomers(eq("Joe"), eq("Cool"), any(String.class));
 
 	}
 

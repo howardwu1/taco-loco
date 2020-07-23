@@ -17,10 +17,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.mockito.Mockito.doNothing;
 
-
 import com.tacoloco.model.*;
 
 import static org.mockito.Mockito.verify;
+
+import static org.mockito.ArgumentMatchers.any;
+
+import static org.mockito.ArgumentMatchers.eq;
 
 
 @SpringBootTest
@@ -39,13 +42,11 @@ class PricingCalculatorServiceTests {
 
     Customer mockCustomer = new ObjectMapper().readValue(mockJson, Customer.class);
     
-    doNothing().when(repository).insertIntoCustomers("Joe", "Cool");
+    doNothing().when(repository).insertIntoCustomers(eq("Joe"), eq("Cool"), any(String.class));
 
-    //todo: look up to verfy that service returns nothing
-    // Assertions.assertTrue(service.insertIntoCustomers(mockCustomer.getFirstName(),mockCustomer.getLastName()).equals(null));
-    service.insertIntoCustomers(mockCustomer.getFirstName(),mockCustomer.getLastName());
+    service.insertIntoCustomers(mockCustomer.getFirstName(),mockCustomer.getLastName(), "myencodedpass");
 
-    verify(repository).insertIntoCustomers("Joe", "Cool");
+    verify(repository).insertIntoCustomers(eq("Joe"), eq("Cool"), any(String.class));
   }
 
   @Test

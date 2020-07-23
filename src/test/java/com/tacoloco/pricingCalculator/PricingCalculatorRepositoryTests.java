@@ -49,7 +49,7 @@ class PricingCalculatorRepositoryTests {
         "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
 
 
-    repository.insertIntoCustomers("Joe", "Cool");
+    repository.insertIntoCustomers("Joe", "Cool", "encodedPasswordSample");
     
 
     String query = "SELECT * FROM customers";

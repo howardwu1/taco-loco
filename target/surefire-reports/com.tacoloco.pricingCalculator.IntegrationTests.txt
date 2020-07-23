@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.IntegrationTests
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.591 s - in com.tacoloco.pricingCalculator.IntegrationTests
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.293 s - in com.tacoloco.pricingCalculator.IntegrationTests

@@ -19,6 +19,8 @@ public class Customer {
   @NotNull
   private String password, matchingPassword;
 
+  private String encodedPassword;
+
   public Customer(long id, String firstName, String lastName) {
     this.id = id;
     this.firstName = firstName;

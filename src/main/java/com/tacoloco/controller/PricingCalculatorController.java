@@ -59,8 +59,8 @@ public class PricingCalculatorController {
   }
 
   @Autowired
-  private BCryptPasswordEncoder passwordEncoder;
-  
+  BCryptPasswordEncoder passwordEncoder;
+
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Passwords do not match")
@@ -112,7 +112,9 @@ public class PricingCalculatorController {
     //todo: encode the password here using bcrypt
     //todo: do validation on the password and matching password
     //todo: create another endpoint to login
-    if(customer.getPassword() != customer.getMatchingPassword()){
+
+    //don't do != with strings-- use the equals function or else it looks for the same memory address
+    if(!customer.getPassword().equals(customer.getMatchingPassword())){
       throw new PasswordMismatchException();
     }
 

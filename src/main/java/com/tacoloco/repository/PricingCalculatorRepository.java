@@ -65,7 +65,7 @@ public class PricingCalculatorRepository {
   }
 
 
-  public void insertIntoCustomers(String firstName, String lastName){
+  public void insertIntoCustomers(String firstName, String lastName, String encodedPassword){
   
     jdbcTemplate.update("INSERT INTO customers(first_name, last_name) VALUES (?,?)", new Object[]{firstName, lastName});
   }

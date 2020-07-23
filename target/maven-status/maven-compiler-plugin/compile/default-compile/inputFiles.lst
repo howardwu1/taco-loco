@@ -2,6 +2,7 @@
 /home/runner/taco-loco/src/main/java/com/tacoloco/PricingCalculatorApplication.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/controller/PricingCalculatorController.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/customDeserializer/StringOnlyDeserializer.java
+/home/runner/taco-loco/src/main/java/com/tacoloco/config/WebSecurityConfig.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/model/Order.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/model/Customer.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/repository/PricingCalculatorRepository.java

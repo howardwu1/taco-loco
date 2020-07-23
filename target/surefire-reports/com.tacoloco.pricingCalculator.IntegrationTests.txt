@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.IntegrationTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.293 s - in com.tacoloco.pricingCalculator.IntegrationTests
+Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 56.786 s <<< FAILURE! - in com.tacoloco.pricingCalculator.IntegrationTests
+putInsertCustomerValid  Time elapsed: 2.594 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+	at com.tacoloco.pricingCalculator.IntegrationTests.putInsertCustomerValid(IntegrationTests.java:61)
+Caused by: java.lang.NullPointerException
+	at com.tacoloco.pricingCalculator.IntegrationTests.putInsertCustomerValid(IntegrationTests.java:61)
+

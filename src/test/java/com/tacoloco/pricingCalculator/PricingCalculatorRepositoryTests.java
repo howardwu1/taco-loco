@@ -46,7 +46,7 @@ class PricingCalculatorRepositoryTests {
 
     jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
     jdbcTemplate.execute("CREATE TABLE customers(" +
-        "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
+        "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255), encoded_password VARCHAR(255))");
 
 
     repository.insertIntoCustomers("Joe", "Cool", "encodedPasswordSample");
@@ -58,7 +58,7 @@ class PricingCalculatorRepositoryTests {
     
     customerlist = jdbcTemplate.query(
         query,
-        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
+        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("encoded_password"))
     );
     
     Assertions.assertTrue(customerlist.size()==1);
@@ -68,5 +68,7 @@ class PricingCalculatorRepositoryTests {
     Assertions.assertTrue(customerlist.get(0).getFirstName().equals("Joe"));
 
     Assertions.assertTrue(customerlist.get(0).getLastName().equals("Cool"));
+
+    Assertions.assertTrue(customerlist.get(0).getEncodedPassword().equals("encodedPasswordSample"));
   }
 }

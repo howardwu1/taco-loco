@@ -37,10 +37,11 @@ public class PricingCalculatorRepository {
     }*/
     jdbcTemplate.query(
         "SELECT id, first_name, last_name FROM customers WHERE first_name = ?", new Object[]{firstName},
-        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
+        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("encoded_password"))
     ).forEach(customer -> log.info(customer.toString()));
     
   }
+
   public void queryForMultipleQualifier(String[] qualifier, Object[] value) {
     String query = "SELECT id, first_name, last_name FROM customers WHERE ";
     
@@ -59,7 +60,7 @@ public class PricingCalculatorRepository {
  
     jdbcTemplate.query(
         query, value,
-        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
+        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("encoded_password"))
     ).forEach(customer -> log.info(customer.toString()));
     
   }
@@ -67,7 +68,7 @@ public class PricingCalculatorRepository {
 
   public void insertIntoCustomers(String firstName, String lastName, String encodedPassword){
   
-    jdbcTemplate.update("INSERT INTO customers(first_name, last_name) VALUES (?,?)", new Object[]{firstName, lastName});
+    jdbcTemplate.update("INSERT INTO customers(first_name, last_name, encoded_password) VALUES (?,?,?)", new Object[]{firstName, lastName, encodedPassword});
   }
 
 }

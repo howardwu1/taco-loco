@@ -38,7 +38,7 @@ class PricingCalculatorServiceTests {
   @Test
   @DisplayName("Call repository with 'Joe Cool' and is a valid JSON")
   void callRepositoryWithJoeCool() throws JsonProcessingException {
-    String mockJson = "{\"firstName\": \"Joe\", \"lastName\": \"Cool\"}";
+    String mockJson = "{\"firstName\": \"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
 
     Customer mockCustomer = new ObjectMapper().readValue(mockJson, Customer.class);
     

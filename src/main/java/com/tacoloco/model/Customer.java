@@ -21,10 +21,11 @@ public class Customer {
 
   private String encodedPassword;
 
-  public Customer(long id, String firstName, String lastName) {
+  public Customer(long id, String firstName, String lastName, String encodedPassword) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.encodedPassword = encodedPassword;
   }
 
   public Customer() {

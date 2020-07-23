@@ -84,8 +84,7 @@ class PricingCalculatorControllerTests {
       String mockJson = "{\"firstName\":2, \"lastName\": \"Cool\",, \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       
       //todo replace customers with users 
-      // doNothing().when(service).insertIntoCustomers(2, "Cool");
-
+      
       mockMvc.perform(put("/insertCustomer")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))

@@ -47,6 +47,12 @@ public class PricingCalculatorService {
   public void insertIntoCustomers(String firstName, String lastName, String encodedPassword){
     pricingCalculatorRepository.insertIntoCustomers(firstName, lastName, encodedPassword);
   }
+
+  public void checkPassword(String firstName, String lastName, String password){
+
+    //todo
+
+  }
   // public boolean isInvalidOrder(String json) {
 
   //   try{

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.PricingCalculatorServiceTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.052 s - in com.tacoloco.pricingCalculator.PricingCalculatorServiceTests
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.002 s - in com.tacoloco.pricingCalculator.PricingCalculatorServiceTests

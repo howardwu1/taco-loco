@@ -94,6 +94,39 @@ class PricingCalculatorControllerTests {
 
 	}
 
+  @Test
+  @DisplayName("put /insertCustomer non-matching password")
+	public void putInsertInvalidNonMatchingPasswordCustomer() throws Exception{
+      
+      String mockJson = "{\"firstName\":2, \"lastName\": \"Cool\",, \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoggyDog\"}";
+            
+      mockMvc.perform(put("/insertCustomer")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422));
+      
+      verify(service, never()).insertIntoCustomers(any(),any(), any());
+
+	}
+
+  @Test
+  @DisplayName("put /validatePassword")
+	public void putValidatePasswordCustomer() throws Exception{
+      
+      String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\",, \"password\": \"SnoopDoDubbaG\"}";
+
+
+      doNothing().when(service).checkPassword("Joe", "Cool", "SnoopDoDubbaG"); 
+
+      mockMvc.perform(put("/validateCustomer")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(200));
+      
+       verify(service).checkPassword("Joe", "Cool", "SnoopDoDubbaG");
+
+
+	}
 
   @Test
   @DisplayName("post /total valid order")

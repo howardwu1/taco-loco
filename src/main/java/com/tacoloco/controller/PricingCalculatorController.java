@@ -109,9 +109,6 @@ public class PricingCalculatorController {
   @ResponseStatus(HttpStatus.OK)
   public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "First name, last name, password, and matching password of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
 
-    //todo: encode the password here using bcrypt
-    //todo: do validation on the password and matching password
-    //todo: create another endpoint to login
 
     //don't do != with strings-- use the equals function or else it looks for the same memory address
     if(!customer.getPassword().equals(customer.getMatchingPassword())){
@@ -123,6 +120,15 @@ public class PricingCalculatorController {
     pricingCalculatorService.insertIntoCustomers(customer.getFirstName(), customer.getLastName(), encodedPassword);
   }
 
+ @PutMapping(value = "/validateCustomer", consumes = {"application/json"})
+  @ResponseStatus(HttpStatus.OK)
+  public @ResponseBody void validateCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "First name, last name, and password of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
+
+    //don't do != with strings-- use the equals function or else it looks for the same memory address
+ 
+    pricingCalculatorService.checkPassword(customer.getFirstName(), customer.getLastName(), customer.getPassword());
+
+  }
 
   @PostMapping(value = "/total", consumes = { "application/json", "application/xml" })
   @ResponseStatus(HttpStatus.OK)

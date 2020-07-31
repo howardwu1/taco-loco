@@ -97,7 +97,7 @@ class PricingCalculatorControllerTests {
       mockMvc.perform(post("/authenticate")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().is(401));
+        .andExpect(status().is(403));
 
 	}
 

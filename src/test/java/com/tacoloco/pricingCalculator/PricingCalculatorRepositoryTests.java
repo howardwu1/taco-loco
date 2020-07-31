@@ -39,17 +39,17 @@ class PricingCalculatorRepositoryTests {
   private static final Logger log = LoggerFactory.getLogger(PricingCalculatorRepositoryTests.class);
 
   @Test
-  @DisplayName("Send to database with name 'Joe Cool' and is valid SQL")
+  @DisplayName("Send to database with name 'Joe Cool' and username 'SirSnoopy' and is valid SQL")
   void sendDatabaseWithJoeCool() throws JsonProcessingException {
 
     log.info("Creating tables");
 
     jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
     jdbcTemplate.execute("CREATE TABLE customers(" +
-        "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255), encoded_password VARCHAR(255))");
+        "username VARCHAR(255), id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255), encoded_password VARCHAR(255))");
 
 
-    repository.insertIntoCustomers("Joe", "Cool", "encodedPasswordSample");
+    repository.insertIntoCustomers("SirSnoopy","Joe", "Cool", "encodedPasswordSample");
     
 
     String query = "SELECT * FROM customers";
@@ -58,13 +58,15 @@ class PricingCalculatorRepositoryTests {
     
     customerlist = jdbcTemplate.query(
         query,
-        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("encoded_password"))
+        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("username"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("encoded_password"))
     );
     
     Assertions.assertTrue(customerlist.size()==1);
 
     Assertions.assertTrue(customerlist.get(0).getId()==1);
 
+    Assertions.assertTrue(customerlist.get(0).getUsername().equals("SirSnoopy"));
+    
     Assertions.assertTrue(customerlist.get(0).getFirstName().equals("Joe"));
 
     Assertions.assertTrue(customerlist.get(0).getLastName().equals("Cool"));

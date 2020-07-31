@@ -20,17 +20,12 @@ import java.util.stream.Collectors;
 import com.tacoloco.model.Customer;
 import com.tacoloco.services.*;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class PricingCalculatorApplication {
 
   @Autowired PricingCalculatorService pricingCalculatorService;
 
-  @Bean
-  public BCryptPasswordEncoder passwordEncoder(){
-    return new BCryptPasswordEncoder();
-  }
   
   private static final Logger log = LoggerFactory.getLogger(PricingCalculatorApplication.class);
 

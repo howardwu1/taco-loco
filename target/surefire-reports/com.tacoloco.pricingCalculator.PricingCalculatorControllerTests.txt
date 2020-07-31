@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 31.599 s - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 36.028 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+putInsertCustomerValid  Time elapsed: 0.698 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<401>
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertCustomerValid(PricingCalculatorControllerTests.java:115)
+

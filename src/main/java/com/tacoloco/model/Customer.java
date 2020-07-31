@@ -14,15 +14,16 @@ public class Customer {
   private long id = 0;
 
   @NotNull
-  private String firstName, lastName;
+  private String username, firstName, lastName;
 
   @NotNull
   private String password, matchingPassword;
 
   private String encodedPassword;
 
-  public Customer(long id, String firstName, String lastName, String encodedPassword) {
+  public Customer(long id, String username, String firstName, String lastName, String encodedPassword) {
     this.id = id;
+    this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.encodedPassword = encodedPassword;
@@ -34,8 +35,8 @@ public class Customer {
   @Override
   public String toString() {
     return String.format(
-        "Customer[id=%d, firstName='%s', lastName='%s']",
-        id, firstName, lastName);
+        "Customer[id=%d, username='%s', firstName='%s', lastName='%s']",
+        id, username, firstName, lastName);
   }
 
 }

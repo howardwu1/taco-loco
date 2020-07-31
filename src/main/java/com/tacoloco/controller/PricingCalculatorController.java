@@ -40,16 +40,33 @@ import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.databind.Module;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 //todo: create more fields for storing passwords for the user -- or the hashed value?
 //todo: figure out if I need to salt the hash?
 
+import com.tacoloco.config.JwtTokenUtil;
+import com.tacoloco.services.JwtUserDetailsService;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 @Controller
+@CrossOrigin
 public class PricingCalculatorController {
+
+  @Autowired
+	private AuthenticationManager authenticationManager;
+
+  @Autowired
+  PasswordEncoder passwordEncoder;
 
   @Bean
   public Module customModule() {
@@ -58,8 +75,25 @@ public class PricingCalculatorController {
       return customModule;
   }
 
-  @Autowired
-  BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
+
+	@Autowired
+	private JwtUserDetailsService userDetailsService;
+
+	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody Customer authenticationRequest) throws Exception {
+
+      
+		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+
+		final UserDetails userDetails = userDetailsService
+				.loadUserByUsername(authenticationRequest.getUsername());
+
+		final String token = jwtTokenUtil.generateToken(userDetails);
+
+		return ResponseEntity.ok(new JwtResponse(token));
+	}
 
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
@@ -107,17 +141,17 @@ public class PricingCalculatorController {
 
   @PutMapping(value = "/insertCustomer", consumes = {"application/json"})
   @ResponseStatus(HttpStatus.OK)
-  public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "First name, last name, password, and matching password of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
+  public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Username, First name, last name, password, and matching password of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){
 
 
     //don't do != with strings-- use the equals function or else it looks for the same memory address
-    if(!customer.getPassword().equals(customer.getMatchingPassword())){
-      throw new PasswordMismatchException();
-    }
+     if(!customer.getPassword().equals(customer.getMatchingPassword())){
+       throw new PasswordMismatchException();
+     }
 
     String encodedPassword = passwordEncoder.encode(customer.getPassword());
  
-    pricingCalculatorService.insertIntoCustomers(customer.getFirstName(), customer.getLastName(), encodedPassword);
+    pricingCalculatorService.insertIntoCustomers(customer.getUsername(), customer.getFirstName(), customer.getLastName(), encodedPassword);
   }
 
  @PutMapping(value = "/validateCustomer", consumes = {"application/json"})
@@ -139,6 +173,17 @@ public class PricingCalculatorController {
   return pricingCalculatorService.getTotal(order);
   }
 
+
+	private void authenticate(String username, String password) throws Exception {
+
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+		} catch (DisabledException e) {
+			throw new Exception("USER_DISABLED", e);
+		} catch (BadCredentialsException e) {
+			throw new Exception("INVALID_CREDENTIALS", e);
+		}
+	}
 
   
 

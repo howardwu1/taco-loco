@@ -44,8 +44,8 @@ public class PricingCalculatorService {
     pricingCalculatorRepository.queryForMultipleQualifier(qualifiers, values);
   }
 
-  public void insertIntoCustomers(String firstName, String lastName, String encodedPassword){
-    pricingCalculatorRepository.insertIntoCustomers(firstName, lastName, encodedPassword);
+  public void insertIntoCustomers(String username, String firstName, String lastName, String encodedPassword){
+    pricingCalculatorRepository.insertIntoCustomers(username, firstName, lastName, encodedPassword);
   }
 
   public void checkPassword(String firstName, String lastName, String password){

@@ -81,20 +81,6 @@ public class PricingCalculatorController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody Customer authenticationRequest) throws Exception {
-
-      
-		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
-		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
-
-		final String token = jwtTokenUtil.generateToken(userDetails);
-
-		return ResponseEntity.ok(new JwtResponse(token));
-	}
-
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Passwords do not match")
@@ -126,6 +112,8 @@ public class PricingCalculatorController {
     return new ResponseEntity(ex, HttpStatus.UNPROCESSABLE_ENTITY);
   }
 
+
+
   @ExceptionHandler(MismatchedInputException.class)
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Datatype incompatibility with Json input")
   public ResponseEntity<?> processHandler(MismatchedInputException ex) {
@@ -137,6 +125,20 @@ public class PricingCalculatorController {
   @ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String greeting() {
 		return pricingCalculatorService.sayHello();
+	}
+
+	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody Customer authenticationRequest) throws Exception {
+
+      
+		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+
+		final UserDetails userDetails = userDetailsService
+				.loadUserByUsername(authenticationRequest.getUsername());
+
+		final String token = jwtTokenUtil.generateToken(userDetails);
+
+		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
   @PutMapping(value = "/insertCustomer", consumes = {"application/json"})
@@ -181,7 +183,7 @@ public class PricingCalculatorController {
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
+			throw new BadCredentialsException("INVALID_CREDENTIALS", e);
 		}
 	}
 

@@ -1,16 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 25.307 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
-putInsertCustomerValid  Time elapsed: 0.411 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<200> but was:<403>
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertCustomerValid(PricingCalculatorControllerTests.java:117)
-
-postAuthenticateUserValid  Time elapsed: 0.107 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<200> but was:<403>
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.postAuthenticateUserValid(PricingCalculatorControllerTests.java:86)
-
-postAuthenticateUserInvalid  Time elapsed: 0.102 s  <<< FAILURE!
-java.lang.AssertionError: Response status expected:<401> but was:<403>
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.postAuthenticateUserInvalid(PricingCalculatorControllerTests.java:100)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 20.916 s - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="25.307" tests="3" errors="0" skipped="0" failures="3">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="20.916" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/runner/taco-loco/target/surefire/surefirebooter11706996279158277112.jar /home/runner/taco-loco/target/surefire 2020-07-31T04-33-33_825-jvmRun1 surefire3740462456861127784tmp surefire_017319607803940555173tmp"/>
+    <property name="sun.java.command" value="/home/runner/taco-loco/target/surefire/surefirebooter3962909780484560891.jar /home/runner/taco-loco/target/surefire 2020-07-31T06-05-16_745-jvmRun1 surefire12842546500575659279tmp surefire_012139647402758660734tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/runner/taco-loco/target/test-classes:/home/runner/taco-loco/target/classes:/home/runner/.m2/repository/org/springframework/security/spring-security-test/5.2.2.RELEASE/spring-security-test-5.2.2.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-core/5.2.2.RELEASE/spring-security-core-5.2.2.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-beans/5.2.4.RELEASE/spring-beans-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-context/5.2.4.RELEASE/spring-context-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-expression/5.2.4.RELEASE/spring-expression-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-web/5.2.2.RELEASE/spring-security-web-5.2.2.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-core/5.2.4.RELEASE/spring-core-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/5.2.4.RELEASE/spring-jcl-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-test/5.2.4.RELEASE/spring-test-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jdbc/2.2.5.RELEASE/spring-boot-starter-data-jdbc-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/2.2.5.RELEASE/spring-boot-starter-jdbc-2.2.5.RELEASE.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/3.4.2/HikariCP-3.4.2.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/5.2.4.RELEASE/spring-jdbc-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jdbc/1.1.5.RELEASE/spring-data-jdbc-1.1.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-relational/1.1.5.RELEASE/spring-data-relational-1.1.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/2.2.5.RELEASE/spring-data-commons-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-tx/5.2.4.RELEASE/spring-tx-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/home/runner/.m2/repository/com/h2database/h2/1.4.200/h2-1.4.200.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-core/2.13.1/log4j-core-2.13.1.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.12.1/log4j-api-2.12.1.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/2.2.5.RELEASE/spring-boot-starter-web-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/2.2.5.RELEASE/spring-boot-starter-json-2.2.5.RELEASE.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.10.2/jackson-datatype-jdk8-2.10.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.10.2/jackson-datatype-jsr310-2.10.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.10.2/jackson-module-parameter-names-2.10.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/2.2.5.RELEASE/spring-boot-starter-tomcat-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/9.0.31/tomcat-embed-core-9.0.31.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/9.0.31/tomcat-embed-el-9.0.31.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/9.0.31/tomcat-embed-websocket-9.0.31.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-validation/2.2.5.RELEASE/spring-boot-starter-validation-2.2.5.RELEASE.jar:/home/runner/.m2/repository/jakarta/validation/jakarta.validation-api/2.0.2/jakarta.validation-api-2.0.2.jar:/home/runner/.m2/repository/org/hibernate/validator/hibernate-validator/6.0.18.Final/hibernate-validator-6.0.18.Final.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.4.1.Final/jboss-logging-3.4.1.Final.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/home/runner/.m2/repository/org/springframework/spring-web/5.2.4.RELEASE/spring-web-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/5.2.4.RELEASE/spring-webmvc-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/2.2.5.RELEASE/spring-boot-starter-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/2.2.5.RELEASE/spring-boot-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.2.5.RELEASE/spring-boot-autoconfigure-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/2.2.5.RELEASE/spring-boot-starter-logging-2.2.5.RELEASE.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.12.1/log4j-to-slf4j-2.12.1.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/1.7.30/jul-to-slf4j-1.7.30.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/1.3.5/jakarta.annotation-api-1.3.5.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/1.25/snakeyaml-1.25.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/2.2.5.RELEASE/spring-boot-starter-test-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/2.2.5.RELEASE/spring-boot-test-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/2.2.5.RELEASE/spring-boot-test-autoconfigure-2.2.5.RELEASE.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.3/json-smart-2.3.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/1.2/accessors-smart-1.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/1.2.2/jakarta.activation-api-1.2.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.5.2/junit-jupiter-5.5.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.5.2/junit-jupiter-api-5.5.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.5.2/junit-jupiter-params-5.5.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.5.2/junit-platform-engine-1.5.2.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/3.1.0/mockito-junit-jupiter-3.1.0.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.13.2/assertj-core-3.13.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/2.1/hamcrest-2.1.jar:/home/runner/.m2/repository/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.10.8/byte-buddy-1.10.8.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.10.8/byte-buddy-agent-1.10.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.0/jsonassert-1.5.0.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.6.3/xmlunit-core-2.6.3.jar:/home/runner/.m2/repository/org/springdoc/springdoc-openapi-ui/1.2.32/springdoc-openapi-ui-1.2.32.jar:/home/runner/.m2/repository/org/springdoc/springdoc-openapi-webmvc-core/1.2.32/springdoc-openapi-webmvc-core-1.2.32.jar:/home/runner/.m2/repository/org/webjars/swagger-ui/3.25.0/swagger-ui-3.25.0.jar:/home/runner/.m2/repository/org/webjars/webjars-locator/0.38/webjars-locator-0.38.jar:/home/runner/.m2/repository/org/webjars/webjars-locator-core/0.41/webjars-locator-core-0.41.jar:/home/runner/.m2/repository/org/webjars/npm/angular__http/2.4.10/angular__http-2.4.10.jar:/home/runner/.m2/repository/org/apache/commons/commons-lang3/3.9/commons-lang3-3.9.jar:/home/runner/.m2/repository/org/springdoc/springdoc-openapi-data-rest/1.2.32/springdoc-openapi-data-rest-1.2.32.jar:/home/runner/.m2/repository/org/springdoc/springdoc-openapi-common/1.2.32/springdoc-openapi-common-1.2.32.jar:/home/runner/.m2/repository/io/swagger/core/v3/swagger-models/2.1.1/swagger-models-2.1.1.jar:/home/runner/.m2/repository/io/swagger/core/v3/swagger-annotations/2.1.1/swagger-annotations-2.1.1.jar:/home/runner/.m2/repository/io/swagger/core/v3/swagger-integration/2.1.1/swagger-integration-2.1.1.jar:/home/runner/.m2/repository/io/swagger/core/v3/swagger-core/2.1.1/swagger-core-2.1.1.jar:/home/runner/.m2/repository/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar:/home/runner/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar:/home/runner/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.10.2/jackson-dataformat-yaml-2.10.2.jar:/home/runner/.m2/repository/io/github/classgraph/classgraph/4.8.44/classgraph-4.8.44.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-rest/2.2.5.RELEASE/spring-boot-starter-data-rest-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-rest-webmvc/3.2.5.RELEASE/spring-data-rest-webmvc-3.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-rest-core/3.2.5.RELEASE/spring-data-rest-core-3.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/hateoas/spring-hateoas/1.0.3.RELEASE/spring-hateoas-1.0.3.RELEASE.jar:/home/runner/.m2/repository/org/springframework/plugin/spring-plugin-core/2.0.0.RELEASE/spring-plugin-core-2.0.0.RELEASE.jar:/home/runner/.m2/repository/org/atteo/evo-inflector/1.2.2/evo-inflector-1.2.2.jar:/home/runner/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-security/2.2.5.RELEASE/spring-boot-starter-security-2.2.5.RELEASE.jar:/home/runner/.m2/repository/org/springframework/spring-aop/5.2.4.RELEASE/spring-aop-5.2.4.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-config/5.2.2.RELEASE/spring-security-config-5.2.2.RELEASE.jar:/home/runner/.m2/repository/io/jsonwebtoken/jjwt/0.9.1/jjwt-0.9.1.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.10.2/jackson-databind-2.10.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.10.2/jackson-annotations-2.10.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.10.2/jackson-core-2.10.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/runner/taco-loco/target/surefire/surefirebooter11706996279158277112.jar"/>
+    <property name="surefire.real.class.path" value="/home/runner/taco-loco/target/surefire/surefirebooter3962909780484560891.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.7+10-post-Ubuntu-2ubuntu218.04"/>
     <property name="user.name" value="runner"/>
@@ -56,161 +56,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="putInsertCustomerValid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.411">
-    <failure message="Status expected:&lt;200&gt; but was:&lt;403&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<403>
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertCustomerValid(PricingCalculatorControllerTests.java:117)
-]]></failure>
-    <system-out><![CDATA[2020-07-31 04:35:13.029  INFO 405 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.tacoloco.pricingCalculator.PricingCalculatorControllerTests], using SpringBootContextLoader
-2020-07-31 04:35:13.031  INFO 405 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.tacoloco.pricingCalculator.PricingCalculatorControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-31 04:35:13.032  INFO 405 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.tacoloco.pricingCalculator.PricingCalculatorControllerTests]: PricingCalculatorControllerTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-31 04:35:13.326  INFO 405 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.tacoloco.PricingCalculatorApplication for test class com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
-2020-07-31 04:35:13.353  INFO 405 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener]
-2020-07-31 04:35:13.354  INFO 405 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@20a18cc9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@61555218, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1fcf73b9, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3b80bb63, org.springframework.test.context.support.DirtiesContextTestExecutionListener@17ebbf1e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5c65fa69, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@38d308e7, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@6b6f73d, org.springframework.test.context.event.EventPublishingTestExecutionListener@4c6fabba, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@3f2ab6ec, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1f1e15de, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2ea0161f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1f235a0a, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@75d402d4, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1a0b4955]
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.2.5.RELEASE)
-
-2020-07-31 04:35:13.837  INFO 405 --- [           main] c.t.p.PricingCalculatorControllerTests   : Starting PricingCalculatorControllerTests on 31979abe26b4 with PID 405 (started by runner in /home/runner/taco-loco)
-2020-07-31 04:35:13.838  INFO 405 --- [           main] c.t.p.PricingCalculatorControllerTests   : The following profiles are active: test
-2020-07-31 04:35:16.741  INFO 405 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2020-07-31 04:35:16.833  INFO 405 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90ms. Found 0 JDBC repository interfaces.
-2020-07-31 04:35:19.340  INFO 405 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 04:35:19.593  INFO 405 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 04:35:19.638  INFO 405 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3fae357f' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 04:35:19.664  INFO 405 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 04:35:19.672  INFO 405 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-07-31 04:35:25.649  INFO 405 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44b5b54, org.springframework.security.web.context.SecurityContextPersistenceFilter@7da0587a, org.springframework.security.web.header.HeaderWriterFilter@4a76c90, org.springframework.security.web.csrf.CsrfFilter@1d82d35c, org.springframework.security.web.authentication.logout.LogoutFilter@4b8c9729, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78d52d4c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47a90d2a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e8f97dd, org.springframework.security.web.session.SessionManagementFilter@6a233d33, org.springframework.security.web.access.ExceptionTranslationFilter@27244a88, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@d426e01]
-2020-07-31 04:35:25.946  INFO 405 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ccf1d3e, org.springframework.security.web.context.SecurityContextPersistenceFilter@7d741200, org.springframework.security.web.header.HeaderWriterFilter@969c2f9, org.springframework.security.web.csrf.CsrfFilter@625c9248, org.springframework.security.web.authentication.logout.LogoutFilter@9cdf13e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1b1d93e9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6af02de0, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@75ff2b6d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@129b0ed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36e11b60, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71d8794f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20a7ce0, org.springframework.security.web.session.SessionManagementFilter@7bbc11ed, org.springframework.security.web.access.ExceptionTranslationFilter@3c1ef806, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4fbed6fc]
-2020-07-31 04:35:27.629  INFO 405 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-31 04:35:37.624  INFO 405 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-31 04:35:37.624  INFO 405 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-31 04:35:37.733  INFO 405 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 108 ms
-2020-07-31 04:35:38.026  INFO 405 --- [           main] c.t.p.PricingCalculatorControllerTests   : Started PricingCalculatorControllerTests in 24.592 seconds (JVM running for 118.382)
-
-MockHttpServletRequest:
-      HTTP Method = PUT
-      Request URI = /insertCustomer
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"129"]
-             Body = {"username":"SirSnoopy", "firstName":"Joe", "lastName": "Cool", "password": "SnoopDoDubbaG", "matchingPassword": "SnoopDoDubbaG"}
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5f815f93}
-
-Handler:
-             Type = null
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 403
-    Error message = Forbidden
-          Headers = [X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-]]></system-out>
-  </testcase>
-  <testcase name="postAuthenticateUserValid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.107">
-    <failure message="Status expected:&lt;200&gt; but was:&lt;403&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<403>
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.postAuthenticateUserValid(PricingCalculatorControllerTests.java:86)
-]]></failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /authenticate
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"121"]
-             Body = {"username":"javainuse", "firstName":"Java", "lastName": "InUse", "password": "password", "matchingPassword": "password"}
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@adbc3bc}
-
-Handler:
-             Type = null
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 403
-    Error message = Forbidden
-          Headers = [X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-]]></system-out>
-  </testcase>
-  <testcase name="postAuthenticateUserInvalid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.102">
-    <failure message="Response status expected:&lt;401&gt; but was:&lt;403&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Response status expected:<401> but was:<403>
-	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.postAuthenticateUserInvalid(PricingCalculatorControllerTests.java:100)
-]]></failure>
-    <system-out><![CDATA[
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /authenticate
-       Parameters = {}
-          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"113"]
-             Body = {"username":"javainuse", "firstName":"Java", "lastName": "InUse", "password": "fake", "matchingPassword": "fake"}
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@3c6d3ba}
-
-Handler:
-             Type = null
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 403
-    Error message = Forbidden
-          Headers = [X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
-     Content type = null
-             Body = 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-]]></system-out>
-  </testcase>
+  <testcase name="getHelloWorld" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.619"/>
+  <testcase name="putInsertCustomerValid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="1.106"/>
+  <testcase name="postAuthenticateUserValid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="1.591"/>
+  <testcase name="postAuthenticateUserInvalid" classname="com.tacoloco.pricingCalculator.PricingCalculatorControllerTests" time="0.714"/>
 </testsuite>

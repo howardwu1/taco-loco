@@ -74,6 +74,18 @@ class PricingCalculatorControllerTests {
 
 
 
+	@Test
+  @DisplayName("get / -- hello world")
+	public void getHelloWorld() throws Exception {
+      
+      doReturn("hello world").when(service).sayHello();
+
+      mockMvc.perform(get("/"))
+        .andExpect(status().isOk())
+        .andExpect(content().string(containsString("hello world")));
+
+	}
+  
   @Test
   @DisplayName("post /authenticate valid user info")
 	public void postAuthenticateUserValid() throws Exception{
@@ -97,9 +109,11 @@ class PricingCalculatorControllerTests {
       mockMvc.perform(post("/authenticate")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().is(403));
+        .andExpect(status().is(401));
 
 	}
+
+  
 
 
   @Test
@@ -186,17 +200,6 @@ class PricingCalculatorControllerTests {
 
 // 	}
 
-// 	@Test
-//   @DisplayName("get / -- hello world")
-// 	public void getHelloWorld() throws Exception {
-      
-//       doReturn("hello world").when(service).sayHello();
-
-//       mockMvc.perform(get("/"))
-//         .andExpect(status().isOk())
-//         .andExpect(content().string(containsString("hello world")));
-
-// 	}
 
 //   @Test
 //   @DisplayName("post /total invalid order item not on menu")

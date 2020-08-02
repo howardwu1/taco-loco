@@ -130,15 +130,19 @@ public class PricingCalculatorController {
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody Customer authenticationRequest) throws Exception {
 
-      
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
 		return ResponseEntity.ok(new JwtResponse(token));
+	}
+
+  
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<?> saveUser(@RequestBody Customer user) throws Exception {
+		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 
   @PutMapping(value = "/insertCustomer", consumes = {"application/json"})
@@ -181,10 +185,17 @@ public class PricingCalculatorController {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
+      System.out.println("******************************** " + password);
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
+    
+      System.out.println("******************************** " + password);
 			throw new BadCredentialsException("INVALID_CREDENTIALS", e);
-		}
+		} catch (Exception e ){
+      System.out.println("******************************* " + e);
+      throw new BadCredentialsException("INVALID_CREDENTIALS", e);
+
+    }
 	}
 
   

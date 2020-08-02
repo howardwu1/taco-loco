@@ -88,7 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
         httpSecurity.csrf().disable()
         //allow all endpoints
-        .authorizeRequests().anyRequest().permitAll(). and()
+        .authorizeRequests().anyRequest().permitAll().and()
         //needt this part to have the correct exception handling!
         .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
         ;

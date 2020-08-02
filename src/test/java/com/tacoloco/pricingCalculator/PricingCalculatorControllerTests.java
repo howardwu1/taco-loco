@@ -16,6 +16,7 @@ import static org.hamcrest.Matchers.is;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 
 import org.springframework.http.MediaType;
@@ -57,6 +58,9 @@ import org.springframework.security.core.userdetails.User;
 import java.util.ArrayList;
 
 import com.tacoloco.dao.UserDao;
+
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
                                     
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -118,8 +122,6 @@ class PricingCalculatorControllerTests {
 
 
    String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
-//       String mockJson = "{\"username\":\"javainuse\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"password\", \"matchingPassword\": \"password\"}";
-
 
       doReturn(new User("SirSnoopy", "$2y$12$YabjTmtNmIrZS2iy3z1J/eL/eNJQ8DlQJWkkMsqaFDfZYJuHV4S0W", new ArrayList<>())).when(userDetailsService).loadUserByUsername("SirSnoopy");
 
@@ -131,18 +133,21 @@ class PricingCalculatorControllerTests {
 	}
 
 
-  // @Test
-  // @DisplayName("post /authenticate invalid user info")
-	// public void postAuthenticateUserInvalid() throws Exception{
+  @Test
+  @DisplayName("post /authenticate invalid user info")
+	public void postAuthenticateUserInvalid() throws Exception{
          
-  //     String mockJson = "{\"username\":\"javainuse\", \"firstName\":\"Java\", \"lastName\": \"InUse\", \"password\": \"fake\", \"matchingPassword\": \"fake\"}";
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"fake\", \"matchingPassword\": \"fake\"}";
 
-  //     mockMvc.perform(post("/authenticate")
-  //                   .contentType(MediaType.APPLICATION_JSON)
-  //                   .content(mockJson))
-  //       .andExpect(status().is(401));
 
-	// }
+      doThrow(new UsernameNotFoundException("User not found with username: SirSnoopy")).when(userDetailsService).loadUserByUsername("SirSnoopy");
+      
+      mockMvc.perform(post("/authenticate")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(401));
+
+	}
 
   
 

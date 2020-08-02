@@ -1,6 +1,6 @@
-# Created at 2020-08-02T05:41:02.795
+# Created at 2020-08-02T20:30:59.763
 System.exit() or native command error interrupted process checker.
-java.lang.IllegalStateException: Cannot use PPID 84 process information. Going to use NOOP events.
+java.lang.IllegalStateException: Cannot use PPID 890 process information. Going to use NOOP events.
 	at org.apache.maven.surefire.booter.PpidChecker.checkProcessInfo(PpidChecker.java:155)
 	at org.apache.maven.surefire.booter.PpidChecker.isProcessAlive(PpidChecker.java:124)
 	at org.apache.maven.surefire.booter.ForkedBooter$2.run(ForkedBooter.java:214)
@@ -12,6 +12,6 @@ java.lang.IllegalStateException: Cannot use PPID 84 process information. Going t
 	at java.base/java.lang.Thread.run(Thread.java:834)
 
 
-# Created at 2020-08-02T05:41:44.719
+# Created at 2020-08-02T20:31:44.568
 Killing self fork JVM. PING timeout elapsed.
 

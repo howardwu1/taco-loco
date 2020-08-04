@@ -1,0 +1,146 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------------< [0;36mcom.tacoloco:pricingCalculator[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding pricingCalculator 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.1.0:clean[m [1m(default-clean)[m @ [36mpricingCalculator[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/runner/taco-loco/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.1.0:resources[m [1m(default-resources)[m @ [36mpricingCalculator[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 1 resource
+[[1;34mINFO[m] Copying 0 resource
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.8.1:compile[m [1m(default-compile)[m @ [36mpricingCalculator[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 16 source files to /home/runner/taco-loco/target/classes
+[[1;34mINFO[m] /home/runner/taco-loco/src/main/java/com/tacoloco/services/PricingCalculatorService.java: /home/runner/taco-loco/src/main/java/com/tacoloco/services/PricingCalculatorService.java uses or overrides a deprecated API.
+[[1;34mINFO[m] /home/runner/taco-loco/src/main/java/com/tacoloco/services/PricingCalculatorService.java: Recompile with -Xlint:deprecation for details.
+[[1;34mINFO[m] /home/runner/taco-loco/src/main/java/com/tacoloco/controller/PricingCalculatorController.java: /home/runner/taco-loco/src/main/java/com/tacoloco/controller/PricingCalculatorController.java uses unchecked or unsafe operations.
+[[1;34mINFO[m] /home/runner/taco-loco/src/main/java/com/tacoloco/controller/PricingCalculatorController.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.1.0:testResources[m [1m(default-testResources)[m @ [36mpricingCalculator[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/runner/taco-loco/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.8.1:testCompile[m [1m(default-testCompile)[m @ [36mpricingCalculator[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 4 source files to /home/runner/taco-loco/target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.22.2:test[m [1m(default-test)[m @ [36mpricingCalculator[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m]  T E S T S
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m] Running com.tacoloco.pricingCalculator.[1mPricingCalculatorRepositoryTests[m
+02:52:51.571 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+02:52:51.670 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+02:52:51.854 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+02:52:52.092 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests], using SpringBootContextLoader
+02:52:52.118 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests]: class path resource [com/tacoloco/pricingCalculator/PricingCalculatorRepositoryTests-context.xml] does not exist
+02:52:52.122 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests]: class path resource [com/tacoloco/pricingCalculator/PricingCalculatorRepositoryTestsContext.groovy] does not exist
+02:52:52.122 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+02:52:52.124 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests]: PricingCalculatorRepositoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+02:52:52.558 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests]
+02:52:53.202 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/home/runner/taco-loco/target/classes/com/tacoloco/PricingCalculatorApplication.class]
+02:52:53.204 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.tacoloco.PricingCalculatorApplication for test class com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests
+02:52:54.207 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests]: using defaults.
+02:52:54.208 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener]
+02:52:54.284 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1fa1cab1, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@70f02c32, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@62010f5c, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@51fadaff, org.springframework.test.context.support.DirtiesContextTestExecutionListener@401f7633, org.springframework.test.context.transaction.TransactionalTestExecutionListener@31ff43be, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5b6ec132, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@5c44c582, org.springframework.test.context.event.EventPublishingTestExecutionListener@67d18ed7, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@2c78d320, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@132e0cc, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7b205dbd, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@106cc338, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7a67e3c6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6cc558c6]
+02:52:54.302 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@1fc32e4f testClass = PricingCalculatorRepositoryTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2f67b837 testClass = PricingCalculatorRepositoryTests, locations = '{}', classes = '{class com.tacoloco.PricingCalculatorApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1de76cc7, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5a56cdac, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@550dbc7a, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@48aca48b], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+02:52:54.582 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.5.RELEASE)
+
+2020-08-02 02:52:56.871  INFO 885 --- [           main] c.t.p.PricingCalculatorRepositoryTests   : Starting PricingCalculatorRepositoryTests on 7f2a1cfa3b12 with PID 885 (started by runner in /home/runner/taco-loco)
+2020-08-02 02:52:56.895  INFO 885 --- [           main] c.t.p.PricingCalculatorRepositoryTests   : No active profile set, falling back to default profiles: default
+2020-08-02 02:53:08.340  INFO 885 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-02 02:53:08.375  INFO 885 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2020-08-02 02:53:09.091  INFO 885 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.tacoloco.dao.UserDao. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2020-08-02 02:53:09.147  INFO 885 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 607ms. Found 0 JDBC repository interfaces.
+2020-08-02 02:53:09.493  INFO 885 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-02 02:53:09.651  INFO 885 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-08-02 02:53:10.166  INFO 885 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 406ms. Found 1 JPA repository interfaces.
+2020-08-02 02:53:17.381  INFO 885 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 02:53:17.474  INFO 885 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 02:53:17.478  INFO 885 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4262fdeb' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 02:53:17.579  INFO 885 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 02:53:17.676  INFO 885 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-08-02 02:53:21.238  INFO 885 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-08-02 02:53:23.004  INFO 885 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-08-02 02:53:24.126  INFO 885 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-08-02 02:53:25.268  INFO 885 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-08-02 02:53:26.651  INFO 885 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-08-02 02:53:28.471  INFO 885 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-08-02 02:53:34.655  INFO 885 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-08-02 02:53:34.712  INFO 885 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-08-02 02:53:42.458  WARN 885 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-08-02 02:53:50.507  INFO 885 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f0a5848, org.springframework.security.web.context.SecurityContextPersistenceFilter@6af02de0, org.springframework.security.web.header.HeaderWriterFilter@625c9248, org.springframework.security.web.authentication.logout.LogoutFilter@4d4337f9, com.tacoloco.config.JwtRequestFilter@75caecf7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3bede349, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20a7ce0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c6db00d, org.springframework.security.web.session.SessionManagementFilter@7bbc11ed, org.springframework.security.web.access.ExceptionTranslationFilter@585718dd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@63f16350]
+2020-08-02 02:53:51.126  INFO 885 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45775a15, org.springframework.security.web.context.SecurityContextPersistenceFilter@1a6df932, org.springframework.security.web.header.HeaderWriterFilter@61e4a072, org.springframework.security.web.csrf.CsrfFilter@38eafdab, org.springframework.security.web.authentication.logout.LogoutFilter@1a67bcaf, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4468ced2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1415f18d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2396dc4e, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@62075e3d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@74120029, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3031d9e9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7bb888b7, org.springframework.security.web.session.SessionManagementFilter@32f2de5c, org.springframework.security.web.access.ExceptionTranslationFilter@e0c03bd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@506654fa]
+2020-08-02 02:53:55.381  INFO 885 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Results:
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  02:30 min
+[[1;34mINFO[m] Finished at: 2020-08-02T02:54:10Z
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-surefire-plugin:2.22.2:test[m [1m(default-test)[m on project [36mpricingCalculator[m: [1;31mThere are test failures.[m
+[[1;31mERROR[m] [1;31m[m
+[[1;31mERROR[m] [1;31mPlease refer to /home/runner/taco-loco/target/surefire-reports for the individual test results.[m
+[[1;31mERROR[m] [1;31mPlease refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.[m
+[[1;31mERROR[m] [1;31mThe forked VM terminated without properly saying goodbye. VM crash or System.exit called?[m
+[[1;31mERROR[m] [1;31mCommand was /bin/sh -c cd /home/runner/taco-loco && /usr/lib/jvm/java-11-openjdk-amd64/bin/java -jar /home/runner/taco-loco/target/surefire/surefirebooter16166323133509129047.jar /home/runner/taco-loco/target/surefire 2020-08-02T02-52-42_509-jvmRun1 surefire8807460950133435306tmp surefire_010895832533698669765tmp[m
+[[1;31mERROR[m] [1;31mError occurred in starting fork, check output in log[m
+[[1;31mERROR[m] [1;31mProcess Exit Code: 137[m
+[[1;31mERROR[m] [1;31morg.apache.maven.surefire.booter.SurefireBooterForkException: The forked VM terminated without properly saying goodbye. VM crash or System.exit called?[m
+[[1;31mERROR[m] [1;31mCommand was /bin/sh -c cd /home/runner/taco-loco && /usr/lib/jvm/java-11-openjdk-amd64/bin/java -jar /home/runner/taco-loco/target/surefire/surefirebooter16166323133509129047.jar /home/runner/taco-loco/target/surefire 2020-08-02T02-52-42_509-jvmRun1 surefire8807460950133435306tmp surefire_010895832533698669765tmp[m
+[[1;31mERROR[m] [1;31mError occurred in starting fork, check output in log[m
+[[1;31mERROR[m] [1;31mProcess Exit Code: 137[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.plugin.surefire.booterclient.ForkStarter.fork(ForkStarter.java:669)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.plugin.surefire.booterclient.ForkStarter.run(ForkStarter.java:282)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.plugin.surefire.booterclient.ForkStarter.run(ForkStarter.java:245)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeProvider(AbstractSurefireMojo.java:1183)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeAfterPreconditionsChecked(AbstractSurefireMojo.java:1011)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.execute(AbstractSurefireMojo.java:857)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:137)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:210)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:156)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:148)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:117)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:81)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:56)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:305)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:192)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:105)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:956)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)[m
+[[1;31mERROR[m] [1;31m	at org.apache.maven.cli.MavenCli.main(MavenCli.java:192)[m
+[[1;31mERROR[m] [1;31m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)[m
+[[1;31mERROR[m] [1;31m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)[m
+[[1;31mERROR[m] [1;31m	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)[m
+[[1;31mERROR[m] [1;31m	at java.base/java.lang.reflect.Method.invoke(Method.java:566)[m
+[[1;31mERROR[m] [1;31m	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)[m
+[[1;31mERROR[m] [1;31m	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)[m
+[[1;31mERROR[m] [1;31m	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)[m
+[[1;31mERROR[m] [1;31m	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)[m
+[[1;31mERROR[m] [1;31m[m
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

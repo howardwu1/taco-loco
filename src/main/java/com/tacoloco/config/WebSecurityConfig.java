@@ -29,12 +29,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
-
+import org.springframework.context.ApplicationContextAware;
 
 @Configuration
 @EnableWebSecurity
-@Order(1000)
+@Order(101)
+@Lazy
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
@@ -47,6 +49,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
+
+
+
+  @Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 
   @Bean
   @Profile("!test")
@@ -89,7 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         httpSecurity.csrf().disable()
         //allow all endpoints
         .authorizeRequests().anyRequest().permitAll().and()
-        //needt this part to have the correct exception handling!
+        //need this part to have the correct exception handling for authentication!
         .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
         ;
       }
@@ -105,14 +115,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 
-  	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
-  
-
-	@Bean
+	@Bean(name = "authenticationManager")
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();

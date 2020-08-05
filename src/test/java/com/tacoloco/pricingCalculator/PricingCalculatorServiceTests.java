@@ -35,19 +35,19 @@ class PricingCalculatorServiceTests {
   @MockBean
   private PricingCalculatorRepository repository;
 
-  // @Test
-  // @DisplayName("Call repository with 'Joe Cool' and is a valid JSON")
-  // void callRepositoryWithJoeCool() throws JsonProcessingException {
-  //   String mockJson = "{\"username\": \"SirSnoopy\",\"firstName\": \"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+  @Test
+  @DisplayName("Call repository with 'Joe Cool' and is a valid JSON")
+  void callRepositoryWithJoeCool() throws JsonProcessingException {
+    String mockJson = "{\"username\": \"SirSnoopy\",\"firstName\": \"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
 
-  //   Customer mockCustomer = new ObjectMapper().readValue(mockJson, Customer.class);
+    Customer mockCustomer = new ObjectMapper().readValue(mockJson, Customer.class);
     
-  //   doNothing().when(repository).insertIntoCustomers(eq("SirSnoopy"), eq("Joe"), eq("Cool"), any(String.class));
+    doNothing().when(repository).insertIntoCustomers(eq("SirSnoopy"), eq("Joe"), eq("Cool"), any(String.class));
 
-  //   service.insertIntoCustomers(mockCustomer.getUsername(), mockCustomer.getFirstName(),mockCustomer.getLastName(), "myencodedpass");
+    service.insertIntoCustomers(mockCustomer.getUsername(), mockCustomer.getFirstName(),mockCustomer.getLastName(), "myencodedpass");
 
-  //   verify(repository).insertIntoCustomers(eq("SirSnoopy"), eq("Joe"), eq("Cool"), any(String.class));
-  // }
+    verify(repository).insertIntoCustomers(eq("SirSnoopy"), eq("Joe"), eq("Cool"), any(String.class));
+  }
 
   // @Test
   // @DisplayName("Return $2.50 for 1 Veggie and is a valid order")

@@ -170,98 +170,98 @@ class PricingCalculatorControllerTests {
 
 	}
 
-//   @Test
-//   @DisplayName("put /insertCustomer invalid user info first name int")
-// 	public void putInsertInvalidFirstNameIntCustomer() throws Exception{
+  @Test
+  @DisplayName("put /insertCustomer invalid user info first name int")
+	public void putInsertInvalidFirstNameIntCustomer() throws Exception{
       
-//       String mockJson = "{\"username\": \"SirSnoopy\", \"firstName\":2, \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"username\": \"SirSnoopy\", \"firstName\":2, \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       
-//       //todo replace customers with users 
+      //todo replace customers with users 
       
-//       mockMvc.perform(put("/insertCustomer")
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(mockJson))
-//         .andExpect(status().is(422));
+      mockMvc.perform(put("/insertCustomer")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422));
       
-//       verify(service, never()).insertIntoCustomers(any(), any(),any(), any());
+      verify(service, never()).insertIntoCustomers(any(), any(),any(), any());
 
-// 	}
+	}
 
-//   @Test
-//   @DisplayName("put /insertCustomer non-matching password")
-// 	public void putInsertInvalidNonMatchingPasswordCustomer() throws Exception{
+  @Test
+  @DisplayName("put /insertCustomer non-matching password")
+	public void putInsertInvalidNonMatchingPasswordCustomer() throws Exception{
       
-//       String mockJson = "{\"username\": \"SirSnoopy\", \"firstName\":2, \"lastName\": \"Cool\",, \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoggyDog\"}";
+      String mockJson = "{\"username\": \"SirSnoopy\", \"firstName\":2, \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoggyDog\"}";
             
-//       mockMvc.perform(put("/insertCustomer")
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(mockJson))
-//         .andExpect(status().is(422));
+      mockMvc.perform(put("/insertCustomer")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422));
       
-//       verify(service, never()).insertIntoCustomers(any(), any(),any(), any());
+      verify(service, never()).insertIntoCustomers(any(), any(),any(), any());
 
-// 	}
+	}
 
-//   @Test
-//   @DisplayName("put /validatePassword")
-// 	public void putValidatePasswordCustomer() throws Exception{
+  @Test
+  @DisplayName("put /validatePassword")
+	public void putValidatePasswordCustomer() throws Exception{
       
-//       String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\",, \"password\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\"}";
 
 
-//       doNothing().when(service).checkPassword("Joe", "Cool", "SnoopDoDubbaG"); 
+      doNothing().when(service).checkPassword("Joe", "Cool", "SnoopDoDubbaG"); 
 
-//       mockMvc.perform(put("/validateCustomer")
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(mockJson))
-//         .andExpect(status().is(200));
+      mockMvc.perform(put("/validateCustomer")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(200));
       
-//        verify(service).checkPassword("Joe", "Cool", "SnoopDoDubbaG");
+       verify(service).checkPassword("Joe", "Cool", "SnoopDoDubbaG");
 
 
-// 	}
+	}
 
-//   @Test
-//   @DisplayName("post /total valid order")
-// 	public void getTotalValid() throws Exception{
+  @Test
+  @DisplayName("post /total valid order")
+	public void getTotalValid() throws Exception{
       
-//       String mockJson = "{\"veggie\":1}";
-//       doReturn("2.50").when(service).getTotal(any(Order.class));
+      String mockJson = "{\"veggie\":1}";
+      doReturn("2.50").when(service).getTotal(any(Order.class));
 
-//       mockMvc.perform(post("/total")
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(mockJson))
-//         .andExpect(status().isOk())
-//         .andExpect(content().string(containsString("2.50")));
+      mockMvc.perform(post("/total")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk())
+        .andExpect(content().string(containsString("2.50")));
 
-// 	}
+	}
 
 
-//   @Test
-//   @DisplayName("post /total invalid order item not on menu")
-// 	public void postTotalInvalidNotOnMenu() throws Exception {
+  @Test
+  @DisplayName("post /total invalid order item not on menu")
+	public void postTotalInvalidNotOnMenu() throws Exception {
       
-//       String mockJson = "{\"burger\":1}";
+      String mockJson = "{\"burger\":1}";
       
-//       mockMvc.perform(post("/total") 
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(mockJson))
-//         .andExpect(status().is(422))
-//         .andExpect(status().reason(containsString("No such item or counts not all whole numbers")))
-//         .andExpect(jsonPath("$.body").doesNotExist());
-//   }
+      mockMvc.perform(post("/total") 
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422))
+        .andExpect(status().reason(containsString("No such item or counts not all whole numbers")))
+        .andExpect(jsonPath("$.body").doesNotExist());
+  }
 
-//    @Test
-//   @DisplayName("post /total invalid order negative quantity")
-// 	public void postTotalInvalidNegativeQuantity() throws Exception {
+   @Test
+  @DisplayName("post /total invalid order negative quantity")
+	public void postTotalInvalidNegativeQuantity() throws Exception {
       
-//       String mockJson = "{\"veggie\":-1}";
+      String mockJson = "{\"veggie\":-1}";
 
-//       mockMvc.perform(post("/total") 
-//                     .contentType(MediaType.APPLICATION_JSON)
-//                     .content(mockJson))
-//         .andExpect(status().is(422))
-//         .andExpect(status().reason(containsString("No such item or counts not all whole numbers")))
-//         .andExpect(jsonPath("$.body").doesNotExist());
-//   }
+      mockMvc.perform(post("/total") 
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422))
+        .andExpect(status().reason(containsString("No such item or counts not all whole numbers")))
+        .andExpect(jsonPath("$.body").doesNotExist());
+  }
 }

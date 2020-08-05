@@ -26,8 +26,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
+@ActiveProfiles(value="stillatest")
 class PricingCalculatorRepositoryTests {
   
   @Autowired

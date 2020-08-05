@@ -63,7 +63,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class PricingCalculatorController {
 
   @Autowired
-	private AuthenticationManager authenticationManager;
+	AuthenticationManager authenticationManager;
 
   @Autowired
   PasswordEncoder passwordEncoder;

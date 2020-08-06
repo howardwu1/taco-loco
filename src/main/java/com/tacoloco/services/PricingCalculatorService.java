@@ -58,24 +58,6 @@ public class PricingCalculatorService {
     //todo
 
   }
-  public boolean isInvalidOrder(String json) {
 
-    try{
-       Order order = new ObjectMapper().reader(Order.class).without(DeserializationFeature.ACCEPT_FLOAT_AS_INT).readValue(json);
-       return false;
-    }
-    catch (JsonProcessingException e){
-      return true;
-    }
-    catch (NumberFormatException e) {
-      
-      return true;
-    }
-    catch (Exception e){
-      System.out.println("*********************HMMMM");
-      return true;
-    }
-
-  }
 
 }

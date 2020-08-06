@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles(value="test")
 class PricingCalculatorRepositoryTests {
   
   @Autowired

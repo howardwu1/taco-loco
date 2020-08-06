@@ -8,6 +8,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import org.springframework.security.authentication.AuthenticationManager;
+
 
 import com.tacoloco.repository.*;
 @Service
@@ -15,6 +17,9 @@ public class PricingCalculatorService {
   
   @Autowired PricingCalculatorRepository pricingCalculatorRepository;
 
+  @Autowired
+  AuthenticationManager authenticationManager; //not being used in this class however is a dependency that is needed for a spring boot to resolve a circular reference that also has been made @lazy
+  
   public String sayHello() {
     return "hello world";
   }
@@ -53,20 +58,6 @@ public class PricingCalculatorService {
     //todo
 
   }
-  public boolean isInvalidOrder(String json) {
 
-    try{
-       Order order = new ObjectMapper().reader(Order.class).without(DeserializationFeature.ACCEPT_FLOAT_AS_INT).readValue(json);
-       return false;
-    }
-    catch (JsonProcessingException e){
-      return true;
-    }
-    catch (NumberFormatException e) {
-      
-      return true;
-    }
-
-  }
 
 }

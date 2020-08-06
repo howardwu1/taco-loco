@@ -93,36 +93,4 @@ class PricingCalculatorServiceTests {
     // Assertions.assertTrue(!service.isInvalidOrder(mockJson));
     Assertions.assertTrue(service.getTotal(mockOrder).equals("10.40"));
   }
-
-  @Test
-  @DisplayName("Return true for isInvalidOrder for 1 Burger (bad order)")
-  void returnIsInvalidOrderAsTrueForOneBurger() {
-    String mockJson = "{\"burger\":1}";
-    
-    Assertions.assertTrue(service.isInvalidOrder(mockJson));
-  }
-
-  @Test
-  @DisplayName("Return true for isInvalidOrder for 1 Burger and 2 chicken tacos")
-  void returnIsInvalidOrderAsTrueForOneBurgerAndTwoChicken() {
-    String mockJson = "{\"burger\":1, \"chicken\":2}";
-    
-    Assertions.assertTrue(service.isInvalidOrder(mockJson));
-  }
-
-  @Test
-  @DisplayName("Return true for isInvalidOrder for 2.5 chicken tacos")
-  void returnIsInvalidOrderAsTrueForNonWholeNumberOrder() {
-    String mockJson = "{\"chicken\":2.5}";
-
-    Assertions.assertTrue(service.isInvalidOrder(mockJson));
-  }
-
-  @Test
-  @DisplayName("Return true for isInvalidOrder for -2 chicken tacos")
-  void returnIsInvalidOrderAsTrueForNegativeNumberOrder() {
-    String mockJson = "{\"chicken\":-2}";
-
-    Assertions.assertTrue(service.isInvalidOrder(mockJson));
-  }
 }

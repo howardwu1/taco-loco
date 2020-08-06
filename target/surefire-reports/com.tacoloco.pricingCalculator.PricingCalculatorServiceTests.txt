@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.tacoloco.pricingCalculator.PricingCalculatorServiceTests
--------------------------------------------------------------------------------
-Tests run: 9, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 14.898 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorServiceTests
-returnIsInvalidOrderAsTrueForNegativeNumberOrder  Time elapsed: 0.153 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
-	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTests.returnIsInvalidOrderAsTrueForNegativeNumberOrder(PricingCalculatorServiceTests.java:126)
-

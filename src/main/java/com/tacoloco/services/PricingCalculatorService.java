@@ -8,6 +8,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import org.springframework.security.authentication.AuthenticationManager;
+
 
 import com.tacoloco.repository.*;
 @Service
@@ -15,6 +17,9 @@ public class PricingCalculatorService {
   
   @Autowired PricingCalculatorRepository pricingCalculatorRepository;
 
+  @Autowired
+  AuthenticationManager authenticationManager;
+  
   public String sayHello() {
     return "hello world";
   }
@@ -64,6 +69,10 @@ public class PricingCalculatorService {
     }
     catch (NumberFormatException e) {
       
+      return true;
+    }
+    catch (Exception e){
+      System.out.println("*********************HMMMM");
       return true;
     }
 

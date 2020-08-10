@@ -36,6 +36,8 @@ import com.tacoloco.repository.PricingCalculatorRepository;
 
 import org.springframework.test.context.ActiveProfiles;
 
+
+
 @SpringBootTest
 @ActiveProfiles(value="test")
 @AutoConfigureMockMvc
@@ -49,6 +51,26 @@ class IntegrationTests {
 
   @Autowired
   JdbcTemplate jdbcTemplate;
+
+    @Test
+  @DisplayName("post /register valid user info")
+	public void postRegisterCustomerValid() throws Exception{
+      
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+    
+      DAOUser mockDAOUser = new DAOUser();
+
+      mockDAOUser.setUsername("SirSnoopy");
+      mockDAOUser.setPassword("$2y$12$YabjTmtNmIrZS2iy3z1J/eL/eNJQ8DlQJWkkMsqaFDfZYJuHV4S0W");
+
+
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+	}
+  
 
   @Test
   @DisplayName("put /insertCustomer valid user info")

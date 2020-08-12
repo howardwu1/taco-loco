@@ -78,7 +78,7 @@ class IntegrationTests {
       mockMvc.perform(post("/authenticate")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().isOk());
+        .andExpect(status().is(401));
 	}
   
 
@@ -88,6 +88,10 @@ class IntegrationTests {
 
 
    String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+   mockMvc.perform(post("/register")
+   .contentType(MediaType.APPLICATION_JSON)
+   .content(mockJson))
+    .andExpect(status().isOk());
 
       mockMvc.perform(post("/authenticate")
                     .contentType(MediaType.APPLICATION_JSON)

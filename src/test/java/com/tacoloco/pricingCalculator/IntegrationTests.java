@@ -36,8 +36,6 @@ import com.tacoloco.repository.PricingCalculatorRepository;
 
 import org.springframework.test.context.ActiveProfiles;
 
-
-
 @SpringBootTest
 @ActiveProfiles(value="test")
 @AutoConfigureMockMvc
@@ -67,19 +65,36 @@ class IntegrationTests {
 
 
     @Test
-  @DisplayName("post /register invalid user info--nonmatching password")
+  @DisplayName("post /register invalid user info--nonmatching password and can't validate the user")
 	public void postRegisterCustomerInvalid() throws Exception{
       
-      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"fake\"}";
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"fake1\", \"matchingPassword\": \"fake2\"}";
       
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().is(422));
 
-      verify(userDetailsService, never()).save(any(Customer.class));
+      mockMvc.perform(post("/authenticate")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
 	}
   
+
+  @Test
+  @DisplayName("post /authenticate valid user info")
+	public void postAuthenticateUserValid() throws Exception{
+
+
+   String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+
+      mockMvc.perform(post("/authenticate")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+	}
 
   @Test
   @DisplayName("put /insertCustomer valid user info")

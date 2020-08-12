@@ -83,8 +83,9 @@ public class PricingCalculatorController {
 
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
+  //note made this class public to make it accessible to the controller test
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Passwords do not match")
-  class PasswordMismatchException extends RuntimeException {}
+  public class PasswordMismatchException extends RuntimeException {}
 
   @ResponseStatus(code = HttpStatus.BAD_REQUEST)
  class BadRequestException extends RuntimeException {}
@@ -142,6 +143,11 @@ public class PricingCalculatorController {
   
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody Customer user) throws Exception {
+
+    if(!user.getPassword().equals(user.getMatchingPassword())){
+       throw new PasswordMismatchException();
+     }
+
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 

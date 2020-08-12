@@ -57,18 +57,27 @@ class IntegrationTests {
 	public void postRegisterCustomerValid() throws Exception{
       
       String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
-    
-      DAOUser mockDAOUser = new DAOUser();
-
-      mockDAOUser.setUsername("SirSnoopy");
-      mockDAOUser.setPassword("$2y$12$YabjTmtNmIrZS2iy3z1J/eL/eNJQ8DlQJWkkMsqaFDfZYJuHV4S0W");
-
 
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
 
+	}
+
+
+    @Test
+  @DisplayName("post /register invalid user info--nonmatching password")
+	public void postRegisterCustomerInvalid() throws Exception{
+      
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"fake\"}";
+      
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422));
+
+      verify(userDetailsService, never()).save(any(Customer.class));
 	}
   
 

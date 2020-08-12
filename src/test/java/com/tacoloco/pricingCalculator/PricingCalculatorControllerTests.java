@@ -61,7 +61,8 @@ import com.tacoloco.dao.UserDao;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-                                    
+import com.tacoloco.controller.PricingCalculatorController.PasswordMismatchException;
+         
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles(value="test")
@@ -101,6 +102,21 @@ class PricingCalculatorControllerTests {
 
       verify(userDetailsService).save(any(Customer.class));
 	}
+
+    @Test
+  @DisplayName("post /register invalid user info--nonmatching password")
+	public void postRegisterCustomerInvalid() throws Exception{
+      
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"fake\"}";
+      
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422));
+
+      verify(userDetailsService, never()).save(any(Customer.class));
+	}
+
 
 
 

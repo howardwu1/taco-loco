@@ -59,5 +59,21 @@ public class PricingCalculatorService {
 
   }
 
+<<<<<<< Updated upstream
+=======
+    try{
+       Order order = new ObjectMapper().reader(Order.class).without(DeserializationFeature.ACCEPT_FLOAT_AS_INT).readValue(json);
+       return false;
+    }
+    catch (JsonProcessingException e){
+      return true;
+    }
+    // catch (NumberFormatException e) {
+      
+    //   return true;
+    // }
+
+  }
+>>>>>>> Stashed changes
 
 }

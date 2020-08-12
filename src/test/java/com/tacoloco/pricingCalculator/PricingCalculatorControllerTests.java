@@ -97,10 +97,9 @@ class PricingCalculatorControllerTests {
 
      doReturn(mapper.writeValueAsString(mockUserDTO)).when(userDetailsService).getPublicUserDetails("SirSnoopy");
       
-      mockMvc.perform(get("/publicUserDetails")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(mockUserName))
-        .andExpect(status().isOk());
+      mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
 
       verify(userDetailsService).getPublicUserDetails("SirSnoopy");
 	}

@@ -128,10 +128,10 @@ public class PricingCalculatorController {
 		return pricingCalculatorService.sayHello();
 	}
 
-  @GetMapping("/publicUserDetails")
+  @GetMapping("/publicUserDetails/{username}")
   @ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String getPublicUserDetails(String userName) {
-		return userDetailsService.getPublicUserDetails(userName);
+	public @ResponseBody String getPublicUserDetails(@PathVariable String username) {
+		return userDetailsService.getPublicUserDetails(username);
 	}
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)

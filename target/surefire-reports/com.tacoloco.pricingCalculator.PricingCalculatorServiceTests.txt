@@ -1,0 +1,46 @@
+-------------------------------------------------------------------------------
+Test set: com.tacoloco.pricingCalculator.PricingCalculatorServiceTests
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 14.999 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorServiceTests
+returnCorrectAmountForTwoChickenBurritoAndTwoChorizoBurito  Time elapsed: 0.017 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: 
+Unrecognized field "chicken" (class com.tacoloco.model.Order), not marked as ignorable (0 known properties: ])
+ at [Source: (String)"{"chicken":2, "chorizo":2}"; line: 1, column: 13] (through reference chain: com.tacoloco.model.Order["chicken"])
+	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTests.returnCorrectAmountForTwoChickenBurritoAndTwoChorizoBurito(PricingCalculatorServiceTests.java:104)
+
+saveDataWithJoeCool  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problems: 
+	The method getUsername() is undefined for the type Customer
+	The method getFirstName() is undefined for the type Customer
+	The method getLastName() is undefined for the type Customer
+
+	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTests.saveDataWithJoeCool(PricingCalculatorServiceTests.java:47)
+
+callRepositoryWithJoeCool  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problems: 
+	The method getUsername() is undefined for the type Customer
+	The method getFirstName() is undefined for the type Customer
+	The method getLastName() is undefined for the type Customer
+
+	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTests.callRepositoryWithJoeCool(PricingCalculatorServiceTests.java:60)
+
+returnCorrectAmountForBeefBurrito  Time elapsed: 0.051 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: 
+Unrecognized field "beef" (class com.tacoloco.model.Order), not marked as ignorable (0 known properties: ])
+ at [Source: (String)"{"beef":1}"; line: 1, column: 10] (through reference chain: com.tacoloco.model.Order["beef"])
+	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTests.returnCorrectAmountForBeefBurrito(PricingCalculatorServiceTests.java:81)
+
+returnCorrectAmountForTwoChickenBurrito  Time elapsed: 0.005 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: 
+Unrecognized field "chicken" (class com.tacoloco.model.Order), not marked as ignorable (0 known properties: ])
+ at [Source: (String)"{"chicken":2}"; line: 1, column: 13] (through reference chain: com.tacoloco.model.Order["chicken"])
+	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTests.returnCorrectAmountForTwoChickenBurrito(PricingCalculatorServiceTests.java:92)
+
+returnCorrectAmountForVeggieBurrito  Time elapsed: 0.004 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: 
+Unrecognized field "veggie" (class com.tacoloco.model.Order), not marked as ignorable (0 known properties: ])
+ at [Source: (String)"{"veggie":1}"; line: 1, column: 12] (through reference chain: com.tacoloco.model.Order["veggie"])
+	at com.tacoloco.pricingCalculator.PricingCalculatorServiceTests.returnCorrectAmountForVeggieBurrito(PricingCalculatorServiceTests.java:70)
+

@@ -1,0 +1,302 @@
+# Created at 2020-08-12T17:08:03.893
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2020-08-12T17:08:18.603
+Unexpected IOException with stream: 2020-08-12 17:08:18.570  INFO 869 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+
+
+# Created at 2020-08-12T17:08:18.605
+Unexpected IOException with stream: 2020-08-12 17:08:18.604  INFO 869 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+
+
+# Created at 2020-08-12T17:08:18.803
+Unexpected IOException with stream: 2020-08-12 17:08:18.801  INFO 869 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 194 ms
+
+
+# Created at 2020-08-12T17:08:19.195
+Unexpected IOException with stream: 2020-08-12 17:08:19.194  INFO 869 --- [           main] c.t.pricingCalculator.IntegrationTests   : Started IntegrationTests in 113.96 seconds (JVM running for 133.36)
+
+
+# Created at 2020-08-12T17:08:19.642
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerInvalid,null,null,null
+
+
+# Created at 2020-08-12T17:08:21.210
+Unexpected IOException with stream: 2020-08-12 17:08:21.207  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:21.835
+Unexpected IOException with stream: 2020-08-12 17:08:21.832  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:24.764
+Unexpected IOException with stream: ******************************** fake1
+
+
+# Created at 2020-08-12T17:08:24.897
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerInvalid,null,null,null
+
+
+# Created at 2020-08-12T17:08:24.901
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postTotalInvalid400,null,null,null
+
+
+# Created at 2020-08-12T17:08:24.907
+Unexpected IOException with stream: 2020-08-12 17:08:24.906  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:24.924
+Unexpected IOException with stream: 2020-08-12 17:08:24.923  WARN 869 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 1]); nested exception is com.fasterxml.jackson.core.io.JsonEOFException: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 1])
+ at [Source: (PushbackInputStream); line: 1, column: 2]]
+
+
+# Created at 2020-08-12T17:08:25.025
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postTotalInvalid400,null,null,null
+
+
+# Created at 2020-08-12T17:08:25.027
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalNegativeNumber,null,null,null
+
+
+# Created at 2020-08-12T17:08:25.036
+Unexpected IOException with stream: 2020-08-12 17:08:25.032  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:25.863
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalNegativeNumber,null,null,null
+
+
+# Created at 2020-08-12T17:08:25.916
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,putInsertCustomerValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:26.084
+Unexpected IOException with stream: 2020-08-12 17:08:26.082  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:26.877
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,putInsertCustomerValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:26.891
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalInvalid,null,null,null
+
+
+# Created at 2020-08-12T17:08:26.902
+Unexpected IOException with stream: 2020-08-12 17:08:26.901  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:26.954
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalInvalid,null,null,null
+
+
+# Created at 2020-08-12T17:08:26.966
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postAuthenticateUserValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:27.045
+Unexpected IOException with stream: 2020-08-12 17:08:27.041  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:28.409
+Unexpected IOException with stream: 2020-08-12 17:08:28.407  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:29.600
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postAuthenticateUserValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:29.603
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postTotalValidWithDiscount,null,null,null
+
+
+# Created at 2020-08-12T17:08:29.620
+Unexpected IOException with stream: 2020-08-12 17:08:29.618  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:29.724
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postTotalValidWithDiscount,null,null,null
+
+
+# Created at 2020-08-12T17:08:29.731
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:29.747
+Unexpected IOException with stream: 2020-08-12 17:08:29.745  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:30.344
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:30.397
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postTotalValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:30.403
+Unexpected IOException with stream: 2020-08-12 17:08:30.402  WARN 869 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-08-12T17:08:30.414
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postTotalValid,null,null,null
+
+
+# Created at 2020-08-12T17:08:30.420
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,com.tacoloco.pricingCalculator.IntegrationTests,null,null,null
+
+
+# Created at 2020-08-12T17:08:30.503
+Unexpected IOException: 1,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,com.tacoloco.pricingCalculator.PricingCalculatorControllerTests,null,null,null
+
+
+# Created at 2020-08-12T17:08:30.505
+Unexpected IOException with stream: 2020-08-12 17:08:30.505  INFO 869 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.tacoloco.pricingCalculator.PricingCalculatorControllerTests], using SpringBootContextLoader
+
+
+# Created at 2020-08-12T17:08:30.507
+Unexpected IOException with stream: 2020-08-12 17:08:30.506  INFO 869 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.tacoloco.pricingCalculator.PricingCalculatorControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+
+
+# Created at 2020-08-12T17:08:30.508
+Unexpected IOException with stream: 2020-08-12 17:08:30.507  INFO 869 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.tacoloco.pricingCalculator.PricingCalculatorControllerTests]: PricingCalculatorControllerTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+
+# Created at 2020-08-12T17:08:30.524
+Unexpected IOException with stream: 2020-08-12 17:08:30.523  INFO 869 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.tacoloco.PricingCalculatorApplication for test class com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+
+
+# Created at 2020-08-12T17:08:30.601
+Unexpected IOException with stream: 2020-08-12 17:08:30.600  INFO 869 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener]
+
+
+# Created at 2020-08-12T17:08:30.612
+Unexpected IOException with stream: 2020-08-12 17:08:30.607  INFO 869 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1a2d8488, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1a120e41, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@17fd9fbb, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7a7b6556, org.springframework.test.context.support.DirtiesContextTestExecutionListener@c04b755, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6eec092, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7d9587b3, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@5ce50c82, org.springframework.test.context.event.EventPublishingTestExecutionListener@75f2a654, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@5680228, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5411a529, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@20e43235, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4044f07b, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5f8c319, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5c190662]
+
+
+# Created at 2020-08-12T17:08:30.729
+Unexpected IOException with stream: 
+
+
+# Created at 2020-08-12T17:08:30.729
+Unexpected IOException with stream:   .   ____          _            __ _ _
+
+
+# Created at 2020-08-12T17:08:30.729
+Unexpected IOException with stream:  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+
+# Created at 2020-08-12T17:08:30.730
+Unexpected IOException with stream: ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+
+# Created at 2020-08-12T17:08:30.730
+Unexpected IOException with stream:  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+
+# Created at 2020-08-12T17:08:30.731
+Unexpected IOException with stream:   '  |____| .__|_| |_|_| |_\__, | / / / /
+
+
+# Created at 2020-08-12T17:08:30.731
+Unexpected IOException with stream:  =========|_|==============|___/=/_/_/_/
+
+
+# Created at 2020-08-12T17:08:30.731
+Unexpected IOException with stream:  :: Spring Boot ::        (v2.2.5.RELEASE)
+
+
+# Created at 2020-08-12T17:08:30.732
+Unexpected IOException with stream: 
+
+
+# Created at 2020-08-12T17:08:30.799
+Unexpected IOException with stream: 2020-08-12 17:08:30.797  INFO 869 --- [           main] c.t.p.PricingCalculatorControllerTests   : Starting PricingCalculatorControllerTests on 3f2a8c52c2be with PID 869 (started by runner in /home/runner/taco-loco)
+
+
+# Created at 2020-08-12T17:08:30.799
+Unexpected IOException with stream: 2020-08-12 17:08:30.799  INFO 869 --- [           main] c.t.p.PricingCalculatorControllerTests   : The following profiles are active: test
+
+
+# Created at 2020-08-12T17:08:33.712
+Unexpected IOException with stream: 2020-08-12 17:08:33.711  INFO 869 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+
+
+# Created at 2020-08-12T17:08:33.713
+Unexpected IOException with stream: 2020-08-12 17:08:33.712  INFO 869 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+
+
+# Created at 2020-08-12T17:08:33.804
+Unexpected IOException with stream: 2020-08-12 17:08:33.803  INFO 869 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.tacoloco.dao.UserDao. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+
+
+# Created at 2020-08-12T17:08:33.804
+Unexpected IOException with stream: 2020-08-12 17:08:33.804  INFO 869 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90ms. Found 0 JDBC repository interfaces.
+
+
+# Created at 2020-08-12T17:08:33.812
+Unexpected IOException with stream: 2020-08-12 17:08:33.811  INFO 869 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+
+
+# Created at 2020-08-12T17:08:33.812
+Unexpected IOException with stream: 2020-08-12 17:08:33.812  INFO 869 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+
+# Created at 2020-08-12T17:08:33.900
+Unexpected IOException with stream: 2020-08-12 17:08:33.899  INFO 869 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87ms. Found 1 JPA repository interfaces.
+
+
+# Created at 2020-08-12T17:08:36.030
+Unexpected IOException with stream: 2020-08-12 17:08:36.030  INFO 869 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+
+# Created at 2020-08-12T17:08:36.103
+Unexpected IOException with stream: 2020-08-12 17:08:36.096  INFO 869 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+
+# Created at 2020-08-12T17:08:36.118
+Unexpected IOException with stream: 2020-08-12 17:08:36.107  INFO 869 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@e944541' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+
+# Created at 2020-08-12T17:08:36.128
+Unexpected IOException with stream: 2020-08-12 17:08:36.127  INFO 869 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+
+# Created at 2020-08-12T17:08:36.132
+Unexpected IOException with stream: 2020-08-12 17:08:36.132  INFO 869 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+
+# Created at 2020-08-12T17:08:37.228
+Unexpected IOException with stream: 2020-08-12 17:08:37.227  INFO 869 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+
+
+# Created at 2020-08-12T17:08:37.265
+Unexpected IOException with stream: 2020-08-12 17:08:37.261  INFO 869 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+
+
+# Created at 2020-08-12T17:08:37.373
+Unexpected IOException with stream: 2020-08-12 17:08:37.372  INFO 869 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+
+# Created at 2020-08-12T17:08:37.429
+Unexpected IOException with stream: 2020-08-12 17:08:37.427  INFO 869 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+
+
+# Created at 2020-08-12T17:08:38.009
+Unexpected IOException with stream: 2020-08-12 17:08:38.008  INFO 869 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+
+
+# Created at 2020-08-12T17:08:38.010
+Unexpected IOException with stream: 2020-08-12 17:08:38.009  INFO 869 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2020-08-12T17:08:38.931
+Unexpected IOException with stream: 2020-08-12 17:08:38.930  WARN 869 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+
+

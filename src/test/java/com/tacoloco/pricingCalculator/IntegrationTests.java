@@ -65,7 +65,7 @@ class IntegrationTests {
 
 
     @Test
-  @DisplayName("post /register invalid user info--nonmatching password and can't validate the user")
+  @DisplayName("post /register invalid user info--nonmatching password and returns an exception from post /validate the user")
 	public void postRegisterCustomerInvalid() throws Exception{
       
       String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"fake1\", \"matchingPassword\": \"fake2\"}";

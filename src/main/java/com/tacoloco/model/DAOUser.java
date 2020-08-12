@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "user")
+@Data
 public class DAOUser {
 
 	@Id
@@ -17,20 +20,26 @@ public class DAOUser {
 	@JsonIgnore
 	private String password;
 
-	public String getUsername() {
-		return username;
-	}
+  @Column
+  private String firstName;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+  @Column
+  private String lastName;
+  
+	// public String getUsername() {
+	// 	return username;
+	// }
 
-	public String getPassword() {
-		return password;
-	}
+	// public void setUsername(String username) {
+	// 	this.username = username;
+	// }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	// public String getPassword() {
+	// 	return password;
+	// }
+
+	// public void setPassword(String password) {
+	// 	this.password = password;
+	// }
 
 }

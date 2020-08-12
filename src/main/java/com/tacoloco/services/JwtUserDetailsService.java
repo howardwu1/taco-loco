@@ -38,11 +38,16 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 
+  public String getPublicUserDetails(String username){
+    //todo
+    System.out.println("***************************************TODO**");
+    return ("todo");
+  }
 	public DAOUser save(Customer user) {
 		DAOUser newUser = new DAOUser();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		return userDao.save(newUser);
+  	return userDao.save(newUser);
 	}
 
 }

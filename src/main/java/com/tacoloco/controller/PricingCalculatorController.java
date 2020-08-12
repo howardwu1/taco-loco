@@ -128,6 +128,12 @@ public class PricingCalculatorController {
 		return pricingCalculatorService.sayHello();
 	}
 
+  @GetMapping("/publicUserDetails")
+  @ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String getPublicUserDetails(String userName) {
+		return userDetailsService.getPublicUserDetails(userName);
+	}
+
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody Customer authenticationRequest) throws Exception {
 

@@ -62,7 +62,9 @@ import com.tacoloco.dao.UserDao;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.tacoloco.controller.PricingCalculatorController.PasswordMismatchException;
-         
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles(value="test")
@@ -80,6 +82,28 @@ class PricingCalculatorControllerTests {
 
   @MockBean
   private PricingCalculatorService service;
+
+  @Test
+  @DisplayName("get /publicUserDetails valid")
+	public void getPublicDetailsForExistingUser() throws Exception{
+      
+      String mockUserName = "SirSnoopy";
+
+      UserDTO mockUserDTO = new UserDTO();
+      mockUserDTO.setUsername("SirSnoopy");
+      mockUserDTO.setFirstName("Joe");
+      mockUserDTO.setLastName("Cool");
+      ObjectMapper mapper = new ObjectMapper();
+
+     doReturn(mapper.writeValueAsString(mockUserDTO)).when(userDetailsService).getPublicUserDetails("SirSnoopy");
+      
+      mockMvc.perform(get("/publicUserDetails")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockUserName))
+        .andExpect(status().isOk());
+
+      verify(userDetailsService).getPublicUserDetails("SirSnoopy");
+	}
 
 
   @Test

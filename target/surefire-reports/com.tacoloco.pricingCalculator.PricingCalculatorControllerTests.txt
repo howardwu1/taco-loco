@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+Test set: com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 5, Errors: 2, Skipped: 0, Time elapsed: 19.328 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorControllerTests
+getTotalValid  Time elapsed: 0.102 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<422>
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.getTotalValid(PricingCalculatorControllerTests.java:274)
+
+getPublicDetailsForExistingUser  Time elapsed: 0.079 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problems: 
+	The method setUsername(String) is undefined for the type UserDTO
+	The method setFirstName(String) is undefined for the type UserDTO
+	The method setLastName(String) is undefined for the type UserDTO
+
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.getPublicDetailsForExistingUser(PricingCalculatorControllerTests.java:93)
+
+putValidatePasswordCustomer  Time elapsed: 0.022 s  <<< FAILURE!
+java.lang.AssertionError: Response status expected:<200> but was:<422>
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putValidatePasswordCustomer(PricingCalculatorControllerTests.java:257)
+
+putInsertCustomerValid  Time elapsed: 0.1 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<422>
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.putInsertCustomerValid(PricingCalculatorControllerTests.java:207)
+
+postAuthenticateUserValid  Time elapsed: 0.098 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<422>
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.postAuthenticateUserValid(PricingCalculatorControllerTests.java:171)
+
+postRegisterCustomerValid  Time elapsed: 0.088 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problems: 
+	The method setUsername(String) is undefined for the type DAOUser
+	The method setPassword(String) is undefined for the type DAOUser
+
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.postRegisterCustomerValid(PricingCalculatorControllerTests.java:117)
+
+postAuthenticateUserInvalid  Time elapsed: 0.101 s  <<< FAILURE!
+java.lang.AssertionError: Response status expected:<401> but was:<422>
+	at com.tacoloco.pricingCalculator.PricingCalculatorControllerTests.postAuthenticateUserInvalid(PricingCalculatorControllerTests.java:188)
+

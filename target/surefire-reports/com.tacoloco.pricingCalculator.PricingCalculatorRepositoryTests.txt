@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 12.813 s <<< FAILURE! - in com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests
+sendDatabaseWithJoeCool  Time elapsed: 0.012 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problems: 
+	The method getId() is undefined for the type Customer
+	The method getUsername() is undefined for the type Customer
+	The method getFirstName() is undefined for the type Customer
+	The method getLastName() is undefined for the type Customer
+	The method getEncodedPassword() is undefined for the type Customer
+
+	at com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests.sendDatabaseWithJoeCool(PricingCalculatorRepositoryTests.java:67)
+

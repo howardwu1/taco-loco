@@ -35,6 +35,19 @@ class PricingCalculatorServiceTests {
   @MockBean
   private PricingCalculatorRepository repository;
 
+  @Test  
+  @DisplayName("Save data to respository and verify it was actually saved")
+  void saveDataWithJoeCool() throws JsonProcessingException {
+    String mockJson = "{\"username\": \"SirSnoopy\",\"firstName\": \"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+
+    Customer mockCustomer = new ObjectMapper().readValue(mockJson, Customer.class);
+    
+    doNothing().when(repository).insertIntoCustomers(eq("SirSnoopy"), eq("Joe"), eq("Cool"), any(String.class));
+
+    service.insertIntoCustomers(mockCustomer.getUsername(), mockCustomer.getFirstName(),mockCustomer.getLastName(), "myencodedpass");
+
+    verify(repository).insertIntoCustomers(eq("SirSnoopy"), eq("Joe"), eq("Cool"), any(String.class));
+  }
   @Test
   @DisplayName("Call repository with 'Joe Cool' and is a valid JSON")
   void callRepositoryWithJoeCool() throws JsonProcessingException {

@@ -130,7 +130,7 @@ public class PricingCalculatorController {
 
   @GetMapping("/publicUserDetails/{username}")
   @ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String getPublicUserDetails(@PathVariable String username) {
+	public @ResponseBody String getPublicUserDetails(@PathVariable String username) throws JsonProcessingException {
 		return userDetailsService.getPublicUserDetails(username);
 	}
 

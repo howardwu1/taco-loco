@@ -11,11 +11,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.services.PricingCalculatorService;
 
+import com.tacoloco.services.JwtUserDetailsService;
+
+
 import com.tacoloco.repository.PricingCalculatorRepository;
 
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 
 import com.tacoloco.model.*;
 
@@ -25,15 +29,48 @@ import static org.mockito.ArgumentMatchers.any;
 
 import static org.mockito.ArgumentMatchers.eq;
 
+import com.tacoloco.dao.UserDao;
+
 
 @SpringBootTest
 class PricingCalculatorServiceTests {
   
+
+  @MockBean
+	private UserDao userDao;
+
   @Autowired
   private PricingCalculatorService service;
 
+  @Autowired
+  private JwtUserDetailsService jwtService;
   @MockBean
   private PricingCalculatorRepository repository;
+
+  @Test
+  @DisplayName("Get public info from valid username")
+  void getPublicInfoFromValidUsername() throws JsonProcessingException{
+    
+    DAOUser mockUser = new DAOUser();
+      mockUser.setUsername("SirSnoopy");
+      mockUser.setFirstName("Joe");
+      mockUser.setLastName("Cool");
+
+ 
+    doReturn(mockUser).when(userDao).findByUsername("SirSnoopy");
+
+      UserDTO mockUserDTO = new UserDTO();
+      mockUserDTO.setUsername("SirSnoopy");
+      mockUserDTO.setFirstName("Joe");
+      mockUserDTO.setLastName("Cool");
+
+      ObjectMapper mapper = new ObjectMapper();
+
+      String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
+
+    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+
+  }
 
   @Test  
   @DisplayName("Save data to respository and verify it was actually saved")

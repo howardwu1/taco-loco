@@ -14,6 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.tacoloco.dao.UserDao;
 import com.tacoloco.model.DAOUser;
 import com.tacoloco.model.Customer;
+import com.tacoloco.model.UserDTO;
+
+import com.fasterxml.jackson.databind.ObjectMapper; 
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 
 @Service
@@ -38,10 +42,18 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 
-  public String getPublicUserDetails(String username){
-    //todo
-    System.out.println("***************************************TODO**");
-    return ("todo");
+  public String getPublicUserDetails(String username) throws JsonProcessingException{
+    DAOUser user = userDao.findByUsername(username);
+
+    UserDTO userDTO = new UserDTO();
+      userDTO.setUsername(user.getUsername());
+      userDTO.setFirstName(user.getFirstName());
+      userDTO.setLastName(user.getLastName());
+
+    ObjectMapper mapper = new ObjectMapper();
+
+    String json = mapper.writeValueAsString(userDTO);
+    return json;
   }
 	public DAOUser save(Customer user) {
 		DAOUser newUser = new DAOUser();

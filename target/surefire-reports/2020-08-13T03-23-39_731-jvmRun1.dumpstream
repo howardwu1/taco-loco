@@ -1,0 +1,105 @@
+# Created at 2020-08-13T03:24:38.030
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2020-08-13T03:24:39.646
+Unexpected IOException with stream: 2020-08-13 03:24:39.645  INFO 3317 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+
+
+# Created at 2020-08-13T03:25:07.523
+Unexpected IOException with stream: 2020-08-13 03:25:07.453  INFO 3317 --- [           main] c.t.p.PricingCalculatorRepositoryTests   : Started PricingCalculatorRepositoryTests in 77.694 seconds (JVM running for 86.016)
+
+
+# Created at 2020-08-13T03:25:07.921
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests,sendDatabaseWithJoeCool,null,null,null
+
+
+# Created at 2020-08-13T03:25:10.033
+Unexpected IOException with stream: 2020-08-13 03:25:10.032  INFO 3317 --- [           main] c.t.p.PricingCalculatorRepositoryTests   : Creating tables
+
+
+# Created at 2020-08-13T03:25:10.763
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests,sendDatabaseWithJoeCool,null,null,null
+
+
+# Created at 2020-08-13T03:25:10.830
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,com.tacoloco.pricingCalculator.PricingCalculatorRepositoryTests,null,null,null
+
+
+# Created at 2020-08-13T03:25:10.920
+Unexpected IOException: 1,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,com.tacoloco.pricingCalculator.PricingCalculatorServiceTests,null,null,null
+
+
+# Created at 2020-08-13T03:25:10.928
+Unexpected IOException with stream: 2020-08-13 03:25:10.927  INFO 3317 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.tacoloco.pricingCalculator.PricingCalculatorServiceTests], using SpringBootContextLoader
+
+
+# Created at 2020-08-13T03:25:10.937
+Unexpected IOException with stream: 2020-08-13 03:25:10.930  INFO 3317 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.tacoloco.pricingCalculator.PricingCalculatorServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+
+
+# Created at 2020-08-13T03:25:10.938
+Unexpected IOException with stream: 2020-08-13 03:25:10.937  INFO 3317 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.tacoloco.pricingCalculator.PricingCalculatorServiceTests]: PricingCalculatorServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+
+# Created at 2020-08-13T03:25:11.128
+Unexpected IOException with stream: 2020-08-13 03:25:11.127  INFO 3317 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.tacoloco.PricingCalculatorApplication for test class com.tacoloco.pricingCalculator.PricingCalculatorServiceTests
+
+
+# Created at 2020-08-13T03:25:11.134
+Unexpected IOException with stream: 2020-08-13 03:25:11.133  INFO 3317 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener]
+
+
+# Created at 2020-08-13T03:25:11.142
+Unexpected IOException with stream: 2020-08-13 03:25:11.135  INFO 3317 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@11c82829, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@34c21c34, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@353ac1ef, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@72c8de78, org.springframework.test.context.support.DirtiesContextTestExecutionListener@22912968, org.springframework.test.context.transaction.TransactionalTestExecutionListener@616b2b2, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@65402e26, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@51cf17e8, org.springframework.test.context.event.EventPublishingTestExecutionListener@7abeaed0, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@490e1017, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2ddb260e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@482040a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@b45e264, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3272c5b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@466d6ea5]
+
+
+# Created at 2020-08-13T03:25:11.425
+Unexpected IOException with stream: 
+
+
+# Created at 2020-08-13T03:25:11.437
+Unexpected IOException with stream:   .   ____          _            __ _ _
+
+
+# Created at 2020-08-13T03:25:11.442
+Unexpected IOException with stream:  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+
+# Created at 2020-08-13T03:25:11.442
+Unexpected IOException with stream: ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+
+# Created at 2020-08-13T03:25:11.443
+Unexpected IOException with stream:  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+
+# Created at 2020-08-13T03:25:11.443
+Unexpected IOException with stream:   '  |____| .__|_| |_|_| |_\__, | / / / /
+
+
+# Created at 2020-08-13T03:25:11.443
+Unexpected IOException with stream:  =========|_|==============|___/=/_/_/_/
+
+
+# Created at 2020-08-13T03:25:11.444
+Unexpected IOException with stream:  :: Spring Boot ::        (v2.2.5.RELEASE)
+
+
+# Created at 2020-08-13T03:25:11.444
+Unexpected IOException with stream: 
+
+
+# Created at 2020-08-13T03:25:11.519
+Unexpected IOException with stream: 2020-08-13 03:25:11.467  INFO 3317 --- [           main] c.t.p.PricingCalculatorServiceTests      : Starting PricingCalculatorServiceTests on 32c5748b94ff with PID 3317 (started by runner in /home/runner/taco-loco)
+
+
+# Created at 2020-08-13T03:25:11.521
+Unexpected IOException with stream: 2020-08-13 03:25:11.519  INFO 3317 --- [           main] c.t.p.PricingCalculatorServiceTests      : No active profile set, falling back to default profiles: default
+
+

@@ -20,6 +20,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -36,6 +38,11 @@ import com.tacoloco.repository.PricingCalculatorRepository;
 
 import org.springframework.test.context.ActiveProfiles;
 
+import com.fasterxml.jackson.databind.ObjectMapper; 
+
+import com.tacoloco.services.JwtUserDetailsService;
+
+
 @SpringBootTest
 @ActiveProfiles(value="test")
 @AutoConfigureMockMvc
@@ -49,6 +56,40 @@ class IntegrationTests {
 
   @Autowired
   JdbcTemplate jdbcTemplate;
+
+
+  @Autowired
+  private JwtUserDetailsService jwtService;
+
+
+  @Test
+  @DisplayName("get /publicUserDetails valid after registering")
+	public void getPublicDetailsForExistingUser() throws Exception{
+      
+        String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+      String mockUserName = "SirSnoopy";
+      
+      mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
+
+       UserDTO mockUserDTO = new UserDTO();
+      mockUserDTO.setUsername("SirSnoopy");
+      mockUserDTO.setFirstName("Joe");
+      mockUserDTO.setLastName("Cool");
+
+      ObjectMapper mapper = new ObjectMapper();
+
+      String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
+    System.out.println(jwtService.getPublicUserDetails("SirSnoopy"));
+    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+	}
 
     @Test
   @DisplayName("post /register valid user info")
@@ -88,16 +129,27 @@ class IntegrationTests {
 
 
    String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
-   mockMvc.perform(post("/register")
-   .contentType(MediaType.APPLICATION_JSON)
-   .content(mockJson))
-    .andExpect(status().isOk());
 
-      mockMvc.perform(post("/authenticate")
+    try{
+         mockMvc.perform(post("/authenticate")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
 
+    }catch(Exception e){
+         mockMvc.perform(post("/register")
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(mockJson))
+          .andExpect(status().isOk());
+
+        mockMvc.perform(post("/authenticate")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+    }
+  
+
+   
 	}
 
   @Test

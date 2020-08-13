@@ -44,6 +44,7 @@ class PricingCalculatorServiceTests {
 
   @Autowired
   private JwtUserDetailsService jwtService;
+  
   @MockBean
   private PricingCalculatorRepository repository;
 

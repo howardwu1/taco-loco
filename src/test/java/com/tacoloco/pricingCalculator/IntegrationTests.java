@@ -87,7 +87,7 @@ class IntegrationTests {
       ObjectMapper mapper = new ObjectMapper();
 
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
-    System.out.println(jwtService.getPublicUserDetails("SirSnoopy"));
+    System.out.println("************JSON" + jwtService.getPublicUserDetails("SirSnoopy"));
     Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
 	}
 
@@ -130,6 +130,7 @@ class IntegrationTests {
 
    String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
 
+   //try catch loop in order to prevent multiple registrations of the same user (leads to ambiguous records when searching by username) -- alterantive is I just register another account
     try{
          mockMvc.perform(post("/authenticate")
                     .contentType(MediaType.APPLICATION_JSON)

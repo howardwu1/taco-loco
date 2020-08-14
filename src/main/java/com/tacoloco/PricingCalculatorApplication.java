@@ -32,6 +32,10 @@ public class PricingCalculatorApplication {
   @Autowired
   JdbcTemplate jdbcTemplate;
 
+  @Autowired
+  private JwtUserDetailsService userDetailsService;
+
+
 	public static void main(String[] args) {
 
 		SpringApplication.run(PricingCalculatorApplication.class, args);

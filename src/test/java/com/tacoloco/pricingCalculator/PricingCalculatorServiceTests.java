@@ -48,6 +48,40 @@ class PricingCalculatorServiceTests {
   @MockBean
   private PricingCalculatorRepository repository;
 
+  // @Test
+  // @DisplayName("Save with JwtUserDetailsService rejects same username entered more than once")
+  // void getPublicInfoFromValidUsername() throws JsonProcessingException{
+    
+  //   Customer mockCustomer = new Customer("SirSnoopy2", "Joe", "Cool", "SnoopDoDubbaG");
+
+  //   JwtUserDetailsService.save(mockCustomer);
+
+  //   Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+
+  // }
+
+  @Test
+  @DisplayName("Save with JwtUserDetailsService")
+  void saveCustomerWithJwtUserDetails() throws JsonProcessingException{
+    
+    Customer mockCustomer = new Customer("SirSnoopy2", "Joe", "Cool", "SnoopDoDubbaG");
+
+    jwtService.save(mockCustomer);
+
+    DAOUser returnedMockUser = userDao.findByUsername("SirSnoopy2");
+
+    Assertions.assertTrue(returnedMockUser.getUsername().equals("SirSnoopy2"));
+
+    Assertions.assertTrue(returnedMockUser.getFirstName().equals("Joe"));
+
+    Assertions.assertTrue(returnedMockUser.getLastName().equals("Cool"));
+
+    Assertions.assertTrue(returnedMockUser.getPassword().equals("SnoopDoDubbaG"));
+
+
+  }
+
+
   @Test
   @DisplayName("Get public info from valid username")
   void getPublicInfoFromValidUsername() throws JsonProcessingException{

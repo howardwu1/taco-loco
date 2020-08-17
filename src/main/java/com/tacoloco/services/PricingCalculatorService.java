@@ -44,10 +44,10 @@ public class PricingCalculatorService {
   }
 
     public void queryForMultipleQualifier(String[] qualifiers, Object[] values )
-  {
-  
-    pricingCalculatorRepository.queryForMultipleQualifier(qualifiers, values);
-  }
+    {
+    
+      pricingCalculatorRepository.queryForMultipleQualifier(qualifiers, values);
+    }
 
   public void insertIntoCustomers(String username, String firstName, String lastName, String encodedPassword){
     pricingCalculatorRepository.insertIntoCustomers(username, firstName, lastName, encodedPassword);

@@ -190,9 +190,6 @@ class PricingCalculatorControllerTests {
 
 	}
 
-  
-
-
   @Test
   @DisplayName("put /insertCustomer valid user info")
 	public void putInsertCustomerValid() throws Exception{

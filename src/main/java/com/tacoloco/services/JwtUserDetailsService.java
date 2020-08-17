@@ -55,6 +55,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     String json = mapper.writeValueAsString(userDTO);
     return json;
   }
+  
 	public DAOUser save(Customer user) {
 		DAOUser newUser = new DAOUser();
 		newUser.setUsername(user.getUsername());

@@ -131,6 +131,7 @@ class IntegrationTests {
    String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
 
    //try catch loop in order to prevent multiple registrations of the same user (leads to ambiguous records when searching by username) -- alterantive is I just register another account
+   //we can probably change this test by building in restriction from adding the same user twice as well
     try{
          mockMvc.perform(post("/authenticate")
                     .contentType(MediaType.APPLICATION_JSON)

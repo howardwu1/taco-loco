@@ -31,10 +31,13 @@ import static org.mockito.ArgumentMatchers.eq;
 
 import com.tacoloco.dao.UserDao;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
 class PricingCalculatorServiceTests {
   
+  @MockBean
+  private PasswordEncoder bCryptEncoder;
 
   @MockBean
 	private UserDao userDao;
@@ -68,17 +71,8 @@ class PricingCalculatorServiceTests {
 
     jwtService.save(mockCustomer);
 
-    DAOUser returnedMockUser = userDao.findByUsername("SirSnoopy2");
-
-    Assertions.assertTrue(returnedMockUser.getUsername().equals("SirSnoopy2"));
-
-    Assertions.assertTrue(returnedMockUser.getFirstName().equals("Joe"));
-
-    Assertions.assertTrue(returnedMockUser.getLastName().equals("Cool"));
-
-    Assertions.assertTrue(returnedMockUser.getPassword().equals("SnoopDoDubbaG"));
-
-
+    verify(userDao).save(any(DAOUser.class));
+    verify(bCryptEncoder).encode(any(String.class));
   }
 
 

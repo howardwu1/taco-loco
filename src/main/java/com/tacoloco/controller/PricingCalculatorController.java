@@ -46,8 +46,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//todo: create more fields for storing passwords for the user -- or the hashed value?
-//todo: figure out if I need to salt the hash?
+
+import com.tacoloco.services.JwtUserDetailsService.DuplicateUsernameException;
+
 
 import com.tacoloco.config.JwtTokenUtil;
 import com.tacoloco.services.JwtUserDetailsService;
@@ -97,6 +98,12 @@ public class PricingCalculatorController {
 	
   public PricingCalculatorController(PricingCalculatorService pricingCalculatorService){
     this.pricingCalculatorService = pricingCalculatorService;
+  }
+
+  @ExceptionHandler(DuplicateUsernameException.class)
+  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Duplicate usernames")
+  public ResponseEntity<?> processHandler(DuplicateUsernameException ex) {
+    return new ResponseEntity(ex, HttpStatus.UNPROCESSABLE_ENTITY);
   }
   
 //want to raise 422 instead of 400 -- this is for the @Valid validation exceptions to reject non-negative numbers

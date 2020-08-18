@@ -95,7 +95,7 @@ class IntegrationTests {
   @DisplayName("post /register valid user info")
 	public void postRegisterCustomerValid() throws Exception{
       
-      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"username\":\"SirSnoopy2\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
 
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)

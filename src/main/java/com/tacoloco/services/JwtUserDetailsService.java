@@ -19,6 +19,8 @@ import com.tacoloco.model.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import org.springframework.http.HttpStatus;
+
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -29,6 +31,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
+
+	public static class DuplicateUsernameException extends RuntimeException {}
 
   @Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -57,12 +61,19 @@ public class JwtUserDetailsService implements UserDetailsService {
   }
   
 	public DAOUser save(Customer user) {
+
+		try{
+			
 		DAOUser newUser = new DAOUser();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 		newUser.setFirstName(user.getFirstName());
 		newUser.setLastName(user.getLastName());
   	return userDao.save(newUser);
+		}
+		catch(Exception e){
+			throw new DuplicateUsernameException();
+		}
 	}
 
 }

@@ -65,6 +65,11 @@ import com.tacoloco.controller.PricingCalculatorController.PasswordMismatchExcep
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.tacoloco.services.JwtUserDetailsService.DuplicateUsernameException;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles(value="test")
@@ -82,6 +87,7 @@ class PricingCalculatorControllerTests {
 
   @MockBean
   private PricingCalculatorService service;
+
 
   @Test
   @DisplayName("get /publicUserDetails valid")
@@ -133,6 +139,7 @@ class PricingCalculatorControllerTests {
 	public void postRegisterCustomerInvalid() throws Exception{
       
       String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"fake\"}";
+
       
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -143,8 +150,34 @@ class PricingCalculatorControllerTests {
 	}
 
 
+  @Test
+  @DisplayName("post /register invalid--same username")
+	public void postRegisterInvalidSameUsername() throws Exception{
+      
+      String mockJson = "{\"username\":\"SirSnoopy2\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      
 
+      DAOUser mockDAOUser = new DAOUser();
 
+      mockDAOUser.setUsername("SirSnoopy2");
+      mockDAOUser.setPassword("$2y$12$YabjTmtNmIrZS2iy3z1J/eL/eNJQ8DlQJWkkMsqaFDfZYJuHV4S0W");
+
+     doReturn(userDao.save(mockDAOUser)).when(userDetailsService).save(any(Customer.class));
+
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+      doThrow(new DuplicateUsernameException()).when(userDetailsService).save(any(Customer.class));
+
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(422));
+
+  }
+  
 	@Test
   @DisplayName("get / -- hello world")
 	public void getHelloWorld() throws Exception {

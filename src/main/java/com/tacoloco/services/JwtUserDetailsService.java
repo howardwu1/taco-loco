@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.springframework.http.HttpStatus;
 
+import org.springframework.dao.DataIntegrityViolationException;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -71,7 +72,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		newUser.setLastName(user.getLastName());
   	return userDao.save(newUser);
 		}
-		catch(Exception e){
+		catch(DataIntegrityViolationException e){
 			throw new DuplicateUsernameException();
 		}
 	}

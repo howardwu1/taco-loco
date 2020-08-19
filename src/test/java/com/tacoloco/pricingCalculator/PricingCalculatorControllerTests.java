@@ -67,7 +67,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.services.JwtUserDetailsService.DuplicateUsernameException;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @ExtendWith(SpringExtension.class)

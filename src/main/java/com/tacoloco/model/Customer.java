@@ -31,7 +31,6 @@ public class Customer {
 
   //testing-only constructor
   public Customer(String username, String firstName, String lastName, String password) {
-    this.id = id;
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;

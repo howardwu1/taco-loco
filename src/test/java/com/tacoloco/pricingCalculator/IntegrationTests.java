@@ -104,6 +104,24 @@ class IntegrationTests {
 
 	}
 
+  @Test
+  @DisplayName("try to post /register same user twice")
+	public void postRegisterCustomerTwiceInvalid() throws Exception{
+      
+      String mockJson = "{\"username\":\"SirSnoopy3\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+
+      mockMvc.perform(post("/register")
+      .contentType(MediaType.APPLICATION_JSON)
+      .content(mockJson))
+    .andExpect(status().is(422));
+
+	}
 
     @Test
   @DisplayName("post /register invalid user info--nonmatching password and returns an exception from post /validate the user")

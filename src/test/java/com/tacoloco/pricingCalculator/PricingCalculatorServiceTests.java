@@ -33,6 +33,14 @@ import com.tacoloco.dao.UserDao;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import com.tacoloco.services.JwtUserDetailsService.DuplicateUsernameException;
+
+import org.springframework.dao.DataIntegrityViolationException;
+
+import static org.mockito.Mockito.doThrow;
+
 @SpringBootTest
 class PricingCalculatorServiceTests {
   
@@ -40,7 +48,7 @@ class PricingCalculatorServiceTests {
   private PasswordEncoder bCryptEncoder;
 
   @MockBean
-	private UserDao userDao;
+	private UserDao mockUserDao;
 
   @Autowired
   private PricingCalculatorService service;
@@ -51,17 +59,22 @@ class PricingCalculatorServiceTests {
   @MockBean
   private PricingCalculatorRepository repository;
 
-  // @Test
-  // @DisplayName("Save with JwtUserDetailsService rejects same username entered more than once")
-  // void getPublicInfoFromValidUsername() throws JsonProcessingException{
+  @Test
+  @DisplayName("Save with JwtUserDetailsService rejects same username entered more than once")
+  void saveCustomerWithJwtUserDetailsInvalidRepeatedUsedname() throws JsonProcessingException{
     
-  //   Customer mockCustomer = new Customer("SirSnoopy2", "Joe", "Cool", "SnoopDoDubbaG");
+    Customer mockCustomer = new Customer("SirSnoopy3", "Joe", "Cool", "SnoopDoDubbaG");
 
-  //   JwtUserDetailsService.save(mockCustomer);
+    jwtService.save(mockCustomer);
 
-  //   Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+    jwtService.save(mockCustomer);
+    
+    doThrow(new DuplicateUsernameException()).when(mockUserDao).save(any(DAOUser.class));
+    assertThrows(DuplicateUsernameException.class, () -> jwtService.save(mockCustomer),
+    "expected to see DuplicateUsernameException but didn't");
 
-  // }
+
+  }
 
   @Test
   @DisplayName("Save with JwtUserDetailsService")
@@ -71,7 +84,7 @@ class PricingCalculatorServiceTests {
 
     jwtService.save(mockCustomer);
 
-    verify(userDao).save(any(DAOUser.class));
+    verify(mockUserDao).save(any(DAOUser.class));
     verify(bCryptEncoder).encode(any(String.class));
   }
 
@@ -86,7 +99,7 @@ class PricingCalculatorServiceTests {
       mockUser.setLastName("Cool");
 
  
-    doReturn(mockUser).when(userDao).findByUsername("SirSnoopy");
+    doReturn(mockUser).when(mockUserDao).findByUsername("SirSnoopy");
 
       UserDTO mockUserDTO = new UserDTO();
       mockUserDTO.setUsername("SirSnoopy");
@@ -114,6 +127,7 @@ class PricingCalculatorServiceTests {
 
     verify(repository).insertIntoCustomers(eq("SirSnoopy"), eq("Joe"), eq("Cool"), any(String.class));
   }
+
   @Test
   @DisplayName("Call repository with 'Joe Cool' and is a valid JSON")
   void callRepositoryWithJoeCool() throws JsonProcessingException {

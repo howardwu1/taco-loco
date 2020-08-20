@@ -102,7 +102,20 @@ class IntegrationTests {
                     .content(mockJson))
         .andExpect(status().isOk());
 
-	}
+  }
+  
+  @Test
+  @DisplayName("post /addNewSession valid session info")
+	public void postAddNewSessionValid() throws Exception{
+      
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask1\"}";    
+
+      mockMvc.perform(post("/addNewSesion")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+  }
 
   @Test
   @DisplayName("try to post /register same user twice")

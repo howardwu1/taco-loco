@@ -164,6 +164,13 @@ public class PricingCalculatorController {
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 
+	@RequestMapping(value = "/addNewSession", method = RequestMethod.POST)
+	public ResponseEntity<?> saveNewSession(@RequestBody Session session) throws Exception {
+
+		return ResponseEntity.ok(userDetailsService.save(user));
+	}
+
+
   @PutMapping(value = "/insertCustomer", consumes = {"application/json"})
   @ResponseStatus(HttpStatus.OK)
   public @ResponseBody void insertCustomer(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Username, First name, last name, password, and matching password of the customer being inserted", content=@Content(schema = @Schema(implementation = Customer.class)), required = true) @RequestBody Customer customer){

@@ -17,6 +17,8 @@ public class DAOUser {
 	  
 	@Column(unique=true)
 	private String username;
+
+  //password was jsonignored because we wnat to leave it out when serializing to json
 	@Column
 	@JsonIgnore
 	private String password;

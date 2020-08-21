@@ -82,6 +82,10 @@ public class PricingCalculatorController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 
+  @Autowired
+  private PricingCalculatorService pricingCalculatorService;
+
+
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
   //note made this class public to make it accessible to the controller test
@@ -93,13 +97,7 @@ public class PricingCalculatorController {
 
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="No such item or counts not all whole numbers")
   class UnprocessableEntityException extends RuntimeException {}
-
-  private final PricingCalculatorService pricingCalculatorService;
 	
-  public PricingCalculatorController(PricingCalculatorService pricingCalculatorService){
-    this.pricingCalculatorService = pricingCalculatorService;
-  }
-
   @ExceptionHandler(DuplicateUsernameException.class)
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Duplicate usernames")
   public ResponseEntity<?> processHandler(DuplicateUsernameException ex) {
@@ -167,7 +165,7 @@ public class PricingCalculatorController {
 	@RequestMapping(value = "/addNewSession", method = RequestMethod.POST)
 	public ResponseEntity<?> saveNewSession(@RequestBody Session session) throws Exception {
 
-		return ResponseEntity.ok(userDetailsService.save(user));
+		return ResponseEntity.ok(pricingCalculatorService.saveSession(session));
 	}
 
 

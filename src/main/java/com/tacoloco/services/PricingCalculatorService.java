@@ -12,6 +12,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 import com.tacoloco.repository.*;
 
+import com.tacoloco.dao.SessionDao;
+
 @Service
 public class PricingCalculatorService {
   
@@ -19,6 +21,9 @@ public class PricingCalculatorService {
 
   @Autowired
   AuthenticationManager authenticationManager; //not being used in this class however is a dependency that is needed for a spring boot to resolve a circular reference that also has been made @lazy
+  
+  @Autowired
+  private SessionDao sessionDao;
   
   public String sayHello() {
     return "hello world";
@@ -60,5 +65,9 @@ public class PricingCalculatorService {
 
   }
 
+  public DAOSession saveSession(Session session){
+    //todo
+    return sessionDao.save(new DAOSession());
+  }
 
 }

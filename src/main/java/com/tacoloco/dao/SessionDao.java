@@ -7,4 +7,5 @@ import com.tacoloco.model.DAOSession;
 
 @Repository
 public interface SessionDao extends CrudRepository<DAOSession, Integer> {
+    DAOSession findBySessionCreator(String sessionCreator);
 }

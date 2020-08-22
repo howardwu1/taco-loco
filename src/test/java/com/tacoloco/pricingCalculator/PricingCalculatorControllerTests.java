@@ -69,7 +69,9 @@ import com.tacoloco.services.JwtUserDetailsService.DuplicateUsernameException;
 
 import com.tacoloco.services.PricingCalculatorService.DuplicateStoryIdException;
 
+import java.util.ArrayList;
 
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -138,6 +140,31 @@ class PricingCalculatorControllerTests {
         verify(service).saveSession(any(Session.class));
 
   }
+
+  @Test
+  @DisplayName("get /sessionFromCreator valid")
+	public void getSessionFromCreatorValid() throws Exception{
+      
+      String mockSessionCreator = "SirSnoopy";
+
+      List<Session> mockSessions = new ArrayList<Session>();
+
+      Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
+
+      mockSessions.add(mockSession);
+      
+      ObjectMapper mapper = new ObjectMapper();
+
+  
+
+     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockSessions)).when(service).getSessionByCreator("SirSnoopy");
+      
+      mockMvc.perform(get("/sessionFromCreatorUsername/{sessionCreator}", mockSessionCreator)
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
+
+      verify(service).getSessionByCreator("SirSnoopy");
+	}
 
   @Test
   @DisplayName("get /publicUserDetails valid")

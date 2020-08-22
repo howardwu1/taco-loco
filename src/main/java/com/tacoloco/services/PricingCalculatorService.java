@@ -68,7 +68,10 @@ public class PricingCalculatorService {
 
 
   }
-
+  public String getSessionByCreator(String sessionCreator) throws JsonProcessingException{
+    return "todo";
+  }
+  
   public DAOSession saveSession(Session session){
 
     try{

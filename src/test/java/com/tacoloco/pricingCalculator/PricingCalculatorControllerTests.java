@@ -67,6 +67,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.tacoloco.services.JwtUserDetailsService.DuplicateUsernameException;
 
+import com.tacoloco.services.PricingCalculatorService.DuplicateStoryIdException;
+
 
 
 @ExtendWith(SpringExtension.class)
@@ -87,7 +89,41 @@ class PricingCalculatorControllerTests {
   @MockBean
   private PricingCalculatorService service;
 
-  
+  @Test
+  @DisplayName("post /addNewSession twice with the same storyId info")
+	public void postAddNewSessionSameStoryId() throws Exception{
+      
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\"}";    
+
+      mockMvc.perform(post("/addNewSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+      doThrow(new DuplicateStoryIdException()).when(service).saveSession(any(Session.class));
+
+      mockMvc.perform(post("/addNewSession")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mockJson))
+        .andExpect(status().is(422));
+
+  }
+
+  @Test
+  @DisplayName("post /addNewSession with bad time format")
+	public void postAddNewSessionBadTimeFormat() throws Exception{
+      
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (E)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask3\"}";    
+
+      mockMvc.perform(post("/addNewSession")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mockJson))
+        .andExpect(status().is(422));
+
+      verify(service, never()).saveSession(any(Session.class));
+
+  }
+
   @Test
   @DisplayName("post /addNewSession valid session info")
 	public void postAddNewSessionValid() throws Exception{
@@ -98,6 +134,8 @@ class PricingCalculatorControllerTests {
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
+
+        verify(service).saveSession(any(Session.class));
 
   }
 
@@ -130,13 +168,6 @@ class PricingCalculatorControllerTests {
 	public void postRegisterCustomerValid() throws Exception{
       
       String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
-    
-      DAOUser mockDAOUser = new DAOUser();
-
-      mockDAOUser.setUsername("SirSnoopy");
-      mockDAOUser.setPassword("$2y$12$YabjTmtNmIrZS2iy3z1J/eL/eNJQ8DlQJWkkMsqaFDfZYJuHV4S0W");
-
-     doReturn(userDao.save(mockDAOUser)).when(userDetailsService).save(any(Customer.class));
       
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -151,7 +182,6 @@ class PricingCalculatorControllerTests {
 	public void postRegisterCustomerInvalid() throws Exception{
       
       String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"fake\"}";
-
       
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)

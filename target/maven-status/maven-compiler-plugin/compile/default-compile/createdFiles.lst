@@ -2,8 +2,10 @@ com\tacoloco\repository\PricingCalculatorRepository.class
 com\tacoloco\services\JwtUserDetailsService.class
 com\tacoloco\model\DAOSession.class
 com\tacoloco\config\WebSecurityConfig$1.class
+com\tacoloco\controller\PricingCalculatorController$BadDateParsingException.class
 com\tacoloco\model\Session.class
 com\tacoloco\controller\PricingCalculatorController.class
+com\tacoloco\services\PricingCalculatorService$DuplicateStoryIdException.class
 com\tacoloco\model\Order.class
 com\tacoloco\config\JwtTokenUtil.class
 com\tacoloco\dao\SessionDao.class

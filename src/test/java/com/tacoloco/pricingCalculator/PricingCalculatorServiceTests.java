@@ -30,6 +30,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
 import com.tacoloco.dao.UserDao;
+import com.tacoloco.dao.SessionDao;
+
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -48,7 +50,10 @@ class PricingCalculatorServiceTests {
   private PasswordEncoder bCryptEncoder;
 
   @MockBean
-	private UserDao mockUserDao;
+  private UserDao mockUserDao;
+  
+  @MockBean
+	private SessionDao mockSessionDao;
 
   @Autowired
   private PricingCalculatorService service;
@@ -58,6 +63,30 @@ class PricingCalculatorServiceTests {
   
   @MockBean
   private PricingCalculatorRepository repository;
+
+  
+  @Test
+  @DisplayName("Save Session with pricingCalculatorService")
+  void saveSessionValid() throws java.text.ParseException{
+    
+  
+    Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+    DAOSession mockDaoSession = new DAOSession();
+    mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
+    mockDaoSession.setTime(mockSession.getTime());
+    mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
+    mockDaoSession.setSessionAction(mockSession.getSessionAction());
+    mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+
+    mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
+    mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
+    
+    mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
+    mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
+
+    service.saveSession(mockSession);
+    verify(mockSessionDao).save(mockDaoSession);
+  }
 
   @Test
   @DisplayName("Save with JwtUserDetailsService rejects same username entered more than once")
@@ -72,7 +101,6 @@ class PricingCalculatorServiceTests {
     doThrow(new DuplicateUsernameException()).when(mockUserDao).save(any(DAOUser.class));
     assertThrows(DuplicateUsernameException.class, () -> jwtService.save(mockCustomer),
     "expected to see DuplicateUsernameException but didn't");
-
 
   }
 

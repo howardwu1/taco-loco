@@ -41,7 +41,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.fasterxml.jackson.databind.ObjectMapper; 
 
 import com.tacoloco.services.JwtUserDetailsService;
-
+import com.tacoloco.services.PricingCalculatorService;
 
 @SpringBootTest
 @ActiveProfiles(value="test")
@@ -61,12 +61,15 @@ class IntegrationTests {
   @Autowired
   private JwtUserDetailsService jwtService;
 
+  @Autowired
+  private PricingCalculatorService service;
+
 
   @Test
   @DisplayName("get /publicUserDetails valid after registering")
 	public void getPublicDetailsForExistingUser() throws Exception{
       
-        String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
 
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -91,7 +94,7 @@ class IntegrationTests {
     Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
 	}
 
-    @Test
+  @Test
   @DisplayName("post /register valid user info")
 	public void postRegisterCustomerValid() throws Exception{
       
@@ -117,6 +120,38 @@ class IntegrationTests {
 
   }
 
+  @Test
+  @DisplayName("post /addNewSession twice with the same storyId info")
+	public void postAddNewSessionSameStoryId() throws Exception{
+      
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\"}";    
+
+      mockMvc.perform(post("/addNewSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+      mockMvc.perform(post("/addNewSession")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mockJson))
+        .andExpect(status().is(422));
+
+  }
+
+  @Test
+  @DisplayName("post /addNewSession with bad time format")
+	public void postAddNewSessionBadTimeFormat() throws Exception{
+      
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (E)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask3\"}";    
+
+      mockMvc.perform(post("/addNewSession")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mockJson))
+        .andExpect(status().is(422));
+
+
+  }
+  
   @Test
   @DisplayName("try to post /register same user twice")
 	public void postRegisterCustomerTwiceInvalid() throws Exception{

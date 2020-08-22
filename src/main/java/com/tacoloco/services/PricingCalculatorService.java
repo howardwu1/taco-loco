@@ -14,6 +14,8 @@ import com.tacoloco.repository.*;
 
 import com.tacoloco.dao.SessionDao;
 
+import org.springframework.dao.DataIntegrityViolationException;
+
 @Service
 public class PricingCalculatorService {
   
@@ -25,6 +27,8 @@ public class PricingCalculatorService {
   @Autowired
   private SessionDao sessionDao;
   
+  public static class DuplicateStoryIdException extends RuntimeException {}
+
   public String sayHello() {
     return "hello world";
   }
@@ -66,8 +70,24 @@ public class PricingCalculatorService {
   }
 
   public DAOSession saveSession(Session session){
-    //todo
-    return sessionDao.save(new DAOSession());
+
+    try{
+      DAOSession daoSession = new DAOSession();
+      daoSession.setSessionStoryId(session.getSessionStoryId());
+      daoSession.setTime(session.getTime());
+      daoSession.setSessionCreator(session.getSessionCreator());
+      daoSession.setSessionAction(session.getSessionAction());
+      daoSession.setSessionSubjectMatter(session.getSessionSubjectMatter());
+
+      daoSession.setSessionMentor(session.getSessionMentor());
+      daoSession.setSessionMentee(session.getSessionMentee());
+      
+      daoSession.setSessionMentorComments(session.getSessionMentorComments());
+      daoSession.setSessionMenteeComments(session.getSessionMenteeComments());
+      return sessionDao.save(daoSession);
+    } catch (DataIntegrityViolationException e){
+      throw new DuplicateStoryIdException();
+    }
   }
 
 }

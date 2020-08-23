@@ -1,4 +1,6 @@
 # todo
 
-* complete testing on adding the same username being invalid: for service and integration 
-* decommission the existing repository code -- use CrudRepository instead I think
+* retrieve all sessions that the username either is a mentee or mentor on
+* have a new endpoint in which you save a session to replace the detail
+
+

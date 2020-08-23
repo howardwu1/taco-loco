@@ -16,6 +16,10 @@ import com.tacoloco.dao.SessionDao;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.text.SimpleDateFormat;
+
+import java.text.DateFormat;
+
 import java.util.List;
 @Service
 public class PricingCalculatorService {
@@ -73,6 +77,9 @@ public class PricingCalculatorService {
     List<DAOSession> daoSessions = sessionDao.findAllBySessionCreator(sessionCreator);
 
     ObjectMapper mapper = new ObjectMapper();
+    mapper.configure(com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS , false);
+    DateFormat df = new SimpleDateFormat("EE MMM d y H:mm:ss 'GMT'Z (zz)");
+    mapper.setDateFormat(df);
 
     String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(daoSessions);
     return json;

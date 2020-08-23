@@ -32,10 +32,11 @@ public class Session {
   @Min(value = 0, message = "Rating should not be less than 0")
   private Integer sessionMentorRating; Integer sessionMenteeRating;
   
-  //testing-only constructor
-  public Session(String sessionStoryId, String time, String sessionCreator, String sessionAction, String sessionSubjectMatter) throws java.text.ParseException {
+  //service-testing-only constructor
+  public Session(String sessionStoryId, String time, String sessionCreator,  String sessionAction, String sessionSubjectMatter) throws java.text.ParseException {
     this.sessionStoryId = sessionStoryId;
     this.setTime(time);
+    this.sessionSubjectMatter = sessionSubjectMatter;
     this.sessionCreator = sessionCreator;
     this.sessionAction = sessionAction;
     }

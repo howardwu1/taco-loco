@@ -47,6 +47,8 @@ import java.util.List;
 
 import java.util.ArrayList;
 
+import com.jayway.jsonpath.*;
+
 @SpringBootTest
 class PricingCalculatorServiceTests {
   
@@ -75,7 +77,7 @@ class PricingCalculatorServiceTests {
     service.getSessionByCreator("SirSnoopy");
 
     
-    Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+    Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
     DAOSession mockDaoSession = new DAOSession();
     mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
     mockDaoSession.setTime(mockSession.getTime());
@@ -93,12 +95,16 @@ class PricingCalculatorServiceTests {
     mockDaoSessions.add(mockDaoSession);
 
     doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreator("SirSnoopy");
+    
+    DocumentContext context = JsonPath.parse(service.getSessionByCreator("SirSnoopy"));
 
-    ObjectMapper mapper = new ObjectMapper();
-
-    String mockDaoSessionsJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockDaoSessions);
-
-    Assertions.assertTrue(service.getSessionByCreator("SirSnoopy").equals(mockDaoSessionsJson));
+    Assertions.assertTrue(context.read("$.length()").equals(1));
+    Assertions.assertTrue(context.read("$[0].length()").equals(12));
+    Assertions.assertTrue(context.read("$[0].sessionStoryId").equals("SomeTask1"));
+    Assertions.assertTrue(context.read("$[0].sessionAction").equals("Debug code for"));
+    Assertions.assertTrue(context.read("$[0].sessionSubjectMatter").equals("Java"));
+    Assertions.assertTrue(context.read("$[0].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
+    Assertions.assertTrue(context.read("$[0].sessionCreator").equals("SirSnoopy"));
 
 
   }

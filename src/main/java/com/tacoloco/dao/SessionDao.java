@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.tacoloco.model.DAOSession;
 
+import java.util.List;
+
 @Repository
 public interface SessionDao extends CrudRepository<DAOSession, Integer> {
-    DAOSession findBySessionCreator(String sessionCreator);
+    List<DAOSession> findAllBySessionCreator(String sessionCreator);
 }

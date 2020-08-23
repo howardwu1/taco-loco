@@ -149,6 +149,13 @@ public class PricingCalculatorController {
 		return userDetailsService.getPublicUserDetails(username);
 	}
 
+  @GetMapping("/sessionFromCreator/{sessionCreator}")
+  @ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String getSessionFromCreator(@PathVariable String sessionCreator) throws JsonProcessingException {
+		return pricingCalculatorService.getSessionByCreator(sessionCreator);
+	}
+
+
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody Customer authenticationRequest) throws Exception {
 

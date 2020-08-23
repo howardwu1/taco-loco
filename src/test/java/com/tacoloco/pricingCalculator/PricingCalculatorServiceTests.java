@@ -43,6 +43,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import static org.mockito.Mockito.doThrow;
 
+import java.util.List;
+
+import java.util.ArrayList;
+
 @SpringBootTest
 class PricingCalculatorServiceTests {
   
@@ -65,6 +69,40 @@ class PricingCalculatorServiceTests {
   private PricingCalculatorRepository repository;
 
   
+  @Test
+  @DisplayName("Get sessions with valid session creator")
+  void getSessionFromCreatorValid() throws JsonProcessingException, java.text.ParseException {
+    service.getSessionByCreator("SirSnoopy");
+
+    
+    Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+    DAOSession mockDaoSession = new DAOSession();
+    mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
+    mockDaoSession.setTime(mockSession.getTime());
+    mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
+    mockDaoSession.setSessionAction(mockSession.getSessionAction());
+    mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+
+    mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
+    mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
+    
+    mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
+    mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
+    
+    List<DAOSession> mockDaoSessions = new ArrayList<DAOSession>();
+    mockDaoSessions.add(mockDaoSession);
+
+    doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreator("SirSnoopy");
+
+    ObjectMapper mapper = new ObjectMapper();
+
+    String mockDaoSessionsJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockDaoSessions);
+
+    Assertions.assertTrue(service.getSessionByCreator("SirSnoopy").equals(mockDaoSessionsJson));
+
+
+  }
+
   @Test
   @DisplayName("Save Session with pricingCalculatorService")
   void saveSessionValid() throws java.text.ParseException{

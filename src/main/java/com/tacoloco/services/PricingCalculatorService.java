@@ -16,6 +16,7 @@ import com.tacoloco.dao.SessionDao;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.util.List;
 @Service
 public class PricingCalculatorService {
   
@@ -69,7 +70,12 @@ public class PricingCalculatorService {
 
   }
   public String getSessionByCreator(String sessionCreator) throws JsonProcessingException{
-    return "todo";
+    List<DAOSession> daoSessions = sessionDao.findAllBySessionCreator(sessionCreator);
+
+    ObjectMapper mapper = new ObjectMapper();
+
+    String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(daoSessions);
+    return json;
   }
   
   public DAOSession saveSession(Session session){

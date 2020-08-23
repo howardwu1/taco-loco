@@ -147,19 +147,24 @@ class PricingCalculatorControllerTests {
       
       String mockSessionCreator = "SirSnoopy";
 
-      List<Session> mockSessions = new ArrayList<Session>();
+      List<DAOSession> mockDaoSessions = new ArrayList<DAOSession>();
 
       Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
-
-      mockSessions.add(mockSession);
+      DAOSession mockDaoSession = new DAOSession(); 
+      mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
+      mockDaoSession.setTime(mockSession.getTime());
+      mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
+      mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+      mockDaoSession.setSessionAction(mockSession.getSessionAction());
+      mockDaoSessions.add(mockDaoSession);
       
       ObjectMapper mapper = new ObjectMapper();
 
   
 
-     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockSessions)).when(service).getSessionByCreator("SirSnoopy");
+     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockDaoSessions)).when(service).getSessionByCreator("SirSnoopy");
       
-      mockMvc.perform(get("/sessionFromCreatorUsername/{sessionCreator}", mockSessionCreator)
+      mockMvc.perform(get("/sessionFromCreator/{sessionCreator}", mockSessionCreator)
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());
 

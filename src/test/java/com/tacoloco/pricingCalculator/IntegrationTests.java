@@ -187,8 +187,8 @@ class IntegrationTests {
   @DisplayName("get /sessionFromCreator valid after adding two (very similar) sessions")
 	public void getMultipleSessionsFromCreatorValid() throws Exception{
       
-    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask4\"}";    
-      String mockSessionCreator = "SirSnoopy";
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy2\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy2\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask4\"}";    
+      String mockSessionCreator = "SirSnoopy2";
 
 
       mockMvc.perform(post("/addNewSession")
@@ -196,7 +196,7 @@ class IntegrationTests {
                   .content(mockJson))
       .andExpect(status().isOk());
 
-    String mockJson2 =  "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask5\"}";  
+    String mockJson2 =  "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy2\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy2\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask5\"}";  
 
        mockMvc.perform(post("/addNewSession")
                   .contentType(MediaType.APPLICATION_JSON)
@@ -206,15 +206,15 @@ class IntegrationTests {
       mockMvc.perform(get("/sessionFromCreator/{sessionCreator}", mockSessionCreator)
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
-                    .andExpect(jsonPath("$[0].sessionCreator",is("SirSnoopy")))
+                    .andExpect(jsonPath("$[0].sessionCreator",is("SirSnoopy2")))
                     .andExpect(jsonPath("$[0].sessionSubjectMatter", is("Java")))
                     .andExpect(jsonPath("$[0].sessionStoryId", is("SomeTask4")))
                     .andExpect(jsonPath("$[0].sessionAction", is("Debug code for")))
-                    .andExpect(jsonPath("$.length()", is(1)))
+                    .andExpect(jsonPath("$.length()", is(2)))
                     .andExpect(jsonPath("$[0].length()", is(12)))
                     .andExpect(jsonPath("$[0].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")))
                     .andExpect(jsonPath("$[1].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")))
-                    .andExpect(jsonPath("$[1].sessionStoryId", is("SomeTask4")));
+                    .andExpect(jsonPath("$[1].sessionStoryId", is("SomeTask5")));
 
 	}
   

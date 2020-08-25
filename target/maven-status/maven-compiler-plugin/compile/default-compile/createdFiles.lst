@@ -17,6 +17,7 @@ com\tacoloco\model\UserDTO.class
 com\tacoloco\config\WebSecurityConfig$2.class
 com\tacoloco\config\WebSecurityConfig.class
 com\tacoloco\PricingCalculatorApplication.class
+com\tacoloco\controller\PricingCalculatorController$UserDetailsNotFoundFromUsernameException.class
 com\tacoloco\controller\PricingCalculatorController$BadRequestException.class
 com\tacoloco\model\DAOUser.class
 com\tacoloco\controller\PricingCalculatorController$UnprocessableEntityException.class

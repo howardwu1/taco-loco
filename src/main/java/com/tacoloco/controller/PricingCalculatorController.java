@@ -100,7 +100,10 @@ public class PricingCalculatorController {
 
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="No such item or counts not all whole numbers")
   class UnprocessableEntityException extends RuntimeException {}
-	
+  
+  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="User does not exist with the username provided")
+  public static class UserDetailsNotFoundFromUsernameException extends RuntimeException {}
+
   @ExceptionHandler(DuplicateUsernameException.class)
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Duplicate usernames")
   public ResponseEntity<?> processHandler(DuplicateUsernameException ex) {
@@ -147,6 +150,12 @@ public class PricingCalculatorController {
   @ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String getPublicUserDetails(@PathVariable String username) throws JsonProcessingException {
 		return userDetailsService.getPublicUserDetails(username);
+  }
+  
+  @GetMapping("/allPublicUserDetails")
+  @ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String getAllPublicUserDetails() throws JsonProcessingException {
+		return userDetailsService.getAllPublicUserDetails();
 	}
 
   @GetMapping("/sessionFromCreator/{sessionCreator}")

@@ -97,7 +97,55 @@ class IntegrationTests {
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
     System.out.println("************JSON" + jwtService.getPublicUserDetails("SirSnoopy"));
     Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
-	}
+  }
+  
+  @Test
+  @DisplayName("Get public info from invalid username")
+  void getPublicInfoFromInvalidUsername() throws Exception{
+    String mockUserName = "FakeName";
+
+       
+    mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
+    .contentType(MediaType.APPLICATION_JSON))
+    .andExpect(status().is(422))
+    .andExpect(status().reason(containsString("User does not exist with the username provided")));
+    
+
+
+  }
+
+//   public void getPublicDetailsForAllExistingUsers() throws Exception{
+    
+//     String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+
+//     mockMvc.perform(post("/register")
+//                   .contentType(MediaType.APPLICATION_JSON)
+//                   .content(mockJson))
+//       .andExpect(status().isOk());
+
+//     String mockJson2 = "{\"username\":\"MrSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+
+//     mockMvc.perform(post("/register")
+//     .contentType(MediaType.APPLICATION_JSON)
+//     .content(mockJson2))
+//     .andExpect(status().isOk());
+    
+        //todo
+//     mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
+//                   .contentType(MediaType.APPLICATION_JSON))
+//                   .andExpect(status().isOk());
+
+//      UserDTO mockUserDTO = new UserDTO();
+//     mockUserDTO.setUsername("SirSnoopy");
+//     mockUserDTO.setFirstName("Joe");
+//     mockUserDTO.setLastName("Cool");
+
+//     ObjectMapper mapper = new ObjectMapper();
+
+//     String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
+//   System.out.println("************JSON" + jwtService.getPublicUserDetails("SirSnoopy"));
+//   Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+// }
 
   @Test
   @DisplayName("post /register valid user info")

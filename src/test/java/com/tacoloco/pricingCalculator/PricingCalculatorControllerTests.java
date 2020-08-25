@@ -73,6 +73,8 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import com.tacoloco.controller.PricingCalculatorController.UserDetailsNotFoundFromUsernameException;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles(value="test")
@@ -160,8 +162,6 @@ class PricingCalculatorControllerTests {
       
       ObjectMapper mapper = new ObjectMapper();
 
-  
-
      doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockDaoSessions)).when(service).getSessionByCreator("SirSnoopy");
       
       mockMvc.perform(get("/sessionFromCreator/{sessionCreator}", mockSessionCreator)
@@ -192,6 +192,54 @@ class PricingCalculatorControllerTests {
                     .andExpect(status().isOk());
 
       verify(userDetailsService).getPublicUserDetails("SirSnoopy");
+  }
+  
+    
+  @Test
+  @DisplayName("Get public info from invalid username")
+  void getPublicInfoFromInvalidUsername() throws Exception{
+    String mockUserName = "FakeName";
+
+    doThrow(new UserDetailsNotFoundFromUsernameException()).when(userDetailsService).getPublicUserDetails("FakeName");
+
+    mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
+    .contentType(MediaType.APPLICATION_JSON))
+    .andExpect(status().is(422));
+
+
+  }
+
+  @Test
+  @DisplayName("get /allPublicUserDetails valid")
+	public void getPublicDetailsForAllExistingUser() throws Exception{
+      
+      String mockUserName = "SirSnoopy";
+      
+      List<UserDTO> mockUserDTOs = new ArrayList<UserDTO>();
+      UserDTO mockUserDTO = new UserDTO();
+      mockUserDTO.setUsername("SirSnoopy");
+      mockUserDTO.setFirstName("Joe");
+      mockUserDTO.setLastName("Cool");
+      mockUserDTO.setPassword("SnoopDoDubbaG");
+      
+      mockUserDTOs.add(mockUserDTO);
+
+      UserDTO mockUserDTO2 = new UserDTO();
+      mockUserDTO.setUsername("MrSnoopy");
+      mockUserDTO.setFirstName("Joe");
+      mockUserDTO.setLastName("Cool");
+      mockUserDTO.setPassword("SnoopDoggyDog");
+      
+      mockUserDTOs.add(mockUserDTO2);
+      ObjectMapper mapper = new ObjectMapper();
+
+     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs)).when(userDetailsService).getAllPublicUserDetails();
+      
+      mockMvc.perform(get("/allPublicUserDetails")
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
+
+      verify(userDetailsService).getAllPublicUserDetails();
 	}
 
 

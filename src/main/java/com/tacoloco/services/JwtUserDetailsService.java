@@ -22,6 +22,9 @@ import org.springframework.http.HttpStatus;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
+import com.tacoloco.controller.PricingCalculatorController.UserDetailsNotFoundFromUsernameException;
+
+
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
@@ -47,18 +50,29 @@ public class JwtUserDetailsService implements UserDetailsService {
 	}
 
   public String getPublicUserDetails(String username) throws JsonProcessingException{
-    DAOUser user = userDao.findByUsername(username);
+	
+	try{
+		DAOUser user = userDao.findByUsername(username);
 
-    UserDTO userDTO = new UserDTO();
-      userDTO.setUsername(user.getUsername());
-      userDTO.setFirstName(user.getFirstName());
-      userDTO.setLastName(user.getLastName());
+		UserDTO userDTO = new UserDTO();
+		  userDTO.setUsername(user.getUsername());
+		  userDTO.setFirstName(user.getFirstName());
+		  userDTO.setLastName(user.getLastName());
+	
+		ObjectMapper mapper = new ObjectMapper();
+	
+		String json = mapper.writeValueAsString(userDTO);
+		return json;
+	} catch(java.lang.NullPointerException e){
+		throw new UserDetailsNotFoundFromUsernameException();
+	}
 
-    ObjectMapper mapper = new ObjectMapper();
-
-    String json = mapper.writeValueAsString(userDTO);
-    return json;
   }
+
+  
+	public String getAllPublicUserDetails() throws JsonProcessingException{
+		return "todo";
+	  }
   
 	public DAOUser save(Customer user) {
 

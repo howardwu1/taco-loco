@@ -49,6 +49,9 @@ import java.util.ArrayList;
 
 import com.jayway.jsonpath.*;
 
+import com.tacoloco.controller.PricingCalculatorController.UserDetailsNotFoundFromUsernameException;
+
+
 @SpringBootTest
 class PricingCalculatorServiceTests {
   
@@ -183,6 +186,14 @@ class PricingCalculatorServiceTests {
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
 
     Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+
+  }
+
+  @Test
+  @DisplayName("Unsuccessfully Get public info from invalid username")
+  void getPublicInfoFromInvalidUsername() throws JsonProcessingException{
+ 
+    assertThrows(UserDetailsNotFoundFromUsernameException.class, () -> jwtService.getPublicUserDetails("FakeUser"), "UserDetailsNotFoundFromUsernameException expected but wasn't thrown");
 
   }
 

@@ -231,8 +231,8 @@ class PricingCalculatorControllerTests {
       ObjectMapper mapper = new ObjectMapper();
 
      doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs)).when(userDetailsService).getAllPublicInfoFromAllUsers();
-      System.out.println("*********" + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs));
-      mockMvc.perform(get("/allPublicUserDetails")
+
+     mockMvc.perform(get("/allPublicUserDetails")
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$[0].username",is("SirSnoopy")))

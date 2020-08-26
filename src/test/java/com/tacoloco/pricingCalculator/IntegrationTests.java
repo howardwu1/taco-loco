@@ -43,9 +43,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tacoloco.services.JwtUserDetailsService;
 import com.tacoloco.services.PricingCalculatorService;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.*;
 
+import com.tacoloco.dao.UserDao;
 
 
 @SpringBootTest
@@ -53,6 +53,10 @@ import static org.hamcrest.Matchers.*;
 @AutoConfigureMockMvc
 class IntegrationTests {
 
+
+  @Autowired
+  private UserDao userDao;
+  
   @Autowired
   private MockMvc mockMvc;
 
@@ -74,14 +78,13 @@ class IntegrationTests {
   @DisplayName("get /publicUserDetails valid after registering")
 	public void getPublicDetailsForExistingUser() throws Exception{
       
-      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
-
+      String mockJson = "{\"username\":\"SirSnoopy7\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
 
-      String mockUserName = "SirSnoopy";
+      String mockUserName = "SirSnoopy7";
       
       mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
                     .contentType(MediaType.APPLICATION_JSON))
@@ -95,7 +98,6 @@ class IntegrationTests {
       ObjectMapper mapper = new ObjectMapper();
 
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
-    System.out.println("************JSON" + jwtService.getPublicUserDetails("SirSnoopy"));
     Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
   }
   
@@ -114,38 +116,40 @@ class IntegrationTests {
 
   }
 
-//   public void getPublicDetailsForAllExistingUsers() throws Exception{
-    
-//     String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+  @Test
+  @DisplayName("get /allPublicUserDetails valid")
+	public void getPublicDetailsForAllExistingUsers() throws Exception{
+      
+      userDao.deleteAll();
 
-//     mockMvc.perform(post("/register")
-//                   .contentType(MediaType.APPLICATION_JSON)
-//                   .content(mockJson))
-//       .andExpect(status().isOk());
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+      
+      String mockJson2 = "{\"username\":\"MrSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson2))
+        .andExpect(status().isOk());
 
-//     String mockJson2 = "{\"username\":\"MrSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      mockMvc.perform(get("/allPublicUserDetails")
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$[0].username",is("SirSnoopy")))
+                    .andExpect(jsonPath("$[1].username",is("MrSnoopy")))
+                    .andExpect(jsonPath("$[0].firstName",is("Joe")))
+                    .andExpect(jsonPath("$[1].firstName",is("Joe")))
+                    .andExpect(jsonPath("$[0].lastName",is("Cool")))
+                    .andExpect(jsonPath("$[1].lastName",is("Cool")))
+                    .andExpect(jsonPath("$[0].password").doesNotExist())
+                    .andExpect(jsonPath("$[1].password").doesNotExist())
+                    .andExpect(jsonPath("$.length()",is(2)))
+                    .andExpect(jsonPath("$[0].length()",is(4)))
+                    .andExpect(jsonPath("$[1].length()",is(4)));
 
-//     mockMvc.perform(post("/register")
-//     .contentType(MediaType.APPLICATION_JSON)
-//     .content(mockJson2))
-//     .andExpect(status().isOk());
-    
-        //todo
-//     mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
-//                   .contentType(MediaType.APPLICATION_JSON))
-//                   .andExpect(status().isOk());
-
-//      UserDTO mockUserDTO = new UserDTO();
-//     mockUserDTO.setUsername("SirSnoopy");
-//     mockUserDTO.setFirstName("Joe");
-//     mockUserDTO.setLastName("Cool");
-
-//     ObjectMapper mapper = new ObjectMapper();
-
-//     String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
-//   System.out.println("************JSON" + jwtService.getPublicUserDetails("SirSnoopy"));
-//   Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
-// }
+	}
 
   @Test
   @DisplayName("post /register valid user info")

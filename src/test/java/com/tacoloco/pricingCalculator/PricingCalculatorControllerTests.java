@@ -211,35 +211,43 @@ class PricingCalculatorControllerTests {
 
   @Test
   @DisplayName("get /allPublicUserDetails valid")
-	public void getPublicDetailsForAllExistingUser() throws Exception{
+	public void getPublicDetailsForAllExistingUsers() throws Exception{
       
-      String mockUserName = "SirSnoopy";
       
       List<UserDTO> mockUserDTOs = new ArrayList<UserDTO>();
       UserDTO mockUserDTO = new UserDTO();
       mockUserDTO.setUsername("SirSnoopy");
       mockUserDTO.setFirstName("Joe");
       mockUserDTO.setLastName("Cool");
-      mockUserDTO.setPassword("SnoopDoDubbaG");
       
       mockUserDTOs.add(mockUserDTO);
 
       UserDTO mockUserDTO2 = new UserDTO();
-      mockUserDTO.setUsername("MrSnoopy");
-      mockUserDTO.setFirstName("Joe");
-      mockUserDTO.setLastName("Cool");
-      mockUserDTO.setPassword("SnoopDoggyDog");
+      mockUserDTO2.setUsername("MrSnoopy");
+      mockUserDTO2.setFirstName("Joe");
+      mockUserDTO2.setLastName("Cool");
       
       mockUserDTOs.add(mockUserDTO2);
       ObjectMapper mapper = new ObjectMapper();
 
-     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs)).when(userDetailsService).getAllPublicUserDetails();
-      
+     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs)).when(userDetailsService).getAllPublicInfoFromAllUsers();
+      System.out.println("*********" + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs));
       mockMvc.perform(get("/allPublicUserDetails")
                     .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$[0].username",is("SirSnoopy")))
+                    .andExpect(jsonPath("$[1].username",is("MrSnoopy")))
+                    .andExpect(jsonPath("$[0].firstName",is("Joe")))
+                    .andExpect(jsonPath("$[1].firstName",is("Joe")))
+                    .andExpect(jsonPath("$[0].lastName",is("Cool")))
+                    .andExpect(jsonPath("$[1].lastName",is("Cool")))
+                    .andExpect(jsonPath("$[0].password").doesNotExist())
+                    .andExpect(jsonPath("$[1].password").doesNotExist())
+                    .andExpect(jsonPath("$.length()",is(2)))
+                    .andExpect(jsonPath("$[0].length()",is(4)))
+                    .andExpect(jsonPath("$[1].length()",is(4)));
 
-      verify(userDetailsService).getAllPublicUserDetails();
+      verify(userDetailsService).getAllPublicInfoFromAllUsers();
 	}
 
 

@@ -155,7 +155,7 @@ public class PricingCalculatorController {
   @GetMapping("/allPublicUserDetails")
   @ResponseStatus(HttpStatus.OK)
 	public @ResponseBody String getAllPublicUserDetails() throws JsonProcessingException {
-		return userDetailsService.getAllPublicUserDetails();
+		return userDetailsService.getAllPublicInfoFromAllUsers();
 	}
 
   @GetMapping("/sessionFromCreator/{sessionCreator}")

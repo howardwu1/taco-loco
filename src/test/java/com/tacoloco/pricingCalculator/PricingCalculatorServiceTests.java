@@ -197,6 +197,41 @@ class PricingCalculatorServiceTests {
 
   }
 
+  @Test
+  @DisplayName("Get public info from all users")
+  void getAllPublicInfoFromAllUsers() throws JsonProcessingException{
+    
+    DAOUser mockUser = new DAOUser();
+    mockUser.setUsername("SirSnoopy");
+    mockUser.setFirstName("Joe");
+    mockUser.setLastName("Cool");
+  
+    DAOUser mockUser2 = new DAOUser();
+    mockUser2.setUsername("SirSnoopyII");
+    mockUser2.setFirstName("Joe");
+    mockUser2.setLastName("Cool");
+
+    List<DAOUser> mockUsers = new ArrayList<DAOUser>();
+
+    mockUsers.add(mockUser);
+    mockUsers.add(mockUser2);
+
+    doReturn(mockUsers).when(mockUserDao).findAll();
+
+    DocumentContext context = JsonPath.parse(jwtService.getAllPublicInfoFromAllUsers());
+
+    Assertions.assertTrue(context.read("$.length()").equals(2));
+    Assertions.assertTrue(context.read("$[0].length()").equals(4));
+    Assertions.assertTrue(context.read("$[0].username").equals("SirSnoopy"));
+    Assertions.assertTrue(context.read("$[1].username").equals("SirSnoopyII"));
+    Assertions.assertTrue(context.read("$[0].firstName").equals("Joe"));
+    Assertions.assertTrue(context.read("$[1].firstName").equals("Joe"));
+    Assertions.assertTrue(context.read("$[0].lastName").equals("Cool"));
+    Assertions.assertTrue(context.read("$[1].lastName").equals("Cool"));
+    Assertions.assertTrue(context.read("$[1].length()").equals(4));
+ 
+
+  }
   @Test  
   @DisplayName("Save data to respository and verify it was actually saved")
   void saveDataWithJoeCool() throws JsonProcessingException {

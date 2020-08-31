@@ -76,8 +76,11 @@ import java.util.List;
 
 import com.tacoloco.controller.PricingCalculatorController.UserDetailsNotFoundFromUsernameException;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
+import org.springframework.test.context.TestPropertySource;
+
+@EnableConfigurationProperties
+@SpringBootTest(classes=ApplicationConfiguration.class)
+@TestPropertySource(locations = "classpath:application-test.properties")
 @ActiveProfiles(value="test")
 @AutoConfigureMockMvc
 class PricingCalculatorControllerTests {

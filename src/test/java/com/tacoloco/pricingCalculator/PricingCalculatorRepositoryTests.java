@@ -28,7 +28,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest
+import org.springframework.test.context.TestPropertySource;
+
+@EnableConfigurationProperties
+@SpringBootTest(classes=ApplicationConfiguration.class)
+@TestPropertySource(locations = "classpath:application-test.properties")
 class PricingCalculatorRepositoryTests {
   
   @Autowired

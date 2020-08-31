@@ -48,8 +48,11 @@ import static org.hamcrest.Matchers.*;
 
 import com.tacoloco.dao.UserDao;
 
+import org.springframework.test.context.TestPropertySource;
 
-@SpringBootTest
+@EnableConfigurationProperties
+@SpringBootTest(classes=ApplicationConfiguration.class)
+@TestPropertySource(locations = "classpath:application-test.properties")
 @ActiveProfiles(value="test")
 @AutoConfigureMockMvc
 class IntegrationTests {

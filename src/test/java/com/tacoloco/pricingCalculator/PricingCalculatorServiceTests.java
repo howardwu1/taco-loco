@@ -52,7 +52,11 @@ import com.jayway.jsonpath.*;
 import com.tacoloco.controller.PricingCalculatorController.UserDetailsNotFoundFromUsernameException;
 
 
-@SpringBootTest
+import org.springframework.test.context.TestPropertySource;
+
+@EnableConfigurationProperties
+@SpringBootTest(classes=ApplicationConfiguration.class)
+@TestPropertySource(locations = "classpath:application-test.properties")
 class PricingCalculatorServiceTests {
   
   @MockBean

@@ -1,6 +1,5 @@
 # todo
 
-* create form for first and last name in register and register accounts with those fields (react native)
 * figure out flywheel database rollback? or is it flyway script? does it even work with H2
 * figure out testing profiles and application properties that are used for each profile
 * work on modifying the sessions by session creator to combining sessions from session Mentor or session Mentee or session creator

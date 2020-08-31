@@ -1,7 +1,5 @@
 # todo
 
-* change login component to use the loginutil file (react native)
-* get rid of the Bearer String message for authorized endpoints like Register and Authenticate
 * Have a message for User already exists (react native)
 * figure out flywheel database rollback? or is it flyway script? does it even work with H2
 * figure out testing profiles and application properties that are used for each profile

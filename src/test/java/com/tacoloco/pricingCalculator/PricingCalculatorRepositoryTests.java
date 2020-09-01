@@ -30,9 +30,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import org.springframework.test.context.TestPropertySource;
 
-@EnableConfigurationProperties
-@SpringBootTest(classes=ApplicationConfiguration.class)
-@TestPropertySource(locations = "classpath:application-test.properties")
+
+import com.tacoloco.TestConfiguration;
+
+@SpringBootTest(classes = TestConfiguration.class)
 class PricingCalculatorRepositoryTests {
   
   @Autowired

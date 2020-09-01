@@ -54,9 +54,11 @@ import com.tacoloco.controller.PricingCalculatorController.UserDetailsNotFoundFr
 
 import org.springframework.test.context.TestPropertySource;
 
-@EnableConfigurationProperties
-@SpringBootTest(classes=ApplicationConfiguration.class)
-@TestPropertySource(locations = "classpath:application-test.properties")
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+import com.tacoloco.TestConfiguration;
+
+@SpringBootTest(classes = TestConfiguration.class)
 class PricingCalculatorServiceTests {
   
   @MockBean

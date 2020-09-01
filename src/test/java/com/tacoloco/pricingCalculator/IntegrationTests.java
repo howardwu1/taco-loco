@@ -214,30 +214,30 @@ class IntegrationTests {
 
   }
 
-  @Test
-  @DisplayName("get /sessionFromCreator valid after adding the session")
-	public void getSessionFromCreatorValid() throws Exception{
+  // @Test
+  // @DisplayName("get /sessionFromCreator valid after adding the session")
+	// public void getSessionFromCreatorValid() throws Exception{
       
-    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask3\"}";    
-      String mockSessionCreator = "SirSnoopy";
-      mockMvc.perform(post("/addNewSession")
-                  .contentType(MediaType.APPLICATION_JSON)
-                  .content(mockJson))
-      .andExpect(status().isOk());
+  //   String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask3\"}";    
+  //     String mockSessionCreator = "SirSnoopy";
+  //     mockMvc.perform(post("/addNewSession")
+  //                 .contentType(MediaType.APPLICATION_JSON)
+  //                 .content(mockJson))
+  //     .andExpect(status().isOk());
 
   
-      mockMvc.perform(get("/sessionFromCreator/{sessionCreator}", mockSessionCreator)
-                    .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$[0].sessionCreator",is("SirSnoopy")))
-                    .andExpect(jsonPath("$[0].sessionSubjectMatter", is("Java")))
-                    .andExpect(jsonPath("$[0].sessionStoryId", is("SomeTask3")))
-                    .andExpect(jsonPath("$[0].sessionAction", is("Debug code for")))
-                    .andExpect(jsonPath("$.length()", is(1)))
-                    .andExpect(jsonPath("$[0].length()", is(12)))
-                    .andExpect(jsonPath("$[0].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")));
+  //     mockMvc.perform(get("/sessionFromCreator/{sessionCreator}", mockSessionCreator)
+  //                   .contentType(MediaType.APPLICATION_JSON))
+  //                   .andExpect(status().isOk())
+  //                   .andExpect(jsonPath("$[0].sessionCreator",is("SirSnoopy")))
+  //                   .andExpect(jsonPath("$[0].sessionSubjectMatter", is("Java")))
+  //                   .andExpect(jsonPath("$[0].sessionStoryId", is("SomeTask3")))
+  //                   .andExpect(jsonPath("$[0].sessionAction", is("Debug code for")))
+  //                   .andExpect(jsonPath("$.length()", is(1)))
+  //                   .andExpect(jsonPath("$[0].length()", is(12)))
+  //                   .andExpect(jsonPath("$[0].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")));
 
-	}
+	// }
 
   
   @Test

@@ -150,10 +150,10 @@ class PricingCalculatorControllerTests {
   }
 
   @Test
-  @DisplayName("get /sessionFromCreator valid")
+  @DisplayName("get /sessionFromUsername valid")
 	public void getSessionFromCreatorValid() throws Exception{
       
-      String mockSessionCreator = "SirSnoopy";
+      String username = "SirSnoopy";
 
       List<DAOSession> mockDaoSessions = new ArrayList<DAOSession>();
 
@@ -164,17 +164,30 @@ class PricingCalculatorControllerTests {
       mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
       mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
       mockDaoSession.setSessionAction(mockSession.getSessionAction());
-      mockDaoSessions.add(mockDaoSession);
+
+
+      Session mockSession2 = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "MrSnoopy", "Debug code for", "Java");
+      DAOSession mockDaoSession2 = new DAOSession(); 
+      mockDaoSession2.setSessionStoryId(mockSession2.getSessionStoryId());
+      mockDaoSession2.setTime(mockSession2.getTime());
+      mockDaoSession2.setSessionCreator(mockSession2.getSessionCreator());
+      mockDaoSession2.setSessionSubjectMatter(mockSession2.getSessionSubjectMatter());
+      mockDaoSession2.setSessionAction(mockSession2.getSessionAction());
+      mockDaoSession2.setSessionOwner("SirSnoopy");
+
+      mockDaoSessions.add(mockDaoSession1);
+
+      mockDaoSessions.add(mockDaoSession2);
       
       ObjectMapper mapper = new ObjectMapper();
 
-     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockDaoSessions)).when(service).getSessionByCreator("SirSnoopy");
+     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockDaoSessions)).when(service).getSessionByUsername("SirSnoopy");
       
-      mockMvc.perform(get("/sessionFromCreator/{sessionCreator}", mockSessionCreator)
+      mockMvc.perform(get("/sessionFromUsername/{username}", username)
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());
 
-      verify(service).getSessionByCreator("SirSnoopy");
+      verify(service).getSessionByUsername("SirSnoopy");
 	}
 
   @Test

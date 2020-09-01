@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface SessionDao extends CrudRepository<DAOSession, Integer> {
     List<DAOSession> findAllBySessionCreator(String sessionCreator);
+
+    List<DAOSession> findAllBySessionCreatorOrSessionMentorOrSessionMentee(String sessionCreator, String sessionMentor, String sessionMentee);
 }

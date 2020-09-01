@@ -80,43 +80,43 @@ class PricingCalculatorServiceTests {
   private PricingCalculatorRepository repository;
 
   
-  @Test
-  @DisplayName("Get sessions with valid session creator")
-  void getSessionFromCreatorValid() throws JsonProcessingException, java.text.ParseException {
-    service.getSessionByCreator("SirSnoopy");
+  // @Test
+  // @DisplayName("Get sessions with valid session creator")
+  // void getSessionFromCreatorValid() throws JsonProcessingException, java.text.ParseException {
+  //   service.getSessionByCreator("SirSnoopy");
 
     
-    Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
-    DAOSession mockDaoSession = new DAOSession();
-    mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
-    mockDaoSession.setTime(mockSession.getTime());
-    mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
-    mockDaoSession.setSessionAction(mockSession.getSessionAction());
-    mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+  //   Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
+  //   DAOSession mockDaoSession = new DAOSession();
+  //   mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
+  //   mockDaoSession.setTime(mockSession.getTime());
+  //   mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
+  //   mockDaoSession.setSessionAction(mockSession.getSessionAction());
+  //   mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
 
-    mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
-    mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
+  //   mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
+  //   mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
     
-    mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
-    mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
+  //   mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
+  //   mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
     
-    List<DAOSession> mockDaoSessions = new ArrayList<DAOSession>();
-    mockDaoSessions.add(mockDaoSession);
+  //   List<DAOSession> mockDaoSessions = new ArrayList<DAOSession>();
+  //   mockDaoSessions.add(mockDaoSession);
 
-    doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreator("SirSnoopy");
+  //   doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreator("SirSnoopy");
     
-    DocumentContext context = JsonPath.parse(service.getSessionByCreator("SirSnoopy"));
+  //   DocumentContext context = JsonPath.parse(service.getSessionByCreator("SirSnoopy"));
 
-    Assertions.assertTrue(context.read("$.length()").equals(1));
-    Assertions.assertTrue(context.read("$[0].length()").equals(12));
-    Assertions.assertTrue(context.read("$[0].sessionStoryId").equals("SomeTask1"));
-    Assertions.assertTrue(context.read("$[0].sessionAction").equals("Debug code for"));
-    Assertions.assertTrue(context.read("$[0].sessionSubjectMatter").equals("Java"));
-    Assertions.assertTrue(context.read("$[0].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
-    Assertions.assertTrue(context.read("$[0].sessionCreator").equals("SirSnoopy"));
+  //   Assertions.assertTrue(context.read("$.length()").equals(1));
+  //   Assertions.assertTrue(context.read("$[0].length()").equals(12));
+  //   Assertions.assertTrue(context.read("$[0].sessionStoryId").equals("SomeTask1"));
+  //   Assertions.assertTrue(context.read("$[0].sessionAction").equals("Debug code for"));
+  //   Assertions.assertTrue(context.read("$[0].sessionSubjectMatter").equals("Java"));
+  //   Assertions.assertTrue(context.read("$[0].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
+  //   Assertions.assertTrue(context.read("$[0].sessionCreator").equals("SirSnoopy"));
 
 
-  }
+  // }
 
   @Test
   @DisplayName("Save Session with pricingCalculatorService")

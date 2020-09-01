@@ -75,8 +75,9 @@ public class PricingCalculatorService {
 
 
   }
-  public String getSessionByCreator(String sessionCreator) throws JsonProcessingException{
-    List<DAOSession> daoSessions = sessionDao.findAllBySessionCreator(sessionCreator);
+  public String getSessionByUsername(String username) throws JsonProcessingException{
+    List<DAOSession> daoSessions = sessionDao.findAllBySessionCreatorOrSessionMentorOrSessionMentee(username,username,username);
+
 
     ObjectMapper mapper = new ObjectMapper();
     mapper.configure(com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS , false);

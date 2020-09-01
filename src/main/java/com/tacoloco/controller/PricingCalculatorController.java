@@ -158,10 +158,10 @@ public class PricingCalculatorController {
 		return userDetailsService.getAllPublicInfoFromAllUsers();
 	}
 
-  @GetMapping("/sessionFromCreator/{sessionCreator}")
+  @GetMapping("/sessionFromUsername/{username}")
   @ResponseStatus(HttpStatus.OK)
-	public @ResponseBody String getSessionFromCreator(@PathVariable String sessionCreator) throws JsonProcessingException {
-		return pricingCalculatorService.getSessionByCreator(sessionCreator);
+	public @ResponseBody String getSessionFromCreator(@PathVariable String username) throws JsonProcessingException {
+		return pricingCalculatorService.getSessionByUsername(username);
 	}
 
 

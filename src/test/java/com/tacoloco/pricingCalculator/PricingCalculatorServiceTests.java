@@ -80,43 +80,62 @@ class PricingCalculatorServiceTests {
   private PricingCalculatorRepository repository;
 
   
-  // @Test
-  // @DisplayName("Get sessions with valid session creator")
-  // void getSessionFromCreatorValid() throws JsonProcessingException, java.text.ParseException {
-  //   service.getSessionByCreator("SirSnoopy");
+  @Test
+  @DisplayName("Get sessions with valid username")
+  void getSessionFromUsernameValid() throws JsonProcessingException, java.text.ParseException {
+    service.getSessionByUsername("SirSnoopy");
 
     
-  //   Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
-  //   DAOSession mockDaoSession = new DAOSession();
-  //   mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
-  //   mockDaoSession.setTime(mockSession.getTime());
-  //   mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
-  //   mockDaoSession.setSessionAction(mockSession.getSessionAction());
-  //   mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+    Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
+    DAOSession mockDaoSession = new DAOSession();
+    mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
+    mockDaoSession.setTime(mockSession.getTime());
+    mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
+    mockDaoSession.setSessionAction(mockSession.getSessionAction());
+    mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
 
-  //   mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
-  //   mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
+    mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
+    mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
     
-  //   mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
-  //   mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
+    mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
+    mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
+    mockDaoSession.setSessionMentor("SirSnoopy");
+
+    DAOSession mockDaoSession2 = new DAOSession();
+    mockDaoSession2.setTime(mockSession.getTime());
+    mockDaoSession2.setSessionAction(mockSession.getSessionAction());
+    mockDaoSession2.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+
+    mockDaoSession2.setSessionCreator("MrSnoopy");
+    mockDaoSession2.setSessionMentor("SirSnoopy");
+    mockDaoSession2.setSessionStoryId("SomeTask2");
+
+    List<DAOSession> mockDaoSessions = new ArrayList<DAOSession>();
+    mockDaoSessions.add(mockDaoSession);
+    mockDaoSessions.add(mockDaoSession2);
+
+    doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreatorOrSessionMentorOrSessionMentee("SirSnoopy", "SirSnoopy", "SirSnoopy");
     
-  //   List<DAOSession> mockDaoSessions = new ArrayList<DAOSession>();
-  //   mockDaoSessions.add(mockDaoSession);
+    DocumentContext context = JsonPath.parse(service.getSessionByUsername("SirSnoopy"));
 
-  //   doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreator("SirSnoopy");
-    
-  //   DocumentContext context = JsonPath.parse(service.getSessionByCreator("SirSnoopy"));
+    Assertions.assertTrue(context.read("$.length()").equals(2));
+    Assertions.assertTrue(context.read("$[0].length()").equals(12));
+    Assertions.assertTrue(context.read("$[0].sessionStoryId").equals("SomeTask1"));
+    Assertions.assertTrue(context.read("$[0].sessionAction").equals("Debug code for"));
+    Assertions.assertTrue(context.read("$[0].sessionSubjectMatter").equals("Java"));
+    Assertions.assertTrue(context.read("$[0].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
+    Assertions.assertTrue(context.read("$[0].sessionCreator").equals("SirSnoopy"));
+    Assertions.assertTrue(context.read("$[0].sessionMentor").equals("SirSnoopy"));
+    Assertions.assertTrue(context.read("$[1].length()").equals(12));
+    Assertions.assertTrue(context.read("$[1].sessionStoryId").equals("SomeTask2"));
+    Assertions.assertTrue(context.read("$[1].sessionAction").equals("Debug code for"));
+    Assertions.assertTrue(context.read("$[1].sessionSubjectMatter").equals("Java"));
+    Assertions.assertTrue(context.read("$[1].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
+    Assertions.assertTrue(context.read("$[1].sessionCreator").equals("MrSnoopy"));
+    Assertions.assertTrue(context.read("$[1].sessionMentor").equals("SirSnoopy"));
 
-  //   Assertions.assertTrue(context.read("$.length()").equals(1));
-  //   Assertions.assertTrue(context.read("$[0].length()").equals(12));
-  //   Assertions.assertTrue(context.read("$[0].sessionStoryId").equals("SomeTask1"));
-  //   Assertions.assertTrue(context.read("$[0].sessionAction").equals("Debug code for"));
-  //   Assertions.assertTrue(context.read("$[0].sessionSubjectMatter").equals("Java"));
-  //   Assertions.assertTrue(context.read("$[0].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
-  //   Assertions.assertTrue(context.read("$[0].sessionCreator").equals("SirSnoopy"));
 
-
-  // }
+  }
 
   @Test
   @DisplayName("Save Session with pricingCalculatorService")

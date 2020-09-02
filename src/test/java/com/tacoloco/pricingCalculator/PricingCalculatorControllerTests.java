@@ -151,7 +151,7 @@ class PricingCalculatorControllerTests {
 
   @Test
   @DisplayName("get /sessionFromUsername valid")
-	public void getSessionFromCreatorValid() throws Exception{
+	public void getSessionFromUsername() throws Exception{
       
       String username = "SirSnoopy";
 
@@ -173,9 +173,9 @@ class PricingCalculatorControllerTests {
       mockDaoSession2.setSessionCreator(mockSession2.getSessionCreator());
       mockDaoSession2.setSessionSubjectMatter(mockSession2.getSessionSubjectMatter());
       mockDaoSession2.setSessionAction(mockSession2.getSessionAction());
-      mockDaoSession2.setSessionOwner("SirSnoopy");
+      mockDaoSession2.setSessionMentor("SirSnoopy");
 
-      mockDaoSessions.add(mockDaoSession1);
+      mockDaoSessions.add(mockDaoSession);
 
       mockDaoSessions.add(mockDaoSession2);
       

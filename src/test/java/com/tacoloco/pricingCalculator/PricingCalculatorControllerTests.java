@@ -92,9 +92,6 @@ class PricingCalculatorControllerTests {
   @Autowired
 	private MockMvc mockMvc;
 
-  @Autowired
-  private UserDao userDao;
-
   @MockBean
   private JwtUserDetailsService userDetailsService;
 
@@ -330,7 +327,6 @@ class PricingCalculatorControllerTests {
       mockDAOUser.setUsername("SirSnoopy2");
       mockDAOUser.setPassword("$2y$12$YabjTmtNmIrZS2iy3z1J/eL/eNJQ8DlQJWkkMsqaFDfZYJuHV4S0W");
 
-     doReturn(userDao.save(mockDAOUser)).when(userDetailsService).save(any(Customer.class));
 
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)

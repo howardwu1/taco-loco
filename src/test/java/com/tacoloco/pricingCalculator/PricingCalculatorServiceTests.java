@@ -134,17 +134,15 @@ class PricingCalculatorServiceTests {
     Assertions.assertTrue(context.read("$[1].sessionCreator").equals("MrSnoopy"));
     Assertions.assertTrue(context.read("$[1].sessionMentor").equals("SirSnoopy"));
 
-
   }
 
   @Test
   @DisplayName("Overwrite Session with pricingCalculatorService")
-  void overwriteSessionValid() throws java.text.ParseException{
-    
+  void overwriteSessionValid() throws java.text.ParseException, JsonProcessingException{
+    //this test is basically empty -- the main work is being done by the DAO
   
-    Session mockSession = new Session("SomeTask3", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+    Session mockSession = new Session("SomeTask3", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "overwriteSessionServiceUser", "Debug code for", "Java");
     DAOSession mockDaoSession = new DAOSession();
-    mockDaoSession.setId(3);
     mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
     mockDaoSession.setTime(mockSession.getTime());
     mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
@@ -157,9 +155,9 @@ class PricingCalculatorServiceTests {
     mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
     mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
 
-    Session mockSession2 = new Session("SomeTask3", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+
+    Session mockSession2 = new Session("SomeTask3", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "overwriteSessionServiceUser", "Debug code for", "Javascript");
     DAOSession mockDaoSession2 = new DAOSession();
-    mockDaoSession2.setId(3);
     mockDaoSession2.setSessionStoryId(mockSession2.getSessionStoryId());
     mockDaoSession2.setTime(mockSession2.getTime());
     mockDaoSession2.setSessionCreator(mockSession2.getSessionCreator());
@@ -176,7 +174,13 @@ class PricingCalculatorServiceTests {
     
 
     service.overwriteSession(mockSessions);
+
+    
+
     verify(mockSessionDao).saveAll(any(List.class));
+
+
+
   }
 
   @Test

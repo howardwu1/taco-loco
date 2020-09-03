@@ -138,6 +138,48 @@ class PricingCalculatorServiceTests {
   }
 
   @Test
+  @DisplayName("Overwrite Session with pricingCalculatorService")
+  void overwriteSessionValid() throws java.text.ParseException{
+    
+  
+    Session mockSession = new Session("SomeTask3", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+    DAOSession mockDaoSession = new DAOSession();
+    mockDaoSession.setId(3);
+    mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
+    mockDaoSession.setTime(mockSession.getTime());
+    mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
+    mockDaoSession.setSessionAction(mockSession.getSessionAction());
+    mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+
+    mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
+    mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
+    
+    mockDaoSession.setSessionMentorComments(mockSession.getSessionMentorComments());
+    mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
+
+    Session mockSession2 = new Session("SomeTask3", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+    DAOSession mockDaoSession2 = new DAOSession();
+    mockDaoSession2.setId(3);
+    mockDaoSession2.setSessionStoryId(mockSession2.getSessionStoryId());
+    mockDaoSession2.setTime(mockSession2.getTime());
+    mockDaoSession2.setSessionCreator(mockSession2.getSessionCreator());
+    mockDaoSession2.setSessionAction(mockSession2.getSessionAction());
+    mockDaoSession2.setSessionSubjectMatter(mockSession2.getSessionSubjectMatter());
+
+    mockDaoSession2.setSessionMentor(mockSession2.getSessionMentor());
+    mockDaoSession2.setSessionMentee(mockSession2.getSessionMentee());
+    
+    mockDaoSession2.setSessionMentorComments(mockSession2.getSessionMentorComments());
+    mockDaoSession2.setSessionMenteeComments(mockSession2.getSessionMenteeComments());
+    
+    DAOSession[] mockSessions = new DAOSession[]{mockDaoSession, mockDaoSession2};
+    
+
+    service.overwriteSession(mockSessions);
+    verify(mockSessionDao).saveAll(any(List.class));
+  }
+
+  @Test
   @DisplayName("Save Session with pricingCalculatorService")
   void saveSessionValid() throws java.text.ParseException{
     
@@ -159,6 +201,7 @@ class PricingCalculatorServiceTests {
     service.saveSession(mockSession);
     verify(mockSessionDao).save(mockDaoSession);
   }
+
 
   @Test
   @DisplayName("Save with JwtUserDetailsService rejects same username entered more than once")

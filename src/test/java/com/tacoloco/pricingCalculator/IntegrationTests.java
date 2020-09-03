@@ -52,6 +52,11 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.tacoloco.TestConfiguration;
 
+import com.jayway.jsonpath.*;
+
+import org.springframework.test.web.servlet.MvcResult;
+
+
 
 @SpringBootTest(classes = TestConfiguration.class)
 @ActiveProfiles(value="test")
@@ -180,6 +185,42 @@ class IntegrationTests {
                     .content(mockJson))
         .andExpect(status().isOk());
 
+  }
+
+  @Test
+  @DisplayName("post /overwriteSession valid session info")
+	public void postOverwriteSessionValid() throws Exception{
+      
+    String mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SnoopyJr\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask5\"}]";    
+
+      mockMvc.perform(post("/overwriteSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+      String mockUsername = "SnoopyJr";
+
+    MvcResult result = mockMvc.perform(get("/sessionFromUsername/{username}", mockUsername))
+                        .andExpect(status().isOk())
+                        .andReturn();
+       
+    Integer id = JsonPath.read(result.getResponse().getContentAsString(), "$[0].id");
+
+    String mockJson2 = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SnoopyJr\",\"sessionMentor\":\"B\",\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask5\", \"id\":" + id + "}]";    
+
+    mockMvc.perform(post("/overwriteSession")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(mockJson2))
+    .andExpect(status().isOk());
+
+
+    mockMvc.perform(get("/sessionFromUsername/{username}", mockUsername)
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$[0].sessionCreator",is("SnoopyJr")))
+                    .andExpect(jsonPath("$[0].sessionMentor", is("B")))
+                    .andExpect(jsonPath("$.length()", is(1)))
+                    .andExpect(jsonPath("$[0].length()", is(12)));
   }
 
   @Test

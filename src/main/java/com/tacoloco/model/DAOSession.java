@@ -10,6 +10,10 @@ import java.text.DateFormat;
 
 import java.util.Date;
 
+import java.text.SimpleDateFormat;
+
+import com.tacoloco.controller.PricingCalculatorController.BadDateParsingException;
+
 @Entity
 @Table(name = "session")
 @Data
@@ -52,5 +56,21 @@ public class DAOSession {
   @Column
   private String sessionMenteeComments;
 
+  //note I'm doing this because I'm cheating and we really do need to define session first and then convert to DAOSession
+  public void setTime(String time) {
+    try{
+      this.time = new SimpleDateFormat("EE MMM d y H:m:s 'GMT'Z (zz)").parse(time);
+    }
+    catch (java.text.ParseException e){
+      throw new BadDateParsingException();
+    }  
+  }
+
+  public void setTime(Date time) {
+    
+    this.time = time;
+    
+     
+  }
 
 }

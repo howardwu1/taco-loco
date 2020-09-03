@@ -2,6 +2,7 @@
 
 
 * allow people to modify existing records via mysesssions
+* change status codes of endpoints that have returns to 201 (isCreated) vs 200 (isOk)?
 * start doing queries on the data for the visualization piece
 * clean up the visualization piece (react native)
 

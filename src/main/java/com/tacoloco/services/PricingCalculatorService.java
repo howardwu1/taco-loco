@@ -1,6 +1,8 @@
 package com.tacoloco.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.support.SessionStatus;
+
 import com.tacoloco.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 @Service
@@ -108,5 +112,12 @@ public class PricingCalculatorService {
       throw new DuplicateStoryIdException();
     }
   }
+
+  public List<DAOSession> overwriteSession(DAOSession[] sessions){
+
+     return (List<DAOSession>) sessionDao.saveAll((List<DAOSession>) new ArrayList(Arrays.asList(sessions)));
+ 
+  }
+
 
 }

@@ -59,6 +59,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.List;
+
 @Controller
 @CrossOrigin
 public class PricingCalculatorController {
@@ -220,6 +222,13 @@ public class PricingCalculatorController {
 
   }
 
+  @PostMapping(value = "/overwriteSession", consumes = { "application/json", "application/xml" })
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<?> overwriteSession(@RequestBody DAOSession[] sessions) throws Exception {
+
+		return ResponseEntity.ok(pricingCalculatorService.overwriteSession(sessions));
+  }
+  
   @PostMapping(value = "/total", consumes = { "application/json", "application/xml" })
   @ResponseStatus(HttpStatus.OK)
   public @ResponseBody String getTotal(

@@ -58,6 +58,8 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
 
+import java.util.Arrays;
+
 import com.tacoloco.dao.UserDao;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -98,6 +100,23 @@ class PricingCalculatorControllerTests {
 
   @MockBean
   private PricingCalculatorService service;
+
+
+  @Test
+  @DisplayName("post /overwriteSession valid info")
+	public void postOverwriteSessionValid() throws Exception{
+
+    String mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\", \"id\":2}]";    
+
+      mockMvc.perform(post("/overwriteSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().isOk());
+
+        verify(service).overwriteSession(any(DAOSession[].class));
+
+    }
+
 
   @Test
   @DisplayName("post /addNewSession twice with the same storyId info")

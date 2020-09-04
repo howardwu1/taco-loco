@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
 Test set: com.tacoloco.pricingCalculator.IntegrationTests
 -------------------------------------------------------------------------------
-Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 101.992 s - in com.tacoloco.pricingCalculator.IntegrationTests
+Tests run: 18, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 37.217 s <<< FAILURE! - in com.tacoloco.pricingCalculator.IntegrationTests
+getSessionFromUsernameValid  Time elapsed: 0.485 s  <<< FAILURE!
+java.lang.AssertionError: 
+JSON path "$[0].time"
+Expected: is "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"
+     but: was "Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)"
+	at com.tacoloco.pricingCalculator.IntegrationTests.getSessionFromUsernameValid(IntegrationTests.java:285)
+

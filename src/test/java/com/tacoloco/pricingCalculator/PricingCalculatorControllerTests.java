@@ -460,13 +460,13 @@ class PricingCalculatorControllerTests {
 	}
 
   @Test
-  @DisplayName("post /total valid order")
+  @DisplayName("get /total valid order")
 	public void getTotalValid() throws Exception{
       
       String mockJson = "{\"veggie\":1}";
       doReturn("2.50").when(service).getTotal(any(Order.class));
 
-      mockMvc.perform(post("/total")
+      mockMvc.perform(get("/total")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk())
@@ -476,12 +476,12 @@ class PricingCalculatorControllerTests {
 
 
   @Test
-  @DisplayName("post /total invalid order item not on menu")
-	public void postTotalInvalidNotOnMenu() throws Exception {
+  @DisplayName("get /total invalid order item not on menu")
+	public void getTotalInvalidNotOnMenu() throws Exception {
       
       String mockJson = "{\"burger\":1}";
       
-      mockMvc.perform(post("/total") 
+      mockMvc.perform(get("/total") 
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().is(422))
@@ -490,12 +490,12 @@ class PricingCalculatorControllerTests {
   }
 
    @Test
-  @DisplayName("post /total invalid order negative quantity")
-	public void postTotalInvalidNegativeQuantity() throws Exception {
+  @DisplayName("get /total invalid order negative quantity")
+	public void getTotalInvalidNegativeQuantity() throws Exception {
       
       String mockJson = "{\"veggie\":-1}";
 
-      mockMvc.perform(post("/total") 
+      mockMvc.perform(get("/total") 
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().is(422))

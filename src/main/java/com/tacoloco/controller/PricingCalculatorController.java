@@ -233,10 +233,11 @@ public class PricingCalculatorController {
   @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<?> overwriteSession(@RequestBody DAOSession[] sessions) throws Exception {
 
+    //conscious decision to leave this as OK -- I want to return the DAOSession (so I won't use 204 status) but I don't want to provide an endpoint to query Session by sessionid -- not ever used by the client, always get all sessions by username instead
 		return ResponseEntity.ok(pricingCalculatorService.overwriteSession(sessions));
   }
   
-  @PostMapping(value = "/total", consumes = { "application/json", "application/xml" })
+  @GetMapping(value = "/total", consumes = { "application/json", "application/xml" })
   @ResponseStatus(HttpStatus.OK)
   public @ResponseBody String getTotal(
   @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Order with names of items and quantity of each",

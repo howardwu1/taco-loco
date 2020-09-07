@@ -11,3 +11,8 @@
 
 * figure out flywheel database rollback? or is it flyway script? does it even work with H2 -- yes it does. So Flyway is for database migrations but you can also use it to tear down databases for testing and rewrite values for regression tests and such in the databases. The thing is I do not need to generate existing data yet. So might not even be useful for my application
 
+
+#knowledgeReadUp
+
+*what are the two styles of version control?
+*graceful degredation (front end)?

@@ -1,7 +1,7 @@
 com/tacoloco/customDeserializer/StringOnlyDeserializer.class
+com/tacoloco/config/WebSecurityConfig$2.class
 com/tacoloco/model/DAOSession.class
 com/tacoloco/model/Order.class
-com/tacoloco/config/WebSecurityConfig$2.class
 com/tacoloco/model/UserDTO.class
 com/tacoloco/config/WebSecurityConfig.class
 com/tacoloco/controller/PricingCalculatorController$UnprocessableEntityException.class
@@ -11,12 +11,12 @@ com/tacoloco/services/PricingCalculatorService.class
 com/tacoloco/controller/PricingCalculatorController.class
 com/tacoloco/config/JwtAuthenticationEntryPoint.class
 com/tacoloco/controller/PricingCalculatorController$BadDateParsingException.class
-com/tacoloco/model/Customer.class
 com/tacoloco/config/WebSecurityConfig$1.class
 com/tacoloco/dao/UserDao.class
-com/tacoloco/model/JwtResponse.class
+com/tacoloco/model/Customer.class
 com/tacoloco/controller/PricingCalculatorController$UserDetailsNotFoundFromUsernameException.class
 com/tacoloco/repository/PricingCalculatorRepository.class
+com/tacoloco/model/JwtResponse.class
 com/tacoloco/services/PricingCalculatorService$DuplicateStoryIdException.class
 com/tacoloco/dao/SessionDao.class
 com/tacoloco/PricingCalculatorApplication.class

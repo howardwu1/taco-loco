@@ -1,6 +1,7 @@
 # todo
 
 * change status codes of endpoints that have returns to 201 (isCreated) vs 200 (isOk)?
+* investigate whether or not you can modify sessions that don't belong to you -- can I prevent based on jwt associated users? Authorization
 * start doing queries on the data for the visualization piece
 * clean up the visualization piece (react native)
 

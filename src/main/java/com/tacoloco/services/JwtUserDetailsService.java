@@ -87,12 +87,12 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 		try{
 			
-		DAOUser newUser = new DAOUser();
-		newUser.setUsername(user.getUsername());
-		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		newUser.setFirstName(user.getFirstName());
-		newUser.setLastName(user.getLastName());
-  	return userDao.save(newUser);
+			DAOUser newUser = new DAOUser();
+			newUser.setUsername(user.getUsername());
+			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+			newUser.setFirstName(user.getFirstName());
+			newUser.setLastName(user.getLastName());
+			return userDao.save(newUser);
 		}
 		catch(DataIntegrityViolationException e){
 			throw new DuplicateUsernameException();

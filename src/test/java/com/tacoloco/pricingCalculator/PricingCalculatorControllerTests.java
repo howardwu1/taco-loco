@@ -292,10 +292,12 @@ class PricingCalculatorControllerTests {
       
       String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       
+      doReturn(new DAOUser()).when(userDetailsService).save(any(Customer.class));
+
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().isOk());
+        .andExpect(status().is(201));
 
       verify(userDetailsService).save(any(Customer.class));
 	}
@@ -327,11 +329,12 @@ class PricingCalculatorControllerTests {
       mockDAOUser.setUsername("SirSnoopy2");
       mockDAOUser.setPassword("$2y$12$YabjTmtNmIrZS2iy3z1J/eL/eNJQ8DlQJWkkMsqaFDfZYJuHV4S0W");
 
+      doReturn(new DAOUser()).when(userDetailsService).save(any(Customer.class));
 
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().isOk());
+        .andExpect(status().is(201));
 
       doThrow(new DuplicateUsernameException()).when(userDetailsService).save(any(Customer.class));
 

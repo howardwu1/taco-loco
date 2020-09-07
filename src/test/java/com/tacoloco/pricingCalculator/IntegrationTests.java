@@ -92,7 +92,7 @@ class IntegrationTests {
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().isOk());
+        .andExpect(status().is(201));
 
       String mockUserName = "SirSnoopy7";
       
@@ -136,13 +136,13 @@ class IntegrationTests {
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().isOk());
+        .andExpect(status().is(201));
       
       String mockJson2 = "{\"username\":\"MrSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson2))
-        .andExpect(status().isOk());
+        .andExpect(status().is(201));
 
       mockMvc.perform(get("/allPublicUserDetails")
                     .contentType(MediaType.APPLICATION_JSON))
@@ -170,7 +170,7 @@ class IntegrationTests {
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().isOk());
+        .andExpect(status().is(201));
 
   }
   
@@ -302,7 +302,7 @@ class IntegrationTests {
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
-        .andExpect(status().isOk());
+        .andExpect(status().is(201));
 
 
       mockMvc.perform(post("/register")

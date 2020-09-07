@@ -62,6 +62,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
+import java.net.URI;
+
+
 @Controller
 @CrossOrigin
 public class PricingCalculatorController {
@@ -187,8 +190,11 @@ public class PricingCalculatorController {
     if(!user.getPassword().equals(user.getMatchingPassword())){
        throw new PasswordMismatchException();
      }
-
-		return ResponseEntity.ok(userDetailsService.save(user));
+    
+     DAOUser newUser = userDetailsService.save(user);
+    
+     return ResponseEntity.created(new URI("/publicUserDetails/" + newUser.getUsername())).build();
+  
 	}
 
 	@RequestMapping(value = "/addNewSession", method = RequestMethod.POST)

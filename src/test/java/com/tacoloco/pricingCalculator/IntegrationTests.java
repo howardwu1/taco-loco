@@ -56,7 +56,9 @@ import com.jayway.jsonpath.*;
 
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 
+import org.springframework.http.HttpHeaders;
 
 @SpringBootTest(classes = TestConfiguration.class)
 @ActiveProfiles(value="test")
@@ -184,6 +186,32 @@ class IntegrationTests {
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
+
+  }
+
+  
+  @Test
+  @DisplayName("post /addNewSession -- valid session info but wrong user")
+	public void postAddNewSessionWrongUser() throws Exception{
+      
+    String mockJson = "{\"username\":\"SirSnoopy2\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+    
+    MvcResult mvcResult = mockMvc.perform(post("/authenticate")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(mockJson))
+    .andExpect(status().isOk())
+    .andReturn();
+    
+    //System.out.println("************" + JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token"));
+    String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
+    System.out.println("***********token" + token);
+    String mockJson2 = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask1\"}";    
+
+      mockMvc.perform(post("/addNewSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson2)
+                    .header(HttpHeaders.AUTHORIZATION, token)) 
+        .andExpect(status().is(403));
 
   }
 

@@ -302,7 +302,7 @@ class PricingCalculatorControllerTests {
       verify(userDetailsService).save(any(Customer.class));
 	}
 
-    @Test
+  @Test
   @DisplayName("post /register invalid user info--nonmatching password")
 	public void postRegisterCustomerInvalid() throws Exception{
       

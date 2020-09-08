@@ -198,9 +198,12 @@ public class PricingCalculatorController {
 	}
 
 	@RequestMapping(value = "/addNewSession", method = RequestMethod.POST)
-	public ResponseEntity<?> saveNewSession(@RequestBody Session session) throws Exception {
-
-		return ResponseEntity.ok(pricingCalculatorService.saveSession(session));
+	public ResponseEntity<?> saveNewSession(@RequestBody Session session, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
+   if(token == null || jwtTokenUtil.getUsernameFromToken(token).equals(session.getSessionCreator())){
+    return ResponseEntity.ok(pricingCalculatorService.saveSession(session));
+   } else{
+     return ResponseEntity.status(403).build();
+   }
 	}
 
 

@@ -1,0 +1,6 @@
+#surefire_0
+#Tue Sep 08 18:06:55 UTC 2020
+basedir=/home/runner/taco-loco
+test=IntegrationTests
+user.dir=/home/runner/taco-loco
+localRepository=/home/runner/.m2/repository

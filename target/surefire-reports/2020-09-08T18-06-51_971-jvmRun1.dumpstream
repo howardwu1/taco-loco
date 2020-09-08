@@ -1,0 +1,833 @@
+# Created at 2020-09-08T18:08:16.640
+Unexpected IOException with stream: 2020-09-08 18:08:16.637  INFO 168 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+
+
+# Created at 2020-09-08T18:08:16.641
+Unexpected IOException with stream: 2020-09-08 18:08:16.640  INFO 168 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+
+
+# Created at 2020-09-08T18:08:16.847
+Unexpected IOException with stream: 2020-09-08 18:08:16.846  INFO 168 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 199 ms
+
+
+# Created at 2020-09-08T18:08:17.152
+Unexpected IOException with stream: 2020-09-08 18:08:17.142  INFO 168 --- [           main] c.t.pricingCalculator.IntegrationTests   : Started IntegrationTests in 71.477 seconds (JVM running for 80.502)
+
+
+# Created at 2020-09-08T18:08:17.559
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getPublicDetailsForAllExistingUsers,null,null,null
+
+
+# Created at 2020-09-08T18:08:21.746
+Unexpected IOException with stream: 2020-09-08 18:08:21.745  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /allPublicUserDetails
+
+
+# Created at 2020-09-08T18:08:21.747
+Unexpected IOException with stream: 2020-09-08 18:08:21.746  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:22.136
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getPublicDetailsForAllExistingUsers,null,null,null
+
+
+# Created at 2020-09-08T18:08:22.146
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalValidWithDiscount,null,null,null
+
+
+# Created at 2020-09-08T18:08:22.161
+Unexpected IOException with stream: 2020-09-08 18:08:22.160  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /total
+
+
+# Created at 2020-09-08T18:08:22.162
+Unexpected IOException with stream: 2020-09-08 18:08:22.161  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:22.650
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalValidWithDiscount,null,null,null
+
+
+# Created at 2020-09-08T18:08:22.653
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerInvalid,null,null,null
+
+
+# Created at 2020-09-08T18:08:23.482
+Unexpected IOException with stream: ******************************** fake1
+
+
+# Created at 2020-09-08T18:08:23.559
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerInvalid,null,null,null
+
+
+# Created at 2020-09-08T18:08:23.566
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:23.580
+Unexpected IOException with stream: 2020-09-08 18:08:23.577  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /total
+
+
+# Created at 2020-09-08T18:08:23.581
+Unexpected IOException with stream: 2020-09-08 18:08:23.580  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:23.645
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:23.648
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionSameStoryId,null,null,null
+
+
+# Created at 2020-09-08T18:08:23.658
+Unexpected IOException with stream: 2020-09-08 18:08:23.657  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /addNewSession
+
+
+# Created at 2020-09-08T18:08:23.659
+Unexpected IOException with stream: 2020-09-08 18:08:23.658  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:24.048
+Unexpected IOException with stream: 2020-09-08 18:08:24.048  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /addNewSession
+
+
+# Created at 2020-09-08T18:08:24.049
+Unexpected IOException with stream: 2020-09-08 18:08:24.048  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:24.058
+Unexpected IOException with stream: 2020-09-08 18:08:24.057  WARN 168 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23505, SQLState: 23505
+
+
+# Created at 2020-09-08T18:08:24.059
+Unexpected IOException with stream: 2020-09-08 18:08:24.058 ERROR 168 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unique index or primary key violation: "PUBLIC.UK_CIHW5C8XE4RF3SC4F89WEV8DB_INDEX_A ON PUBLIC.SESSION(SESSION_STORY_ID) VALUES 1"; SQL statement:
+insert into session (id, session_action, session_creator, session_mentee, session_mentee_comments, session_mentee_rating, session_mentor, session_mentor_comments, session_mentor_rating, session_story_id, session_subject_matter, time) values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [23505-200]
+
+
+# Created at 2020-09-08T18:08:24.153
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionSameStoryId,null,null,null
+
+
+# Created at 2020-09-08T18:08:24.158
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postOverwriteSessionValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:24.235
+Unexpected IOException with stream: 2020-09-08 18:08:24.165  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /overwriteSession
+
+
+# Created at 2020-09-08T18:08:24.236
+Unexpected IOException with stream: 2020-09-08 18:08:24.235  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:24.350
+Unexpected IOException with stream: 2020-09-08 18:08:24.348  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /sessionFromUsername/SnoopyJr
+
+
+# Created at 2020-09-08T18:08:24.351
+Unexpected IOException with stream: 2020-09-08 18:08:24.350  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:24.583
+Unexpected IOException with stream: 2020-09-08 18:08:24.582  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /overwriteSession
+
+
+# Created at 2020-09-08T18:08:24.584
+Unexpected IOException with stream: 2020-09-08 18:08:24.583  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:24.839
+Unexpected IOException with stream: 2020-09-08 18:08:24.839  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /sessionFromUsername/SnoopyJr
+
+
+# Created at 2020-09-08T18:08:24.840
+Unexpected IOException with stream: 2020-09-08 18:08:24.840  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:24.935
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postOverwriteSessionValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:24.938
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerTwiceInvalid,null,null,null
+
+
+# Created at 2020-09-08T18:08:25.763
+Unexpected IOException with stream: 2020-09-08 18:08:25.762  WARN 168 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 23505, SQLState: 23505
+
+
+# Created at 2020-09-08T18:08:25.764
+Unexpected IOException with stream: 2020-09-08 18:08:25.763 ERROR 168 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unique index or primary key violation: "PUBLIC.UK_SB8BBOUER5WAK8VYIIY4PF2BX_INDEX_2 ON PUBLIC.USER(USERNAME) VALUES 3"; SQL statement:
+insert into user (id, first_name, last_name, password, username) values (null, ?, ?, ?, ?) [23505-200]
+
+
+# Created at 2020-09-08T18:08:25.773
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerTwiceInvalid,null,null,null
+
+
+# Created at 2020-09-08T18:08:25.833
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getPublicDetailsForExistingUser,null,null,null
+
+
+# Created at 2020-09-08T18:08:26.165
+Unexpected IOException with stream: 2020-09-08 18:08:26.164  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /publicUserDetails/SirSnoopy7
+
+
+# Created at 2020-09-08T18:08:26.166
+Unexpected IOException with stream: 2020-09-08 18:08:26.165  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:26.440
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getPublicDetailsForExistingUser,null,null,null
+
+
+# Created at 2020-09-08T18:08:26.442
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionBadTimeFormat,null,null,null
+
+
+# Created at 2020-09-08T18:08:26.453
+Unexpected IOException with stream: 2020-09-08 18:08:26.451  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /addNewSession
+
+
+# Created at 2020-09-08T18:08:26.454
+Unexpected IOException with stream: 2020-09-08 18:08:26.454  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:26.547
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionBadTimeFormat,null,null,null
+
+
+# Created at 2020-09-08T18:08:26.562
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalNegativeNumber,null,null,null
+
+
+# Created at 2020-09-08T18:08:26.578
+Unexpected IOException with stream: 2020-09-08 18:08:26.578  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /total
+
+
+# Created at 2020-09-08T18:08:26.579
+Unexpected IOException with stream: 2020-09-08 18:08:26.578  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:26.685
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalNegativeNumber,null,null,null
+
+
+# Created at 2020-09-08T18:08:26.687
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,putInsertCustomerValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:26.760
+Unexpected IOException with stream: 2020-09-08 18:08:26.759  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /insertCustomer
+
+
+# Created at 2020-09-08T18:08:26.761
+Unexpected IOException with stream: 2020-09-08 18:08:26.761  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:27.170
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,putInsertCustomerValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:27.233
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalInvalid,null,null,null
+
+
+# Created at 2020-09-08T18:08:27.239
+Unexpected IOException with stream: 2020-09-08 18:08:27.238  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /total
+
+
+# Created at 2020-09-08T18:08:27.239
+Unexpected IOException with stream: 2020-09-08 18:08:27.239  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:27.247
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalInvalid,null,null,null
+
+
+# Created at 2020-09-08T18:08:27.249
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postAuthenticateUserValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:28.624
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postAuthenticateUserValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:28.673
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getPublicInfoFromInvalidUsername,null,null,null
+
+
+# Created at 2020-09-08T18:08:28.765
+Unexpected IOException with stream: 2020-09-08 18:08:28.740  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /publicUserDetails/FakeName
+
+
+# Created at 2020-09-08T18:08:28.773
+Unexpected IOException with stream: 2020-09-08 18:08:28.768  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:28.813
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getPublicInfoFromInvalidUsername,null,null,null
+
+
+# Created at 2020-09-08T18:08:28.837
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:28.880
+Unexpected IOException with stream: 2020-09-08 18:08:28.878  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /addNewSession
+
+
+# Created at 2020-09-08T18:08:28.886
+Unexpected IOException with stream: 2020-09-08 18:08:28.880  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:28.959
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:28.966
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:29.550
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postRegisterCustomerValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:29.559
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalInvalid400,null,null,null
+
+
+# Created at 2020-09-08T18:08:29.573
+Unexpected IOException with stream: 2020-09-08 18:08:29.573  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /total
+
+
+# Created at 2020-09-08T18:08:29.574
+Unexpected IOException with stream: 2020-09-08 18:08:29.574  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:29.581
+Unexpected IOException with stream: 2020-09-08 18:08:29.581  WARN 168 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 1]); nested exception is com.fasterxml.jackson.core.io.JsonEOFException: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 1])
+ at [Source: (PushbackInputStream); line: 1, column: 2]]
+
+
+# Created at 2020-09-08T18:08:29.589
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,getTotalInvalid400,null,null,null
+
+
+# Created at 2020-09-08T18:08:29.634
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionWrongUser,null,null,null
+
+
+# Created at 2020-09-08T18:08:30.083
+Unexpected IOException with stream: ***********tokeneyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTaXJTbm9vcHkyIiwiZXhwIjoxNTk5NjA2NTEwLCJpYXQiOjE1OTk1ODg1MTB9.HNaIgnkYjKNi7G_SWz3b-rbqh-LDNzyoPqAl2hXN_hTP7nxjbuQh91i1z0BeqgJ3pQzwSX3hh5VoNkFPOQHEeQ
+
+
+# Created at 2020-09-08T18:08:30.287
+Unexpected IOException: 6,1,com.tacoloco.pricingCalculator.IntegrationTests,postAddNewSessionWrongUser,null,null,null
+
+
+# Created at 2020-09-08T18:08:30.290
+Unexpected IOException: 5,1,com.tacoloco.pricingCalculator.IntegrationTests,getSessionFromUsernameValid,null,null,null
+
+
+# Created at 2020-09-08T18:08:30.310
+Unexpected IOException with stream: 2020-09-08 18:08:30.309  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /addNewSession
+
+
+# Created at 2020-09-08T18:08:30.310
+Unexpected IOException with stream: 2020-09-08 18:08:30.310  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:30.346
+Unexpected IOException with stream: 2020-09-08 18:08:30.345  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /addNewSession
+
+
+# Created at 2020-09-08T18:08:30.347
+Unexpected IOException with stream: 2020-09-08 18:08:30.346  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:30.372
+Unexpected IOException with stream: 2020-09-08 18:08:30.372  INFO 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : RequestURI /sessionFromUsername/SirSnoopy
+
+
+# Created at 2020-09-08T18:08:30.373
+Unexpected IOException with stream: 2020-09-08 18:08:30.373  WARN 168 --- [           main] com.tacoloco.config.JwtRequestFilter     : JWT Token does not begin with Bearer String
+
+
+# Created at 2020-09-08T18:08:30.489
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.489
+Unexpected IOException with stream: MockHttpServletRequest:
+
+
+# Created at 2020-09-08T18:08:30.490
+Unexpected IOException with stream:       HTTP Method = POST
+
+
+# Created at 2020-09-08T18:08:30.490
+Unexpected IOException with stream:       Request URI = /addNewSession
+
+
+# Created at 2020-09-08T18:08:30.490
+Unexpected IOException with stream:        Parameters = {}
+
+
+# Created at 2020-09-08T18:08:30.491
+Unexpected IOException with stream:           Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"332"]
+
+
+# Created at 2020-09-08T18:08:30.491
+Unexpected IOException with stream:              Body = {"time":"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)","sessionCreator":"SirSnoopy","sessionMentor":null,"sessionMentee":"SirSnoopy","sessionAction":"Debug code for","sessionSubjectMatter":"Java","sessionMentorRating":null,"sessionMenteeRating":null,"sessionMentorComments":null,"sessionMenteeComments":null,"sessionStoryId":"SomeTask3"}
+
+
+# Created at 2020-09-08T18:08:30.491
+Unexpected IOException with stream:     Session Attrs = {}
+
+
+# Created at 2020-09-08T18:08:30.534
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.534
+Unexpected IOException with stream: Handler:
+
+
+# Created at 2020-09-08T18:08:30.534
+Unexpected IOException with stream:              Type = com.tacoloco.controller.PricingCalculatorController
+
+
+# Created at 2020-09-08T18:08:30.535
+Unexpected IOException with stream:            Method = com.tacoloco.controller.PricingCalculatorController#saveNewSession(Session, String)
+
+
+# Created at 2020-09-08T18:08:30.538
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.538
+Unexpected IOException with stream: Async:
+
+
+# Created at 2020-09-08T18:08:30.538
+Unexpected IOException with stream:     Async started = false
+
+
+# Created at 2020-09-08T18:08:30.539
+Unexpected IOException with stream:      Async result = null
+
+
+# Created at 2020-09-08T18:08:30.539
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.539
+Unexpected IOException with stream: Resolved Exception:
+
+
+# Created at 2020-09-08T18:08:30.540
+Unexpected IOException with stream:              Type = null
+
+
+# Created at 2020-09-08T18:08:30.540
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.540
+Unexpected IOException with stream: ModelAndView:
+
+
+# Created at 2020-09-08T18:08:30.544
+Unexpected IOException with stream:         View name = null
+
+
+# Created at 2020-09-08T18:08:30.545
+Unexpected IOException with stream:              View = null
+
+
+# Created at 2020-09-08T18:08:30.545
+Unexpected IOException with stream:             Model = null
+
+
+# Created at 2020-09-08T18:08:30.546
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.546
+Unexpected IOException with stream: FlashMap:
+
+
+# Created at 2020-09-08T18:08:30.546
+Unexpected IOException with stream:        Attributes = null
+
+
+# Created at 2020-09-08T18:08:30.547
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.548
+Unexpected IOException with stream: MockHttpServletResponse:
+
+
+# Created at 2020-09-08T18:08:30.548
+Unexpected IOException with stream:            Status = 200
+
+
+# Created at 2020-09-08T18:08:30.548
+Unexpected IOException with stream:     Error message = null
+
+
+# Created at 2020-09-08T18:08:30.549
+Unexpected IOException with stream:           Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+
+
+# Created at 2020-09-08T18:08:30.550
+Unexpected IOException with stream:      Content type = application/json
+
+
+# Created at 2020-09-08T18:08:30.550
+Unexpected IOException with stream:              Body = {"id":5,"sessionStoryId":"SomeTask3","time":"2020-08-20T17:08:59.000+0000","sessionCreator":"SirSnoopy","sessionAction":"Debug code for","sessionSubjectMatter":"Java","sessionMentor":null,"sessionMentee":"SirSnoopy","sessionMentorRating":null,"sessionMenteeRating":null,"sessionMentorComments":null,"sessionMenteeComments":null}
+
+
+# Created at 2020-09-08T18:08:30.550
+Unexpected IOException with stream:     Forwarded URL = null
+
+
+# Created at 2020-09-08T18:08:30.554
+Unexpected IOException with stream:    Redirected URL = null
+
+
+# Created at 2020-09-08T18:08:30.555
+Unexpected IOException with stream:           Cookies = []
+
+
+# Created at 2020-09-08T18:08:30.555
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.559
+Unexpected IOException with stream: MockHttpServletRequest:
+
+
+# Created at 2020-09-08T18:08:30.559
+Unexpected IOException with stream:       HTTP Method = POST
+
+
+# Created at 2020-09-08T18:08:30.561
+Unexpected IOException with stream:       Request URI = /addNewSession
+
+
+# Created at 2020-09-08T18:08:30.561
+Unexpected IOException with stream:        Parameters = {}
+
+
+# Created at 2020-09-08T18:08:30.563
+Unexpected IOException with stream:           Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"333"]
+
+
+# Created at 2020-09-08T18:08:30.565
+Unexpected IOException with stream:              Body = {"time":"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)","sessionCreator":"MrSnoopy1","sessionMentor":null,"sessionMentee":"SirSnoopy","sessionAction":"Debug code for","sessionSubjectMatter":"Java","sessionMentorRating":null,"sessionMenteeRating":null,"sessionMentorComments":null,"sessionMenteeComments":null,"sessionStoryId":"SomeTask33"}
+
+
+# Created at 2020-09-08T18:08:30.566
+Unexpected IOException with stream:     Session Attrs = {}
+
+
+# Created at 2020-09-08T18:08:30.566
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.567
+Unexpected IOException with stream: Handler:
+
+
+# Created at 2020-09-08T18:08:30.567
+Unexpected IOException with stream:              Type = com.tacoloco.controller.PricingCalculatorController
+
+
+# Created at 2020-09-08T18:08:30.567
+Unexpected IOException with stream:            Method = com.tacoloco.controller.PricingCalculatorController#saveNewSession(Session, String)
+
+
+# Created at 2020-09-08T18:08:30.567
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.568
+Unexpected IOException with stream: Async:
+
+
+# Created at 2020-09-08T18:08:30.568
+Unexpected IOException with stream:     Async started = false
+
+
+# Created at 2020-09-08T18:08:30.573
+Unexpected IOException with stream:      Async result = null
+
+
+# Created at 2020-09-08T18:08:30.573
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.573
+Unexpected IOException with stream: Resolved Exception:
+
+
+# Created at 2020-09-08T18:08:30.574
+Unexpected IOException with stream:              Type = null
+
+
+# Created at 2020-09-08T18:08:30.574
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.578
+Unexpected IOException with stream: ModelAndView:
+
+
+# Created at 2020-09-08T18:08:30.634
+Unexpected IOException with stream:         View name = null
+
+
+# Created at 2020-09-08T18:08:30.634
+Unexpected IOException with stream:              View = null
+
+
+# Created at 2020-09-08T18:08:30.634
+Unexpected IOException with stream:             Model = null
+
+
+# Created at 2020-09-08T18:08:30.635
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.635
+Unexpected IOException with stream: FlashMap:
+
+
+# Created at 2020-09-08T18:08:30.635
+Unexpected IOException with stream:        Attributes = null
+
+
+# Created at 2020-09-08T18:08:30.635
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.636
+Unexpected IOException with stream: MockHttpServletResponse:
+
+
+# Created at 2020-09-08T18:08:30.636
+Unexpected IOException with stream:            Status = 200
+
+
+# Created at 2020-09-08T18:08:30.637
+Unexpected IOException with stream:     Error message = null
+
+
+# Created at 2020-09-08T18:08:30.637
+Unexpected IOException with stream:           Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+
+
+# Created at 2020-09-08T18:08:30.637
+Unexpected IOException with stream:      Content type = application/json
+
+
+# Created at 2020-09-08T18:08:30.637
+Unexpected IOException with stream:              Body = {"id":6,"sessionStoryId":"SomeTask33","time":"2020-08-20T17:08:59.000+0000","sessionCreator":"MrSnoopy1","sessionAction":"Debug code for","sessionSubjectMatter":"Java","sessionMentor":null,"sessionMentee":"SirSnoopy","sessionMentorRating":null,"sessionMenteeRating":null,"sessionMentorComments":null,"sessionMenteeComments":null}
+
+
+# Created at 2020-09-08T18:08:30.638
+Unexpected IOException with stream:     Forwarded URL = null
+
+
+# Created at 2020-09-08T18:08:30.638
+Unexpected IOException with stream:    Redirected URL = null
+
+
+# Created at 2020-09-08T18:08:30.638
+Unexpected IOException with stream:           Cookies = []
+
+
+# Created at 2020-09-08T18:08:30.639
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.639
+Unexpected IOException with stream: MockHttpServletRequest:
+
+
+# Created at 2020-09-08T18:08:30.639
+Unexpected IOException with stream:       HTTP Method = GET
+
+
+# Created at 2020-09-08T18:08:30.639
+Unexpected IOException with stream:       Request URI = /sessionFromUsername/SirSnoopy
+
+
+# Created at 2020-09-08T18:08:30.640
+Unexpected IOException with stream:        Parameters = {}
+
+
+# Created at 2020-09-08T18:08:30.640
+Unexpected IOException with stream:           Headers = [Content-Type:"application/json;charset=UTF-8"]
+
+
+# Created at 2020-09-08T18:08:30.640
+Unexpected IOException with stream:              Body = null
+
+
+# Created at 2020-09-08T18:08:30.641
+Unexpected IOException with stream:     Session Attrs = {}
+
+
+# Created at 2020-09-08T18:08:30.641
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.641
+Unexpected IOException with stream: Handler:
+
+
+# Created at 2020-09-08T18:08:30.641
+Unexpected IOException with stream:              Type = com.tacoloco.controller.PricingCalculatorController
+
+
+# Created at 2020-09-08T18:08:30.642
+Unexpected IOException with stream:            Method = com.tacoloco.controller.PricingCalculatorController#getSessionFromCreator(String)
+
+
+# Created at 2020-09-08T18:08:30.642
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.643
+Unexpected IOException with stream: Async:
+
+
+# Created at 2020-09-08T18:08:30.644
+Unexpected IOException with stream:     Async started = false
+
+
+# Created at 2020-09-08T18:08:30.645
+Unexpected IOException with stream:      Async result = null
+
+
+# Created at 2020-09-08T18:08:30.645
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.645
+Unexpected IOException with stream: Resolved Exception:
+
+
+# Created at 2020-09-08T18:08:30.646
+Unexpected IOException with stream:              Type = null
+
+
+# Created at 2020-09-08T18:08:30.647
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.648
+Unexpected IOException with stream: ModelAndView:
+
+
+# Created at 2020-09-08T18:08:30.648
+Unexpected IOException with stream:         View name = null
+
+
+# Created at 2020-09-08T18:08:30.648
+Unexpected IOException with stream:              View = null
+
+
+# Created at 2020-09-08T18:08:30.649
+Unexpected IOException with stream:             Model = null
+
+
+# Created at 2020-09-08T18:08:30.653
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.656
+Unexpected IOException with stream: FlashMap:
+
+
+# Created at 2020-09-08T18:08:30.657
+Unexpected IOException with stream:        Attributes = null
+
+
+# Created at 2020-09-08T18:08:30.657
+Unexpected IOException with stream: 
+
+
+# Created at 2020-09-08T18:08:30.657
+Unexpected IOException with stream: MockHttpServletResponse:
+
+
+# Created at 2020-09-08T18:08:30.657
+Unexpected IOException with stream:            Status = 200
+
+
+# Created at 2020-09-08T18:08:30.659
+Unexpected IOException with stream:     Error message = null
+
+
+# Created at 2020-09-08T18:08:30.659
+Unexpected IOException with stream:           Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"text/plain;charset=UTF-8", Content-Length:"807", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+
+
+# Created at 2020-09-08T18:08:30.659
+Unexpected IOException with stream:      Content type = text/plain;charset=UTF-8
+
+
+# Created at 2020-09-08T18:08:30.660
+Unexpected IOException with stream:              Body = [ {
+  "id" : 5,
+  "sessionStoryId" : "SomeTask3",
+  "time" : "Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)",
+  "sessionCreator" : "SirSnoopy",
+  "sessionAction" : "Debug code for",
+  "sessionSubjectMatter" : "Java",
+  "sessionMentor" : null,
+  "sessionMentee" : "SirSnoopy",
+  "sessionMentorRating" : null,
+  "sessionMenteeRating" : null,
+  "sessionMentorComments" : null,
+  "sessionMenteeComments" : null
+}, {
+  "id" : 6,
+  "sessionStoryId" : "SomeTask33",
+  "time" : "Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)",
+  "sessionCreator" : "MrSnoopy1",
+  "sessionAction" : "Debug code for",
+  "sessionSubjectMatter" : "Java",
+  "sessionMentor" : null,
+  "sessionMentee" : "SirSnoopy",
+  "sessionMentorRating" : null,
+  "sessionMenteeRating" : null,
+  "sessionMentorComments" : null,
+  "sessionMenteeComments" : null
+} ]
+
+
+# Created at 2020-09-08T18:08:30.660
+Unexpected IOException with stream:     Forwarded URL = null
+
+
+# Created at 2020-09-08T18:08:30.660
+Unexpected IOException with stream:    Redirected URL = null
+
+
+# Created at 2020-09-08T18:08:30.661
+Unexpected IOException with stream:           Cookies = []
+
+
+# Created at 2020-09-08T18:08:30.770
+Unexpected IOException: 8,1,com.tacoloco.pricingCalculator.IntegrationTests,getSessionFromUsernameValid,null,JSON path "$[1].time"\000AExpected: is "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"\000A     but: was "Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)",null,JSON path "$[1].time"\000AExpected: is "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"\000A     but: was "Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)",IntegrationTests.getSessionFromUsernameValid:322 JSON path "$[1].time"\000AExpected: is "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"\000A     but: was "Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)",java.lang.AssertionError: \000AJSON path "$[1].time"\000AExpected: is "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"\000A     but: was "Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)"\000A\0009at com.tacoloco.pricingCalculator.IntegrationTests.getSessionFromUsernameValid(IntegrationTests.java:322)\000A
+
+
+# Created at 2020-09-08T18:08:30.782
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,com.tacoloco.pricingCalculator.IntegrationTests,null,null,null
+
+

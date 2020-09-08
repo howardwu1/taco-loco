@@ -60,6 +60,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import org.springframework.http.HttpHeaders;
 
+import static org.hamcrest.core.AnyOf.*;
+
+
 @SpringBootTest(classes = TestConfiguration.class)
 @ActiveProfiles(value="test")
 @AutoConfigureMockMvc
@@ -210,7 +213,7 @@ class IntegrationTests {
       mockMvc.perform(post("/addNewSession")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson2)
-                    .header(HttpHeaders.AUTHORIZATION, token)) 
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)) 
         .andExpect(status().is(403));
 
   }
@@ -310,7 +313,7 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[0].sessionAction", is("Debug code for")))
                     .andExpect(jsonPath("$.length()", is(2)))
                     .andExpect(jsonPath("$[0].length()", is(12)))
-                    .andExpect(jsonPath("$[0].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")))
+                    .andExpect(jsonPath("$[0].time", anyOf(is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"),is("Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)"))))
                     .andExpect(jsonPath("$[1].sessionCreator",is("MrSnoopy1")))
                     .andExpect(jsonPath("$[1].sessionSubjectMatter", is("Java")))
                     .andExpect(jsonPath("$[1].sessionStoryId", is("SomeTask33")))

@@ -82,6 +82,9 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.tacoloco.TestConfiguration;
 
+import com.tacoloco.config.JwtTokenUtil;
+
+import org.springframework.http.HttpHeaders;
 
 
 @SpringBootTest(classes = TestConfiguration.class)
@@ -98,6 +101,8 @@ class PricingCalculatorControllerTests {
   @MockBean
   private PricingCalculatorService service;
 
+  @MockBean
+  private JwtTokenUtil mockJwtTokenUtil;
 
   @Test
   @DisplayName("post /overwriteSession valid info")
@@ -113,6 +118,30 @@ class PricingCalculatorControllerTests {
         verify(service).overwriteSession(any(DAOSession[].class));
 
     }
+
+
+  @Test
+  @DisplayName("post /overwriteSession valid info wrong user")
+	public void postOverwriteSessionWrongUser() throws Exception{
+
+
+    String token = "fakestring.fake.fake";
+    
+
+    doReturn("SirSnoopy").when(mockJwtTokenUtil).getUsernameFromToken(token);
+
+
+    String mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\", \"id\":2}]";    
+
+      mockMvc.perform(post("/overwriteSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson)
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        .andExpect(status().is(403));
+
+
+    }
+
 
 
   @Test
@@ -165,6 +194,44 @@ class PricingCalculatorControllerTests {
 
   }
 
+   @Test
+  @DisplayName("post /addNewSession -- valid session info but wrong user")
+	public void postAddNewSessionWrongUser() throws Exception{
+      
+    
+    String token = "fakestring.fake.fake";
+    
+    String mockJson2 = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask1\"}";    
+
+    doReturn("SirSnoopy2").when(mockJwtTokenUtil).getUsernameFromToken(token);
+
+      mockMvc.perform(post("/addNewSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson2)
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)) 
+        .andExpect(status().is(403));
+
+  }
+
+
+   @Test
+  @DisplayName("post /addNewSession -- valid session info with correct user")
+	public void postAddNewSessionRightUser() throws Exception{
+      
+    
+    String token = "fakestring.fake.fake";
+    
+    String mockJson2 = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask1\"}";    
+
+    doReturn("A").when(mockJwtTokenUtil).getUsernameFromToken(token);
+
+      mockMvc.perform(post("/addNewSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson2)
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)) 
+        .andExpect(status().isOk());
+
+  }
   @Test
   @DisplayName("get /sessionFromUsername valid")
 	public void getSessionFromUsername() throws Exception{

@@ -179,6 +179,8 @@ class IntegrationTests {
 
   }
   
+  
+
   @Test
   @DisplayName("post /addNewSession valid session info")
 	public void postAddNewSessionValid() throws Exception{
@@ -205,9 +207,7 @@ class IntegrationTests {
     .andExpect(status().isOk())
     .andReturn();
     
-    //System.out.println("************" + JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token"));
     String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
-    System.out.println("***********token" + token);
     String mockJson2 = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask1\"}";    
 
       mockMvc.perform(post("/addNewSession")
@@ -215,6 +215,38 @@ class IntegrationTests {
                     .content(mockJson2)
                     .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)) 
         .andExpect(status().is(403));
+
+  }
+
+  @Test
+  @DisplayName("post /addNewSession -- valid session info with correct user")
+	public void postAddNewSessionRightUser() throws Exception{
+  
+    //A was never registered in our tests -- so I need to register him.
+    String mockJson = "{\"username\":\"A\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+    
+    mockMvc.perform(post("/register")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(mockJson))
+    .andExpect(status().is(201))
+    .andReturn();
+
+    MvcResult mvcResult = mockMvc.perform(post("/authenticate")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(mockJson))
+    .andExpect(status().isOk())
+    .andReturn();
+    
+    
+    
+    String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
+    String mockJson2 = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask11\"}";    
+
+      mockMvc.perform(post("/addNewSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson2)
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)) 
+        .andExpect(status().isOk());
 
   }
 
@@ -253,6 +285,83 @@ class IntegrationTests {
                     .andExpect(jsonPath("$.length()", is(1)))
                     .andExpect(jsonPath("$[0].length()", is(12)));
   }
+
+  @Test
+  @DisplayName("post /overwriteSession valid info wrong user")
+	public void postOverwriteSessionWrongUser() throws Exception{
+
+
+    String mockJson = "{\"username\":\"SirSnoopy5\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+    
+    mockMvc.perform(post("/register")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(mockJson))
+    .andExpect(status().is(201))
+    .andReturn();
+
+    MvcResult mvcResult = mockMvc.perform(post("/authenticate")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(mockJson))
+    .andExpect(status().isOk())
+    .andReturn();
+    
+    String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
+
+
+     mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\", \"id\":2}]";    
+
+      mockMvc.perform(post("/overwriteSession")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson)
+                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+        .andExpect(status().is(403));
+
+
+    }
+
+
+    @Test
+    @DisplayName("post /overwriteSession valid info right user")
+    public void postOverwriteSessionRightUser() throws Exception{
+  
+  
+      String mockJson = "{\"username\":\"SirSnoopy6\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      
+      mockMvc.perform(post("/register")
+      .contentType(MediaType.APPLICATION_JSON)
+      .content(mockJson))
+      .andExpect(status().is(201))
+      .andReturn();
+  
+      MvcResult mvcResult = mockMvc.perform(post("/authenticate")
+      .contentType(MediaType.APPLICATION_JSON)
+      .content(mockJson))
+      .andExpect(status().isOk())
+      .andReturn();
+      
+      //grab a random snoopy's session
+      MvcResult result = mockMvc.perform(get("/sessionFromUsername/{username}", "A"))
+      .andExpect(status().isOk())
+      .andReturn();
+
+    Integer id = JsonPath.read(result.getResponse().getContentAsString(), "$[0].id");
+
+    String storyId = JsonPath.read(result.getResponse().getContentAsString(), "$[0].sessionStoryId");
+
+
+      String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
+  
+  
+       mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy6\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\": \"" + storyId + "\", \"id\": " + id +"}]";    
+
+        mockMvc.perform(post("/overwriteSession")
+                      .contentType(MediaType.APPLICATION_JSON)
+                      .content(mockJson)
+                      .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+          .andExpect(status().isOk());
+  
+  
+      }
 
   @Test
   @DisplayName("post /addNewSession twice with the same storyId info")

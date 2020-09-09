@@ -119,14 +119,14 @@ class PricingCalculatorServiceTests {
     DocumentContext context = JsonPath.parse(service.getSessionByUsername("SirSnoopy"));
 
     Assertions.assertTrue(context.read("$.length()").equals(2));
-    Assertions.assertTrue(context.read("$[0].length()").equals(12));
+    Assertions.assertTrue(context.read("$[0].length()").equals(13));
     Assertions.assertTrue(context.read("$[0].sessionStoryId").equals("SomeTask1"));
     Assertions.assertTrue(context.read("$[0].sessionAction").equals("Debug code for"));
     Assertions.assertTrue(context.read("$[0].sessionSubjectMatter").equals("Java"));
     Assertions.assertTrue(context.read("$[0].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
     Assertions.assertTrue(context.read("$[0].sessionCreator").equals("SirSnoopy"));
     Assertions.assertTrue(context.read("$[0].sessionMentor").equals("SirSnoopy"));
-    Assertions.assertTrue(context.read("$[1].length()").equals(12));
+    Assertions.assertTrue(context.read("$[1].length()").equals(13));
     Assertions.assertTrue(context.read("$[1].sessionStoryId").equals("SomeTask2"));
     Assertions.assertTrue(context.read("$[1].sessionAction").equals("Debug code for"));
     Assertions.assertTrue(context.read("$[1].sessionSubjectMatter").equals("Java"));

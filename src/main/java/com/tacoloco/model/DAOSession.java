@@ -56,6 +56,9 @@ public class DAOSession {
   @Column
   private String sessionMenteeComments;
 
+  @Column
+  private String[] teammates;
+
   //note I'm doing this because I'm cheating and we really do need to define session first and then convert to DAOSession
   public void setTime(String time) {
     try{

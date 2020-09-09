@@ -105,7 +105,7 @@ class IntegrationTests {
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());
 
-       UserDTO mockUserDTO = new UserDTO();
+      UserDTO mockUserDTO = new UserDTO();
       mockUserDTO.setUsername("SirSnoopy");
       mockUserDTO.setFirstName("Joe");
       mockUserDTO.setLastName("Cool");
@@ -283,7 +283,7 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[0].sessionCreator",is("SnoopyJr")))
                     .andExpect(jsonPath("$[0].sessionMentor", is("B")))
                     .andExpect(jsonPath("$.length()", is(1)))
-                    .andExpect(jsonPath("$[0].length()", is(12)));
+                    .andExpect(jsonPath("$[0].length()", is(13)));
   }
 
   @Test
@@ -421,13 +421,13 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[0].sessionStoryId", is("SomeTask3")))
                     .andExpect(jsonPath("$[0].sessionAction", is("Debug code for")))
                     .andExpect(jsonPath("$.length()", is(2)))
-                    .andExpect(jsonPath("$[0].length()", is(12)))
+                    .andExpect(jsonPath("$[0].length()", is(13)))
                     .andExpect(jsonPath("$[0].time", anyOf(is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"),is("Thu Aug 20 2020 17:08:59 GMT+0000 (UTC)"))))
                     .andExpect(jsonPath("$[1].sessionCreator",is("MrSnoopy1")))
                     .andExpect(jsonPath("$[1].sessionSubjectMatter", is("Java")))
                     .andExpect(jsonPath("$[1].sessionStoryId", is("SomeTask33")))
                     .andExpect(jsonPath("$[1].sessionAction", is("Debug code for")))
-                    .andExpect(jsonPath("$[1].length()", is(12)))
+                    .andExpect(jsonPath("$[1].length()", is(13)))
                     .andExpect(jsonPath("$[1].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")));
 
 	}

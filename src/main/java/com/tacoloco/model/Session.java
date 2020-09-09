@@ -25,7 +25,7 @@ public class Session {
   private long id = 0;
 
   @NotNull 
-  private String sessionStoryId; Date time; String sessionCreator; String sessionAction; String sessionSubjectMatter;
+  private String sessionStoryId; Date time; String sessionCreator; String sessionAction; String sessionSubjectMatter; String[] teammates;
 
   private String sessionMentor; String sessionMentee; String sessionMentorComments; String sessionMenteeComments; 
 

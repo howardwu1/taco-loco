@@ -1,9 +1,9 @@
 # todo
 
-* apply authorization for session editing only if the current task (search by taskid) has them for a sesson mentor or mentee!
-* apply authorization to end points
-* am I submitting the list of users in the session (not listed as a mentor or mentee, but in the multiselect in the form) to the endpoint?
+* am I submitting the list of users in the session (not listed as a mentor or mentee, but in the multiselect in the form) to the endpoint? If not add it!
 * add a check to see if sessionCreator or members match the user of the token before adding a session
+* apply authorization for session editing only if the current task (search by taskid) has them for a sesson mentor or mentee!
+* add a way to add new members to a current session
 * start doing queries on the data for the visualization piece
 * clean up the visualization piece (react native)
 

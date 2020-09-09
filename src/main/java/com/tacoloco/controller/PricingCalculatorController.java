@@ -238,7 +238,7 @@ public class PricingCalculatorController {
   public ResponseEntity<?> overwriteSession(@RequestBody DAOSession[] sessions, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
 
     //conscious decision to leave this as OK -- I want to return the DAOSession (so I won't use 204 status) but I don't want to provide an endpoint to query Session by sessionid -- not ever used by the client, always get all sessions by username instead
-    
+  
     if(token == null || jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentee()) ||jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentor())){
       return ResponseEntity.ok(pricingCalculatorService.overwriteSession(sessions));
     } else{

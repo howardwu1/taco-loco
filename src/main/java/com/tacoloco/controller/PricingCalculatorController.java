@@ -36,6 +36,7 @@ com.fasterxml.jackson.databind.module.SimpleModule;
 
 import
 com.tacoloco.customDeserializer.StringOnlyDeserializer;
+import com.tacoloco.dao.SessionDao;
 
 import org.springframework.context.annotation.Bean;
 
@@ -60,7 +61,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.List;
 
 import java.net.URI;
 
@@ -83,7 +83,10 @@ public class PricingCalculatorController {
   }
 
 	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+  private JwtTokenUtil jwtTokenUtil;
+  
+  @Autowired
+  private SessionDao sessionDao;
 
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
@@ -239,33 +242,38 @@ public class PricingCalculatorController {
   public ResponseEntity<?> overwriteSession(@RequestBody DAOSession[] sessions, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
 
     //conscious decision to leave this as OK (200) -- I want to return the DAOSession (so I won't use 204 status) but I don't want to provide an endpoint to query Session by sessionid -- not ever used by the client, always get all sessions by username instead
-  
+    System.out.println("you are in " + token);
     if(token != null){
       
-      String usernameToken = jwtTokenUtil.getSessionFromToken(token.substring(7));
-
+      String usernameToken = jwtTokenUtil.getUsernameFromToken(token.substring(7));
       //verify original sessionCreator
       String sessionCreatorInOverwrite = sessions[0].getSessionCreator();
 
-      String idOfOverwite = session[0].getId();
-
-      //if there is no idOfOverwrite it means it's writing a new record
-      if(idOfOverwite == null){
+      Long idOfOverwrite = sessions[0].getId();
+      System.out.println("idofoverwrite" + idOfOverwrite);
+      //if idOfOverwrite is 0 it means it's writing a new record because 0 is the default value when not specified
+      if(idOfOverwrite == 0){
         
+  
         //restrict overwriting of new session with different user than the person submiting
         if(!sessionCreatorInOverwrite.equals(usernameToken)){
           return ResponseEntity.status(403).build();
         }
       }
       else{
-        DAOSession daoSession = sessionDao.findById(id);
 
+        System.out.print("*****daoSession's teammates" );
+        DAOSession daoSession = sessionDao.findById(idOfOverwrite);
+
+        System.out.print("*****daoSession's teammates" + daoSession );
         //catches an overwrite where the person overwriting is not a teammate of the original story
         if (!daoSession.getTeammates().contains(usernameToken)){
           return ResponseEntity.status(403).build();
         } 
       }
 
+    }
+    
     return ResponseEntity.ok(pricingCalculatorService.overwriteSession(sessions));
 
     // if(token == null || jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentee()) ||jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentor())){

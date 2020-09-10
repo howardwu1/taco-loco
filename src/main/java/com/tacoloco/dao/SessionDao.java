@@ -18,4 +18,8 @@ public interface SessionDao extends CrudRepository<DAOSession, Integer> {
 
     @Query("select s from DAOSession s WHERE :username in elements(s.teammates) OR s.sessionCreator = :username")
     List<DAOSession> findAllBySessionCreatorOrTeammates(@Param("username") String username);
+
+    DAOSession findById(Long id);
+
+
 }

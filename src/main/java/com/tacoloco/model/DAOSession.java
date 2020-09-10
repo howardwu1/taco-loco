@@ -83,5 +83,6 @@ public class DAOSession {
   public void setTeammates(List<String> teammates) {
 
 		this.teammates = teammates;
-	}
+  }
+
 }

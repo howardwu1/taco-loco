@@ -95,7 +95,7 @@ public class PricingCalculatorService {
     return json;
   }
   
-  private DAOSession saveSession(Session session){
+  public DAOSession saveSession(Session session){
 
     try{
       DAOSession daoSession = new DAOSession();

@@ -86,6 +86,10 @@ import com.tacoloco.config.JwtTokenUtil;
 
 import org.springframework.http.HttpHeaders;
 
+import com.tacoloco.dao.SessionDao;
+
+import java.util.Optional;
+
 
 @SpringBootTest(classes = TestConfiguration.class)
 @ActiveProfiles(value="test")
@@ -103,6 +107,9 @@ class PricingCalculatorControllerTests {
 
   @MockBean
   private JwtTokenUtil mockJwtTokenUtil;
+
+  @MockBean
+  private SessionDao sessionDao;
 
   @Test
   @DisplayName("post /overwriteSession valid info")
@@ -129,8 +136,13 @@ class PricingCalculatorControllerTests {
     
 
     doReturn("SirSnoopy").when(mockJwtTokenUtil).getUsernameFromToken(token);
-
-
+    
+    DAOSession daoSession = new DAOSession();
+    daoSession.setSessionCreator("A");
+    daoSession.setTeammates(Arrays.asList(new String[]{"A", "NotSirSnoopy"}));
+    daoSession.setId(2);
+    
+    doReturn(daoSession).when(sessionDao).findById(2L);
     String mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\", \"id\":2}]";    
 
       mockMvc.perform(post("/overwriteSession")

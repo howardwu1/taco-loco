@@ -9,10 +9,13 @@ import lombok.Data;
 import java.text.DateFormat;
 
 import java.util.Date;
+import java.util.List;
 
 import java.text.SimpleDateFormat;
 
 import com.tacoloco.controller.PricingCalculatorController.BadDateParsingException;
+
+import java.util.Arrays;
 
 @Entity
 @Table(name = "session")
@@ -57,7 +60,8 @@ public class DAOSession {
   private String sessionMenteeComments;
 
   @Column
-  private String[] teammates;
+  @ElementCollection
+  private List<String> teammates;
 
   //note I'm doing this because I'm cheating and we really do need to define session first and then convert to DAOSession
   public void setTime(String time) {
@@ -70,10 +74,14 @@ public class DAOSession {
   }
 
   public void setTime(Date time) {
-    
+
     this.time = time;
     
      
   }
 
+  public void setTeammates(List<String> teammates) {
+
+		this.teammates = teammates;
+	}
 }

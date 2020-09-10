@@ -399,14 +399,14 @@ class IntegrationTests {
   @DisplayName("get /sessionFromUsername valid after adding the session")
 	public void getSessionFromUsernameValid() throws Exception{
       
-    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask3\"}";    
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask3\", \"teammates\": [\"SirSnoopy\"]}";    
       String mockUsername = "SirSnoopy";
       mockMvc.perform(post("/addNewSession")
                   .contentType(MediaType.APPLICATION_JSON)
                   .content(mockJson))
       .andExpect(status().isOk());
 
-      String mockJson2 = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"MrSnoopy1\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask33\"}";    
+      String mockJson2 = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"MrSnoopy1\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask33\", \"teammates\": [\"SirSnoopy\", \"MrSnoopy1\"]}";    
       mockMvc.perform(post("/addNewSession")
                   .contentType(MediaType.APPLICATION_JSON)
                   .content(mockJson2))
@@ -428,8 +428,9 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[1].sessionStoryId", is("SomeTask33")))
                     .andExpect(jsonPath("$[1].sessionAction", is("Debug code for")))
                     .andExpect(jsonPath("$[1].length()", is(13)))
-                    .andExpect(jsonPath("$[1].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")));
-
+                    .andExpect(jsonPath("$[1].time", is("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)")))
+                    .andExpect(jsonPath("$[1].teammates", hasItem("SirSnoopy")))
+                    .andExpect(jsonPath("$[1].teammates", hasItem("MrSnoopy1")));
 	}
 
   

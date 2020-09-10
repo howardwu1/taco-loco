@@ -200,6 +200,7 @@ public class PricingCalculatorController {
 	@RequestMapping(value = "/addNewSession", method = RequestMethod.POST)
 	public ResponseEntity<?> saveNewSession(@RequestBody Session session, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
 
+    //I might have to modify this to include in the teammates list
    if(token == null || jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(session.getSessionCreator())){
     return ResponseEntity.ok(pricingCalculatorService.saveSession(session));
    } else{

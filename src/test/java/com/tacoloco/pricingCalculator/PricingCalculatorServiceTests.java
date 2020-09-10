@@ -87,13 +87,14 @@ class PricingCalculatorServiceTests {
 
     
     Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "SirSnoopy", "Debug code for", "Java");
+    mockSession.setTeammates(new String[]{"SirSnoopy","MrSnoopy"});
     DAOSession mockDaoSession = new DAOSession();
     mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
     mockDaoSession.setTime(mockSession.getTime());
     mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
     mockDaoSession.setSessionAction(mockSession.getSessionAction());
     mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
-
+    mockDaoSession.setTeammates(mockSession.getTeammates());
     mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
     mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
     
@@ -105,7 +106,7 @@ class PricingCalculatorServiceTests {
     mockDaoSession2.setTime(mockSession.getTime());
     mockDaoSession2.setSessionAction(mockSession.getSessionAction());
     mockDaoSession2.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
-
+    mockDaoSession2.setTeammates(mockSession.getTeammates());
     mockDaoSession2.setSessionCreator("MrSnoopy");
     mockDaoSession2.setSessionMentor("SirSnoopy");
     mockDaoSession2.setSessionStoryId("SomeTask2");
@@ -114,7 +115,7 @@ class PricingCalculatorServiceTests {
     mockDaoSessions.add(mockDaoSession);
     mockDaoSessions.add(mockDaoSession2);
 
-    doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreatorOrSessionMentorOrSessionMentee("SirSnoopy", "SirSnoopy", "SirSnoopy");
+    doReturn(mockDaoSessions).when(mockSessionDao).findAllBySessionCreatorOrTeammates("SirSnoopy");
     
     DocumentContext context = JsonPath.parse(service.getSessionByUsername("SirSnoopy"));
 
@@ -133,6 +134,9 @@ class PricingCalculatorServiceTests {
     Assertions.assertTrue(context.read("$[1].time").equals("Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)"));
     Assertions.assertTrue(context.read("$[1].sessionCreator").equals("MrSnoopy"));
     Assertions.assertTrue(context.read("$[1].sessionMentor").equals("SirSnoopy"));
+    Assertions.assertTrue(context.read("$[1].teammates[0]").equals("SirSnoopy"));
+    Assertions.assertTrue(context.read("$[1].teammates[1]").equals("MrSnoopy"));
+	
 
   }
 
@@ -189,13 +193,14 @@ class PricingCalculatorServiceTests {
     
   
     Session mockSession = new Session("SomeTask1", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "A", "Debug code for", "Java");
+    mockSession.setTeammates(new String[]{"A"});
     DAOSession mockDaoSession = new DAOSession();
     mockDaoSession.setSessionStoryId(mockSession.getSessionStoryId());
     mockDaoSession.setTime(mockSession.getTime());
     mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
     mockDaoSession.setSessionAction(mockSession.getSessionAction());
     mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
-
+    mockDaoSession.setTeammates(mockSession.getTeammates());
     mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
     mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
     

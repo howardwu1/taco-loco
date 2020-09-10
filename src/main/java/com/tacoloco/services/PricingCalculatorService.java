@@ -80,7 +80,7 @@ public class PricingCalculatorService {
 
   }
   public String getSessionByUsername(String username) throws JsonProcessingException{
-    List<DAOSession> daoSessions = sessionDao.findAllBySessionCreatorOrSessionMentorOrSessionMentee(username,username,username);
+    List<DAOSession> daoSessions = sessionDao.findAllBySessionCreatorOrTeammates(username);
 
 
     ObjectMapper mapper = new ObjectMapper();
@@ -101,10 +101,9 @@ public class PricingCalculatorService {
       daoSession.setSessionCreator(session.getSessionCreator());
       daoSession.setSessionAction(session.getSessionAction());
       daoSession.setSessionSubjectMatter(session.getSessionSubjectMatter());
-
+      daoSession.setTeammates(session.getTeammates());
       daoSession.setSessionMentor(session.getSessionMentor());
       daoSession.setSessionMentee(session.getSessionMentee());
-      
       daoSession.setSessionMentorComments(session.getSessionMentorComments());
       daoSession.setSessionMenteeComments(session.getSessionMenteeComments());
       return sessionDao.save(daoSession);

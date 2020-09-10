@@ -8,14 +8,15 @@ import javax.validation.constraints.NotNull;
 
 import java.text.SimpleDateFormat;
 
-import java.text.DateFormat;
 
 import javax.validation.constraints.Min;
 
 import java.util.Date;
+import java.util.List;
 
 import com.tacoloco.controller.PricingCalculatorController.BadDateParsingException;
 
+import java.util.Arrays;
 @Schema(description = "Session")
 @Data
 public class Session {
@@ -25,9 +26,11 @@ public class Session {
   private long id = 0;
 
   @NotNull 
-  private String sessionStoryId; Date time; String sessionCreator; String sessionAction; String sessionSubjectMatter; String[] teammates;
+  private String sessionStoryId; Date time; String sessionCreator; String sessionAction; String sessionSubjectMatter;
 
   private String sessionMentor; String sessionMentee; String sessionMentorComments; String sessionMenteeComments; 
+
+  private List<String> teammates;
 
   @Min(value = 0, message = "Rating should not be less than 0")
   private Integer sessionMentorRating; Integer sessionMenteeRating;
@@ -50,6 +53,10 @@ public class Session {
     }  
   }
 
+  public void setTeammates(String[] teammates) {
+		this.teammates = Arrays.asList(teammates);
+  }
+  
   public Session() {
   }
 

@@ -79,6 +79,9 @@ public class PricingCalculatorService {
 
 
   }
+
+
+
   public String getSessionByUsername(String username) throws JsonProcessingException{
     List<DAOSession> daoSessions = sessionDao.findAllBySessionCreatorOrTeammates(username);
 
@@ -92,7 +95,7 @@ public class PricingCalculatorService {
     return json;
   }
   
-  public DAOSession saveSession(Session session){
+  private DAOSession saveSession(Session session){
 
     try{
       DAOSession daoSession = new DAOSession();

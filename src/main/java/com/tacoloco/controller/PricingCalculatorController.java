@@ -200,7 +200,7 @@ public class PricingCalculatorController {
 	@RequestMapping(value = "/addNewSession", method = RequestMethod.POST)
 	public ResponseEntity<?> saveNewSession(@RequestBody Session session, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
 
-    //I might have to modify this to include in the teammates list
+
    if(token == null || jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(session.getSessionCreator())){
     return ResponseEntity.ok(pricingCalculatorService.saveSession(session));
    } else{
@@ -238,13 +238,41 @@ public class PricingCalculatorController {
   @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<?> overwriteSession(@RequestBody DAOSession[] sessions, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
 
-    //conscious decision to leave this as OK -- I want to return the DAOSession (so I won't use 204 status) but I don't want to provide an endpoint to query Session by sessionid -- not ever used by the client, always get all sessions by username instead
+    //conscious decision to leave this as OK (200) -- I want to return the DAOSession (so I won't use 204 status) but I don't want to provide an endpoint to query Session by sessionid -- not ever used by the client, always get all sessions by username instead
   
-    if(token == null || jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentee()) ||jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentor())){
-      return ResponseEntity.ok(pricingCalculatorService.overwriteSession(sessions));
-    } else{
-       return ResponseEntity.status(403).build();
-     }
+    if(token != null){
+      
+      String usernameToken = jwtTokenUtil.getSessionFromToken(token.substring(7));
+
+      //verify original sessionCreator
+      String sessionCreatorInOverwrite = sessions[0].getSessionCreator();
+
+      String idOfOverwite = session[0].getId();
+
+      //if there is no idOfOverwrite it means it's writing a new record
+      if(idOfOverwite == null){
+        
+        //restrict overwriting of new session with different user than the person submiting
+        if(!sessionCreatorInOverwrite.equals(usernameToken)){
+          return ResponseEntity.status(403).build();
+        }
+      }
+      else{
+        DAOSession daoSession = sessionDao.findById(id);
+
+        //catches an overwrite where the person overwriting is not a teammate of the original story
+        if (!daoSession.getTeammates().contains(usernameToken)){
+          return ResponseEntity.status(403).build();
+        } 
+      }
+
+    return ResponseEntity.ok(pricingCalculatorService.overwriteSession(sessions));
+
+    // if(token == null || jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentee()) ||jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(sessions[0].getSessionMentor())){
+    //   return ResponseEntity.ok(pricingCalculatorService.overwriteSession(sessions));
+    // } else{
+    //    return ResponseEntity.status(403).build();
+    //  }
 
   }
   

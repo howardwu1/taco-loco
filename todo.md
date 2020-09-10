@@ -1,6 +1,5 @@
 # todo
 
-* change sessionFromUsername so it pulls the teammates list + creator and excludes mentor and mentee 
 * auth for adding new session/overwrite checking user from token == sessioncreator -- if the session doesn't exist (for overwrite -- session find by storyid?)
 * change findallbySEssionCreatorSessionMentorSessionCreator to findallbyteammate
 * add a check to see if sessionCreator or members match the user of the token before adding a session
@@ -10,7 +9,7 @@
 * clean up the visualization piece (react native)
 
 
-#longTermTodo
+# longTermTodo
 
 * allow multiple people as mentee and mentors?
 * make compatible with okta and google auth
@@ -21,8 +20,7 @@
 
 
 
-#knowledgeReadUp
+# knowledgeReadUp
 
-* placeholder css
 * css units for sizing
 * graceful degredation (front end)?

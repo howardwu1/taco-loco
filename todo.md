@@ -1,6 +1,6 @@
 # todo
 
-
+* bug fix -- the time sent back to the app seems to be in UTC -- and I have a test that already adds flexiblity to accept UTC but maybe need to put a stoop on that!
 * start doing queries on the data for the visualization piece
 * clean up the visualization piece (react native)
 

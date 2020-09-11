@@ -1,7 +1,7 @@
 # todo
 
-* bug fix -- the time sent back to the app seems to be in UTC -- and I have a test that already adds flexiblity to accept UTC but maybe need to put a stoop on that!
-* bugfix -- reactnative formating of mysessions gets narrow whenever you fill in both session mentor and mentee and can give ratings
+* bugfix -- reactnative formating of mysessions gets narrow whenever you fill in both session mentor and mentee and can give ratings (react native)
+* update teammates on mysessions (react native)
 * start doing queries on the data for the visualization piece
 * clean up the visualization piece (react native)
 

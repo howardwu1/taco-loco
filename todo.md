@@ -1,7 +1,6 @@
 # todo
 
 
-* Fix bug with Unexpected Eof with adding a new user
 * start doing queries on the data for the visualization piece
 * clean up the visualization piece (react native)
 

@@ -242,7 +242,6 @@ public class PricingCalculatorController {
   public ResponseEntity<?> overwriteSession(@RequestBody DAOSession[] sessions, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
 
     //conscious decision to leave this as OK (200) -- I want to return the DAOSession (so I won't use 204 status) but I don't want to provide an endpoint to query Session by sessionid -- not ever used by the client, always get all sessions by username instead
-    System.out.println("you are in " + token);
     if(token != null){
       
       String usernameToken = jwtTokenUtil.getUsernameFromToken(token.substring(7));
@@ -262,12 +261,10 @@ public class PricingCalculatorController {
       }
       else{
 
-        System.out.print("*****daoSession's teammates" );
         DAOSession daoSession = sessionDao.findById(idOfOverwrite);
 
-        System.out.print("*****daoSession's teammates" + daoSession );
         //catches an overwrite where the person overwriting is not a teammate of the original story
-        if (!daoSession.getTeammates().contains(usernameToken)){
+        if (!daoSession.getTeammates().contains(usernameToken) && !daoSession.getSessionCreator().equals(usernameToken)){
           return ResponseEntity.status(403).build();
         } 
       }

@@ -344,14 +344,23 @@ class IntegrationTests {
     public void postOverwriteSessionRightUser() throws Exception{
   
   
-      String mockJson = "{\"username\":\"SirSnoopy8\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson9 = "{\"username\":\"SirSnoopy9\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      
+      mockMvc.perform(post("/register")
+      .contentType(MediaType.APPLICATION_JSON)
+      .content(mockJson9))
+      .andExpect(status().is(201))
+      .andReturn();
+  
+      //register and log in as SirSnoopy10 and put in a new record with sirsnoopy8 in the teammates
+      String mockJson = "{\"username\":\"SirSnoopy10\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
       
       mockMvc.perform(post("/register")
       .contentType(MediaType.APPLICATION_JSON)
       .content(mockJson))
       .andExpect(status().is(201))
       .andReturn();
-  
+
       MvcResult mvcResult = mockMvc.perform(post("/authenticate")
       .contentType(MediaType.APPLICATION_JSON)
       .content(mockJson))
@@ -359,15 +368,19 @@ class IntegrationTests {
       .andReturn();
       
       //add a new session
-      mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy8\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask29u\"}";    
+      mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy10\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask29u\",\"teammates\": [\"SirSnoopy10\",\"SirSnoopy9\"]}";    
+
+
 
       mockMvc.perform(post("/addNewSession")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
         .andExpect(status().isOk());
+   
+      
 
       //grab that session
-      MvcResult result = mockMvc.perform(get("/sessionFromUsername/{username}", "SirSnoopy8"))
+      MvcResult result = mockMvc.perform(get("/sessionFromUsername/{username}", "SirSnoopy10"))
       .andExpect(status().isOk())
       .andReturn();
 
@@ -376,16 +389,27 @@ class IntegrationTests {
     String storyId = JsonPath.read(result.getResponse().getContentAsString(), "$[0].sessionStoryId");
 
 
-      String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
   
   
-       mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy6\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\": \"" + storyId + "\", \"id\": " + id +"}]";    
+       mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy8\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\": \"" + storyId + "\", \"id\": " + id +", \"teammates\": [\"SirSnoopy10\",\"SirSnoopy9\"]}]";    
 
+            
+      //login in as sirsnoopy9 now
+      mvcResult = mockMvc.perform(post("/authenticate")
+      .contentType(MediaType.APPLICATION_JSON)
+      .content(mockJson9))
+      .andExpect(status().isOk())
+      .andReturn();
+
+      //get sirsnoopy9's token
+      String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
+
+      //overwrite as sirsnoopy9
         mockMvc.perform(post("/overwriteSession")
                       .contentType(MediaType.APPLICATION_JSON)
                       .content(mockJson)
                       .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
-          .andExpect(status().is(403));
+          .andExpect(status().isOk());
   
   
       }
@@ -441,6 +465,57 @@ class IntegrationTests {
   
   
       }
+
+      @Test
+      @DisplayName("post /overwriteSession valid info match in sessionCreator")
+      public void postOverwriteSessionRightUserSameCreator() throws Exception{
+    
+    
+        String mockJson = "{\"username\":\"SirSnoopy8\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+        
+        mockMvc.perform(post("/register")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mockJson))
+        .andExpect(status().is(201))
+        .andReturn();
+    
+        MvcResult mvcResult = mockMvc.perform(post("/authenticate")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mockJson))
+        .andExpect(status().isOk())
+        .andReturn();
+        
+        //add a new session
+        mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy8\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask29su\"}";    
+  
+        mockMvc.perform(post("/addNewSession")
+                      .contentType(MediaType.APPLICATION_JSON)
+                      .content(mockJson))
+          .andExpect(status().isOk());
+  
+        //grab that session
+        MvcResult result = mockMvc.perform(get("/sessionFromUsername/{username}", "SirSnoopy8"))
+        .andExpect(status().isOk())
+        .andReturn();
+  
+      Integer id = JsonPath.read(result.getResponse().getContentAsString(), "$[0].id");
+  
+      String storyId = JsonPath.read(result.getResponse().getContentAsString(), "$[0].sessionStoryId");
+  
+  
+        String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
+    
+    
+         mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy8\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy6\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\": \"" + storyId + "\", \"id\": " + id +"}]";    
+  
+          mockMvc.perform(post("/overwriteSession")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mockJson)
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+            .andExpect(status().isOk());
+    
+    
+        }
 
   @Test
   @DisplayName("post /addNewSession twice with the same storyId info")

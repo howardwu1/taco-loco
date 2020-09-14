@@ -1,11 +1,9 @@
 # todo
 
-* Bug: custom subjectmatters not showing up in the viz donut chart! (react native)
-* port viz updates to the spring-boot services version of the app (React native)
+* update out of moment (since it's deprecated) (react native)
 
 # longTermTodo
 
-* update out of moment (since it's deprecated) (react native)
 * allow multiple people as mentee and mentors?
 * make compatible with okta and google auth
 * long term set up mysql server (Free) --h2 already made persistent

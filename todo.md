@@ -1,8 +1,5 @@
 # todo
 
-* bugfix -- reactnative formating of mysessions gets narrow whenever you fill in both session mentor and mentee and can give ratings (react native)
-* update teammates on mysessions (react native)
-* start doing queries on the data for the visualization piece
 * clean up the visualization piece (react native)
 
 
@@ -18,5 +15,4 @@
 
 # knowledgeReadUp
 
-* css units for sizing
 * graceful degredation (front end)?

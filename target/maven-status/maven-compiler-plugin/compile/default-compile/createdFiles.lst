@@ -12,8 +12,8 @@ com/tacoloco/controller/PricingCalculatorController.class
 com/tacoloco/config/JwtAuthenticationEntryPoint.class
 com/tacoloco/controller/PricingCalculatorController$BadDateParsingException.class
 com/tacoloco/config/WebSecurityConfig$1.class
-com/tacoloco/dao/UserDao.class
 com/tacoloco/model/Customer.class
+com/tacoloco/dao/UserDao.class
 com/tacoloco/controller/PricingCalculatorController$UserDetailsNotFoundFromUsernameException.class
 com/tacoloco/model/JwtResponse.class
 com/tacoloco/repository/PricingCalculatorRepository.class

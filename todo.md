@@ -1,7 +1,7 @@
 # todo
 
-* clean up the visualization piece (react native)
-
+* Bug: custom subjectmatters not showing up in the viz donut chart! (react native)
+* port viz updates to the spring-boot services version of the app (React native)
 
 # longTermTodo
 

@@ -233,11 +233,18 @@ class PricingCalculatorServiceTests {
   void saveCustomerWithJwtUserDetails() throws JsonProcessingException{
     
     Customer mockCustomer = new Customer("SirSnoopy2", "Joe", "Cool", "SnoopDoDubbaG");
+    mockCustomer.setRole("Software Dev");
 
     jwtService.save(mockCustomer);
+    
+    DAOUser user = new DAOUser();
+    user.setUsername("SirSnoopy2");
+    user.setFirstName("Joe");
+    user.setLastName("Cool");
+    user.setRole("Software Dev");
 
-    verify(mockUserDao).save(any(DAOUser.class));
-    verify(bCryptEncoder).encode(any(String.class));
+    verify(mockUserDao).save(user);
+    verify(bCryptEncoder).encode("SnoopDoDubbaG");
   }
 
 
@@ -298,14 +305,14 @@ class PricingCalculatorServiceTests {
     DocumentContext context = JsonPath.parse(jwtService.getAllPublicInfoFromAllUsers());
 
     Assertions.assertTrue(context.read("$.length()").equals(2));
-    Assertions.assertTrue(context.read("$[0].length()").equals(4));
+    Assertions.assertTrue(context.read("$[0].length()").equals(5));
     Assertions.assertTrue(context.read("$[0].username").equals("SirSnoopy"));
     Assertions.assertTrue(context.read("$[1].username").equals("SirSnoopyII"));
     Assertions.assertTrue(context.read("$[0].firstName").equals("Joe"));
     Assertions.assertTrue(context.read("$[1].firstName").equals("Joe"));
     Assertions.assertTrue(context.read("$[0].lastName").equals("Cool"));
     Assertions.assertTrue(context.read("$[1].lastName").equals("Cool"));
-    Assertions.assertTrue(context.read("$[1].length()").equals(4));
+    Assertions.assertTrue(context.read("$[1].length()").equals(5));
  
 
   }

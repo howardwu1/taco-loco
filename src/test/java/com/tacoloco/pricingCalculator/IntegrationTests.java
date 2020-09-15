@@ -137,7 +137,7 @@ class IntegrationTests {
       
       userDao.deleteAll();
 
-      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\", \"role\": \"Sofware Engineer I\"}";
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
@@ -160,8 +160,9 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[1].lastName",is("Cool")))
                     .andExpect(jsonPath("$[0].password").doesNotExist())
                     .andExpect(jsonPath("$[1].password").doesNotExist())
+                    .andExpect(jsonPath("$[1].password",is("Software Engineer I")))
                     .andExpect(jsonPath("$.length()",is(2)))
-                    .andExpect(jsonPath("$[0].length()",is(4)))
+                    .andExpect(jsonPath("$[0].length()",is(5)))
                     .andExpect(jsonPath("$[1].length()",is(4)));
 
 	}
@@ -170,7 +171,7 @@ class IntegrationTests {
   @DisplayName("post /register valid user info")
 	public void postRegisterCustomerValid() throws Exception{
       
-      String mockJson = "{\"username\":\"SirSnoopy2\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"username\":\"SirSnoopy2\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\", \"role\": \"Sofware Engineer I\"}";
 
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)

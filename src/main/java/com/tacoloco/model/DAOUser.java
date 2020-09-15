@@ -28,6 +28,9 @@ public class DAOUser {
 
   @Column
   private String lastName;
+
+  @Column
+  private String role;
   
 	// public String getUsername() {
 	// 	return username;

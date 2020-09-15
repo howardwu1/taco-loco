@@ -21,6 +21,8 @@ public class Customer {
 
   private String encodedPassword;
 
+  private String role;
+
   public Customer(long id, String username, String firstName, String lastName, String encodedPassword) {
     this.id = id;
     this.username = username;

@@ -137,7 +137,7 @@ class IntegrationTests {
       
       userDao.deleteAll();
 
-      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\", \"role\": \"Sofware Engineer I\"}";
+      String mockJson = "{\"username\":\"SirSnoopy\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\", \"role\": \"Software Engineer I\"}";
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
@@ -160,7 +160,7 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[1].lastName",is("Cool")))
                     .andExpect(jsonPath("$[0].password").doesNotExist())
                     .andExpect(jsonPath("$[1].password").doesNotExist())
-                    .andExpect(jsonPath("$[1].password",is("Software Engineer I")))
+                    .andExpect(jsonPath("$[0].role",is("Software Engineer I")))
                     .andExpect(jsonPath("$.length()",is(2)))
                     .andExpect(jsonPath("$[0].length()",is(5)))
                     .andExpect(jsonPath("$[1].length()",is(4)));

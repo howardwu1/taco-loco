@@ -60,10 +60,12 @@ public class JwtUserDetailsService implements UserDetailsService {
 		  userDTO.setUsername(user.getUsername());
 		  userDTO.setFirstName(user.getFirstName());
 		  userDTO.setLastName(user.getLastName());
+      userDTO.setRole(user.getRole());
 	
 		ObjectMapper mapper = new ObjectMapper();
 	
 		String json = mapper.writeValueAsString(userDTO);
+
 		return json;
 	} catch(java.lang.NullPointerException e){
 		throw new UserDetailsNotFoundFromUsernameException();

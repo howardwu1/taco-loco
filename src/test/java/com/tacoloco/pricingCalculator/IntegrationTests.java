@@ -93,7 +93,7 @@ class IntegrationTests {
   @DisplayName("get /publicUserDetails valid after registering")
 	public void getPublicDetailsForExistingUser() throws Exception{
       
-      String mockJson = "{\"username\":\"SirSnoopy7\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"username\":\"SirSnoopy7\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\", \"role\": \"bum\"}";
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
@@ -109,6 +109,7 @@ class IntegrationTests {
       mockUserDTO.setUsername("SirSnoopy");
       mockUserDTO.setFirstName("Joe");
       mockUserDTO.setLastName("Cool");
+      mockUserDTO.setRole("bum");
 
       ObjectMapper mapper = new ObjectMapper();
 

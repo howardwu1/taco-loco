@@ -51,6 +51,24 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 
+
+
+	public DAOUser updateUser(Customer user) throws UsernameNotFoundException {
+		DAOUser daoUser = userDao.findByUsername(user.getUsername());
+
+		if(user.getFirstName() != null){
+			daoUser.setFirstName(user.getFirstName());
+		}
+		if(user.getLastName() != null){
+			daoUser.setLastName(user.getLastName());
+		}
+		if(user.getRole() != null){
+			daoUser.setRole(user.getRole());
+		}
+
+		return userDao.save(daoUser);
+	}
+
   public String getPublicUserDetails(String username) throws JsonProcessingException{
 	
 	try{

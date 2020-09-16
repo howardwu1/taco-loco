@@ -113,6 +113,9 @@ public class PricingCalculatorController {
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="User does not exist with the username provided")
   public static class UserDetailsNotFoundFromUsernameException extends RuntimeException {}
 
+  @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="User registration missing information")
+  public static class UserDetailsNotCompleteException extends RuntimeException {}
+
   @ExceptionHandler(DuplicateUsernameException.class)
   @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY, reason="Duplicate usernames")
   public ResponseEntity<?> processHandler(DuplicateUsernameException ex) {
@@ -186,15 +189,51 @@ public class PricingCalculatorController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
+  @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public ResponseEntity<?> updateUser(@RequestBody Customer user, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
+    
+    String username = user.getUsername();
+    if(token != null){
+
+      String usernameToken = jwtTokenUtil.getUsernameFromToken(token.substring(7));
+
+
+      if(user.getFirstName() == null || user.getLastName() ==null){
+        if(user.getId() != 0L && username != null){
+          if(!usernameToken.equals(username)){
+            
+            return ResponseEntity.status(403).build();
+          }
+        }
+        else{
+          throw new UserDetailsNotCompleteException();
+        }
+     }
+
+    }
+
+    userDetailsService.updateUser(user);
+          
+     return ResponseEntity.created(new URI("/publicUserDetails/" + username)).build();
   
+	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody Customer user) throws Exception {
 
-    if(!user.getPassword().equals(user.getMatchingPassword())){
+    if(user.getPassword()!= null && !user.getPassword().equals(user.getMatchingPassword())){
        throw new PasswordMismatchException();
      }
     
-     DAOUser newUser = userDetailsService.save(user);
+     if(user.getPassword() == null || user.getUsername() == null || user.getFirstName() == null || user.getLastName() ==null){
+        if(user.getId() == 0L){
+        
+          throw new UserDetailsNotCompleteException();
+        }
+     }
+    
+      DAOUser newUser = userDetailsService.save(user);
+     
     
      return ResponseEntity.created(new URI("/publicUserDetails/" + newUser.getUsername())).build();
   

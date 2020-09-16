@@ -379,7 +379,9 @@ class PricingCalculatorControllerTests {
         .andExpect(status().is(201));
 
       verify(userDetailsService).save(any(Customer.class));
-	}
+  }
+  
+
 
   @Test
   @DisplayName("post /register invalid user info--nonmatching password")

@@ -163,7 +163,7 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[0].role",is("Software Engineer I")))
                     .andExpect(jsonPath("$.length()",is(2)))
                     .andExpect(jsonPath("$[0].length()",is(5)))
-                    .andExpect(jsonPath("$[1].length()",is(4)));
+                    .andExpect(jsonPath("$[1].length()",is(5)));
 
 	}
 
@@ -181,7 +181,34 @@ class IntegrationTests {
   }
   
   
+  @Test
+  @DisplayName("post /register valid user info to update details")
+	public void postUpdateCustomerValid() throws Exception{
+      
+      String mockJson = "{\"username\":\"SirSnoopy4\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\", \"role\": \"Sofware Engineer I\"}";
 
+      mockMvc.perform(post("/register")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(mockJson))
+        .andExpect(status().is(201));
+
+
+
+    mockJson = "{\"username\": \"SirSnoopy4\", \"firstName\":\"Joey\"}";
+
+    mockMvc.perform(post("/updateUser")
+    .contentType(MediaType.APPLICATION_JSON)
+    .content(mockJson))
+    .andExpect(status().is(201));
+
+    mockMvc.perform(get("/publicUserDetails/{username}", "SirSnoopy4")
+    .contentType(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(jsonPath("$.username",is("SirSnoopy4")))
+    .andExpect(jsonPath("$.firstName",is("Joey")))
+    .andExpect(jsonPath("$.lastName",is("Cool")));
+
+  }
   @Test
   @DisplayName("post /addNewSession valid session info")
 	public void postAddNewSessionValid() throws Exception{

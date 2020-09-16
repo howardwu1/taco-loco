@@ -13,10 +13,8 @@ public class Customer {
   // default value because the id is determined by the database 
   private long id = 0;
 
-  @NotNull
   private String username, firstName, lastName;
 
-  @NotNull
   private String password, matchingPassword;
 
   private String encodedPassword;

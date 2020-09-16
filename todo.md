@@ -1,7 +1,6 @@
 # todo
 
 * Profile modification piece
-** Need to redo user table to have role in it
 ** Need an endpoint to PUT changes to the user table
 ** profile modification (React Native)
  

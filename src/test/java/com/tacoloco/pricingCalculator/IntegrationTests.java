@@ -106,7 +106,7 @@ class IntegrationTests {
                     .andExpect(status().isOk());
 
       UserDTO mockUserDTO = new UserDTO();
-      mockUserDTO.setUsername("SirSnoopy");
+      mockUserDTO.setUsername("SirSnoopy7");
       mockUserDTO.setFirstName("Joe");
       mockUserDTO.setLastName("Cool");
       mockUserDTO.setRole("bum");
@@ -114,7 +114,7 @@ class IntegrationTests {
       ObjectMapper mapper = new ObjectMapper();
 
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
-    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy7").equals(mockUserDTOJson));
   }
   
   @Test
@@ -164,7 +164,7 @@ class IntegrationTests {
                     .andExpect(jsonPath("$[0].role",is("Software Engineer I")))
                     .andExpect(jsonPath("$.length()",is(2)))
                     .andExpect(jsonPath("$[0].length()",is(5)))
-                    .andExpect(jsonPath("$[1].length()",is(4)));
+                    .andExpect(jsonPath("$[1].length()",is(5)));
 
 	}
 

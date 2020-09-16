@@ -60,7 +60,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		  userDTO.setUsername(user.getUsername());
 		  userDTO.setFirstName(user.getFirstName());
 		  userDTO.setLastName(user.getLastName());
-      userDTO.setRole(user.getRole());
+      	userDTO.setRole(user.getRole());
 	
 		ObjectMapper mapper = new ObjectMapper();
 	

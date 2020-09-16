@@ -1,7 +1,6 @@
 # todo
 
 * Profile modification piece
-** fetch profile details (react native)
 ** Need an endpoint to PUT changes to the user table
 ** profile modification (React Native)
  

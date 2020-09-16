@@ -93,7 +93,7 @@ class IntegrationTests {
   @DisplayName("get /publicUserDetails valid after registering")
 	public void getPublicDetailsForExistingUser() throws Exception{
       
-      String mockJson = "{\"username\":\"SirSnoopy7\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\"}";
+      String mockJson = "{\"username\":\"SirSnoopy7\", \"firstName\":\"Joe\", \"lastName\": \"Cool\", \"password\": \"SnoopDoDubbaG\", \"matchingPassword\": \"SnoopDoDubbaG\", \"role\": \"bum\"}";
       mockMvc.perform(post("/register")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
@@ -106,14 +106,15 @@ class IntegrationTests {
                     .andExpect(status().isOk());
 
       UserDTO mockUserDTO = new UserDTO();
-      mockUserDTO.setUsername("SirSnoopy");
+      mockUserDTO.setUsername("SirSnoopy7");
       mockUserDTO.setFirstName("Joe");
       mockUserDTO.setLastName("Cool");
+      mockUserDTO.setRole("bum");
 
       ObjectMapper mapper = new ObjectMapper();
 
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
-    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy7").equals(mockUserDTOJson));
   }
   
   @Test

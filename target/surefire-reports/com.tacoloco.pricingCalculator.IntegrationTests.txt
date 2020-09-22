@@ -1,0 +1,129 @@
+-------------------------------------------------------------------------------
+Test set: com.tacoloco.pricingCalculator.IntegrationTests
+-------------------------------------------------------------------------------
+Tests run: 25, Failures: 0, Errors: 25, Skipped: 0, Time elapsed: 105.283 s <<< FAILURE! - in com.tacoloco.pricingCalculator.IntegrationTests
+getPublicDetailsForAllExistingUsers  Time elapsed: 0.007 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getTotalValidWithDiscount  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postRegisterCustomerInvalid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postOverwriteSessionWrongUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postOverwriteSessionNotInTeammates  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getTotalValid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postAddNewSessionSameStoryId  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postOverwriteSessionValid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postRegisterCustomerTwiceInvalid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getPublicDetailsForExistingUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postAddNewSessionBadTimeFormat  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getTotalNegativeNumber  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+putInsertCustomerValid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getTotalInvalid  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postOverwriteSessionRightUserSameCreator  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postAuthenticateUserValid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postUpdateCustomerValid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postAddNewSessionRightUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getPublicInfoFromInvalidUsername  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postAddNewSessionValid  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postRegisterCustomerValid  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getTotalInvalid400  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postOverwriteSessionRightUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+postAddNewSessionWrongUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+
+getSessionFromUsernameValid  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+Caused by: org.hibernate.AnnotationException: List/array has to be annotated with an @OrderColumn (or @IndexColumn): com.tacoloco.model.DAOSession.teammates
+

@@ -4,6 +4,7 @@
  
 # longTermTodo
 
+* testing on the front end react native like mocha?
 * allow multiple people as mentee and mentors?
 * make compatible with okta
 * long term set up mysql server (Free) --h2 already made persistent

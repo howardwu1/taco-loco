@@ -4,9 +4,9 @@
 /home/runner/taco-loco/src/main/java/com/tacoloco/config/JwtRequestFilter.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/dao/UserDao.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/dao/SessionDao.java
+/home/runner/taco-loco/src/main/java/com/tacoloco/model/UserDTO.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/model/Session.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/model/DAOSession.java
-/home/runner/taco-loco/src/main/java/com/tacoloco/model/UserDTO.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/config/WebSecurityConfig.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/model/Order.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/model/Customer.java

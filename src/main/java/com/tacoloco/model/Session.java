@@ -30,7 +30,7 @@ public class Session {
 
   private String sessionMentor; String sessionMentee; String sessionMentorComments; String sessionMenteeComments; 
 
-  private List<String> teammates;
+  private String[] teammates;
 
   @Min(value = 0, message = "Rating should not be less than 0")
   private Integer sessionMentorRating; Integer sessionMenteeRating;
@@ -53,9 +53,6 @@ public class Session {
     }  
   }
 
-  public void setTeammates(String[] teammates) {
-		this.teammates = Arrays.asList(teammates);
-  }
   
   public Session() {
   }

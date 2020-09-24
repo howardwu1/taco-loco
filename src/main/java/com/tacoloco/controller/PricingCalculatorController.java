@@ -64,6 +64,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.net.URI;
 
+import java.util.Collections;
+import java.util.Arrays;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
 @Controller
 @CrossOrigin
@@ -94,6 +102,7 @@ public class PricingCalculatorController {
   @Autowired
   private PricingCalculatorService pricingCalculatorService;
 
+  public static final String CLIENT_ID =   "222585927316-l7u0i85iuu3la1putev56uv5hs4mhikl.apps.googleusercontent.com";
 
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
@@ -218,6 +227,54 @@ public class PricingCalculatorController {
   
 	}
 
+  @RequestMapping(value = "/tokensignin", method = RequestMethod.POST)
+	public ResponseEntity<?> saveUserOrValidate (String idTokenString) throws Exception {
+
+    
+    GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
+    // Specify the CLIENT_ID of the app that accesses the backend:
+    .setAudience(Collections.singletonList(CLIENT_ID))
+    // Or, if multiple clients access the backend:
+    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+    .build();
+
+// (Receive idTokenString by HTTPS POST)
+
+GoogleIdToken idToken = verifier.verify(idTokenString);
+if (idToken != null) {
+  Payload payload = idToken.getPayload();
+
+  // Print user identifier
+  String userId = payload.getSubject();
+  System.out.println("User ID: " + userId);
+
+  // Get profile information from payload
+  String email = payload.getEmail();
+  boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+  String name = (String) payload.get("name");
+  String pictureUrl = (String) payload.get("picture");
+  String locale = (String) payload.get("locale");
+  String familyName = (String) payload.get("family_name");
+  String givenName = (String) payload.get("given_name");
+
+  // Use or store profile information
+  Customer user = new Customer();
+  user.setUsername(email);
+  user.setFirstName(givenName);
+  user.setLastName(familyName);
+  
+  try{
+  DAOUser newUser = userDetailsService.save(user);
+  }
+  catch(Exception e){
+    System.out.println("User already registered");
+  }
+  
+  } else {
+  System.out.println("Invalid ID token.");
+}
+  }
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody Customer user) throws Exception {
 
@@ -303,7 +360,7 @@ public class PricingCalculatorController {
         DAOSession daoSession = sessionDao.findById(idOfOverwrite);
 
         //catches an overwrite where the person overwriting is not a teammate of the original story
-        if (!daoSession.getTeammates().contains(usernameToken) && !daoSession.getSessionCreator().equals(usernameToken)){
+        if (!Arrays.asList(daoSession.getTeammates()).contains(usernameToken) && !daoSession.getSessionCreator().equals(usernameToken)){
           return ResponseEntity.status(403).build();
         } 
       }

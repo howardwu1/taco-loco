@@ -265,14 +265,21 @@ if (idToken != null) {
   
   try{
   DAOUser newUser = userDetailsService.save(user);
+
+  return ResponseEntity.created(new URI("/publicUserDetails/" + user.username)).build();
   }
   catch(Exception e){
     System.out.println("User already registered");
+    throw new DuplicateUsernameException();
   }
   
   } else {
+    
   System.out.println("Invalid ID token.");
-}
+  return ResponseEntity.status(403).build();
+
+  
+  }
   }
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

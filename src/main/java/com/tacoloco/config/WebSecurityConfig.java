@@ -35,7 +35,7 @@ import org.springframework.context.ApplicationContextAware;
 
 @Configuration
 @EnableWebSecurity
-@Order(101)
+@Order(103)
 @Lazy
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -69,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
        	// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
 				// dont authenticate the "/authenticate" end point request to allow the user to authenticate without jwt. Same with "/" hello world endpoint
-				.authorizeRequests().antMatchers("/authenticate", "/register", "/").permitAll()
+				.authorizeRequests().antMatchers("/authenticate", "/register", "/", "/tokensignin").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and()
 				// make sure we use stateless session; session won't be used to

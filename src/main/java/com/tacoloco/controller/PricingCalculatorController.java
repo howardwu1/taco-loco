@@ -239,8 +239,9 @@ public class PricingCalculatorController {
     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
     .build();
 
-    System.out.println("********1");
+    System.out.println("********1" + idTokenString);
 // (Receive idTokenString by HTTPS POST)
+
 
 GoogleIdToken idToken = verifier.verify(idTokenString);
 if (idToken != null) {

@@ -59,6 +59,7 @@ public class DAOSession {
   @Column
   private String sessionMenteeComments;
 
+//need list here because String[] does not work with JPA!
   @Column
   @ElementCollection
   private List<String> teammates;

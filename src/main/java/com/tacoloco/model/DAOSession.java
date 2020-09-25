@@ -61,7 +61,7 @@ public class DAOSession {
 
   @Column
   @ElementCollection
-  private String[] teammates;
+  private List<String> teammates;
 
   //note I'm doing this because I'm cheating and we really do need to define session first and then convert to DAOSession
   public void setTime(String time) {
@@ -78,6 +78,9 @@ public class DAOSession {
     this.time = time;
     
      
+  }
+  public void setTeammates(String[] teammates){
+    this.teammates = Arrays.asList(teammates);
   }
 
 }

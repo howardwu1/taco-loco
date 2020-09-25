@@ -230,7 +230,8 @@ public class PricingCalculatorController {
   @RequestMapping(value = "/tokensignin", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUserOrValidate (String idTokenString) throws Exception {
 
-    
+        System.out.println("********0");
+
     GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
     // Specify the CLIENT_ID of the app that accesses the backend:
     .setAudience(Collections.singletonList(CLIENT_ID))
@@ -238,6 +239,7 @@ public class PricingCalculatorController {
     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
     .build();
 
+    System.out.println("********1");
 // (Receive idTokenString by HTTPS POST)
 
 GoogleIdToken idToken = verifier.verify(idTokenString);
@@ -247,6 +249,8 @@ if (idToken != null) {
   // Print user identifier
   String userId = payload.getSubject();
   System.out.println("User ID: " + userId);
+
+    System.out.println("********2");
 
   // Get profile information from payload
   String email = payload.getEmail();
@@ -265,8 +269,9 @@ if (idToken != null) {
   
   try{
   DAOUser newUser = userDetailsService.save(user);
+      System.out.println("********3");
 
-  return ResponseEntity.created(new URI("/publicUserDetails/" + user.username)).build();
+  return ResponseEntity.created(new URI("/publicUserDetails/" + user.getUsername())).build();
   }
   catch(Exception e){
     System.out.println("User already registered");
@@ -274,7 +279,8 @@ if (idToken != null) {
   }
   
   } else {
-    
+        System.out.println("********4");
+
   System.out.println("Invalid ID token.");
   return ResponseEntity.status(403).build();
 

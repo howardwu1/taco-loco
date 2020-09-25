@@ -139,7 +139,7 @@ class PricingCalculatorControllerTests {
     
     DAOSession daoSession = new DAOSession();
     daoSession.setSessionCreator("A");
-    daoSession.setTeammates(Arrays.asList(new String[]{"A", "NotSirSnoopy"}));
+    daoSession.setTeammates(new String[]{"A", "NotSirSnoopy"});
     daoSession.setId(2);
     
     doReturn(daoSession).when(sessionDao).findById(2L);

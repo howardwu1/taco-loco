@@ -80,4 +80,8 @@ public class DAOSession {
      
   }
 
+  public void setTeammates(String[] teammates){
+    this.teammates = teammates;
+  }
+
 }

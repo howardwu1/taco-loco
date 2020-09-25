@@ -63,6 +63,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 import java.net.URI;
+import java.util.Arrays;
 
 
 @Controller
@@ -303,7 +304,7 @@ public class PricingCalculatorController {
         DAOSession daoSession = sessionDao.findById(idOfOverwrite);
 
         //catches an overwrite where the person overwriting is not a teammate of the original story
-        if (!daoSession.getTeammates().contains(usernameToken) && !daoSession.getSessionCreator().equals(usernameToken)){
+        if (!Arrays.asList(daoSession.getTeammates()).contains(usernameToken) && !daoSession.getSessionCreator().equals(usernameToken)){
           return ResponseEntity.status(403).build();
         } 
       }

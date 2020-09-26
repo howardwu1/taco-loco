@@ -9,6 +9,6 @@ import javax.validation.constraints.NotNull;
 @Data
 public class GoogleToken {
   
-  private String idToken;
+  private String idTokenString;
 
 }

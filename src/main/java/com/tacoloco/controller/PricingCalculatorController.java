@@ -241,11 +241,11 @@ public class PricingCalculatorController {
     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
     .build();
 
-    System.out.println("********1" + token.getIdTokenString);
+    System.out.println("********1" + token.getIdTokenString());
 // (Receive idTokenString by HTTPS POST)
 
 
-GoogleIdToken idToken = verifier.verify(token.getIdTokenString);
+GoogleIdToken idToken = verifier.verify(token.getIdTokenString());
 if (idToken != null) {
   Payload payload = idToken.getPayload();
 

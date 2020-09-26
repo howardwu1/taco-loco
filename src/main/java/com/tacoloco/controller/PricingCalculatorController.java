@@ -73,6 +73,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 
+import org.springframework.http.MediaType;
+
 @Controller
 @CrossOrigin
 public class PricingCalculatorController {
@@ -227,8 +229,8 @@ public class PricingCalculatorController {
   
 	}
 
-  @RequestMapping(value = "/tokensignin", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUserOrValidate (String idTokenString) throws Exception {
+  @PostMapping(value = "/tokensignin", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	public ResponseEntity<?> saveUserOrValidate (GoogleToken token) throws Exception {
 
         System.out.println("********0");
 
@@ -239,11 +241,11 @@ public class PricingCalculatorController {
     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
     .build();
 
-    System.out.println("********1" + idTokenString);
+    System.out.println("********1" + token.getIdTokenString);
 // (Receive idTokenString by HTTPS POST)
 
 
-GoogleIdToken idToken = verifier.verify(idTokenString);
+GoogleIdToken idToken = verifier.verify(token.getIdTokenString);
 if (idToken != null) {
   Payload payload = idToken.getPayload();
 

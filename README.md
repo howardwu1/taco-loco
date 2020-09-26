@@ -10,7 +10,7 @@ A Spring Boot application for REST API service that calculates prices for orders
 You can either run `mvn spring-boot:run`
 OR
 `mvn clean package` then when that completes, run `java -jar ./target/pricingCalculator-0.0.1-SNAPSHOT.jar`
-When that boots up you can access the page by going to http://localhost:8080/ and call commands. Check out the Swagger Doc for more details and to try out the service (under POST /total)
+When that boots up you can access the page by going to http://localhost:8080/ and call commands. Check out the Swagger Doc for more details and to try out the service (under POST /total). You can also try `mvn package -Dmaven.test.skip=true` to skip all tests before running the java jar statement.
 
 ## Accessing the API Documentation
 Access the Swagger Doc using this link when the service is running:

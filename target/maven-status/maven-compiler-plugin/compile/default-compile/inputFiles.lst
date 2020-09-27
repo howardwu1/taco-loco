@@ -2,6 +2,7 @@
 /home/runner/taco-loco/src/main/java/com/tacoloco/config/JwtAuthenticationEntryPoint.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/services/PricingCalculatorService.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/config/JwtRequestFilter.java
+/home/runner/taco-loco/src/main/java/com/tacoloco/model/GoogleToken.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/dao/UserDao.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/dao/SessionDao.java
 /home/runner/taco-loco/src/main/java/com/tacoloco/model/Session.java

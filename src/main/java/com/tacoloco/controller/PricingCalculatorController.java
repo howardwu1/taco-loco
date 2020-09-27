@@ -232,7 +232,6 @@ public class PricingCalculatorController {
   @PostMapping(value = "/tokensignin", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 	public ResponseEntity<?> saveUserOrValidate (GoogleToken token) throws Exception {
 
-        System.out.println("********0");
 
     GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
     // Specify the CLIENT_ID of the app that accesses the backend:
@@ -241,7 +240,6 @@ public class PricingCalculatorController {
     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
     .build();
 
-    System.out.println("********1" + token.getIdTokenString());
 // (Receive idTokenString by HTTPS POST)
 
 
@@ -253,12 +251,12 @@ if (idToken != null) {
   String userId = payload.getSubject();
   System.out.println("User ID: " + userId);
 
-    System.out.println("********2");
 
   // Get profile information from payload
   String email = payload.getEmail();
   boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
   String name = (String) payload.get("name");
+
   String pictureUrl = (String) payload.get("picture");
   String locale = (String) payload.get("locale");
   String familyName = (String) payload.get("family_name");
@@ -269,14 +267,17 @@ if (idToken != null) {
   user.setUsername(email);
   user.setFirstName(givenName);
   user.setLastName(familyName);
-  
+  //need to set a password or will get a null pointer in the service user save function 
+  user.setPassword("placeholder");
+
   try{
   DAOUser newUser = userDetailsService.save(user);
-      System.out.println("********3");
+      System.out.println("********6");
 
   return ResponseEntity.created(new URI("/publicUserDetails/" + user.getUsername())).build();
   }
   catch(Exception e){
+    System.out.println(e);
     System.out.println("User already registered");
     throw new DuplicateUsernameException();
   }

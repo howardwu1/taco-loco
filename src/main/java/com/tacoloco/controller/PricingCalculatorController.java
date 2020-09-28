@@ -75,6 +75,9 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 
 import org.springframework.http.MediaType;
 
+import org.springframework.dao.DuplicateKeyException;
+
+
 @Controller
 @CrossOrigin
 public class PricingCalculatorController {
@@ -193,9 +196,7 @@ public class PricingCalculatorController {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-
-		final String token = jwtTokenUtil.generateToken(userDetails);
+		final String token = getToken(authenticationRequest);
 
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
@@ -242,7 +243,7 @@ public class PricingCalculatorController {
 
 // (Receive idTokenString by HTTPS POST)
 
-
+    System.out.println("********************1" + token.getIdTokenString());
 GoogleIdToken idToken = verifier.verify(token.getIdTokenString());
 if (idToken != null) {
   Payload payload = idToken.getPayload();
@@ -264,7 +265,9 @@ if (idToken != null) {
 
   // Use or store profile information
   Customer user = new Customer();
-  user.setUsername(email);
+  user.setUsername(email.substring(0,email.length()-4));
+ System.out.println("user.getUsername() " +user.getUsername());
+
   user.setFirstName(givenName);
   user.setLastName(familyName);
   //need to set a password or will get a null pointer in the service user save function 
@@ -274,14 +277,16 @@ if (idToken != null) {
   DAOUser newUser = userDetailsService.save(user);
       System.out.println("********6");
 
-  return ResponseEntity.created(new URI("/publicUserDetails/" + user.getUsername())).build();
   }
-  catch(Exception e){
-    System.out.println(e);
+  catch(DuplicateUsernameException e){
     System.out.println("User already registered");
-    throw new DuplicateUsernameException();
   }
   
+        
+		final String jwttoken = getToken(user);
+
+		return ResponseEntity.ok(new JwtResponse(jwttoken));
+    
   } else {
         System.out.println("********4");
 
@@ -422,6 +427,13 @@ if (idToken != null) {
     }
 	}
 
-  
+  public String getToken(Customer authenticationRequest) {
+    
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
+		return jwtTokenUtil.generateToken(userDetails);
+
+  }
+  
+  
 }

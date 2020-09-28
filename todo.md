@@ -1,6 +1,7 @@
 # todo
 
-* google id tokens
+* google id tokens (just write tests now)
+* google id tokens as an alternative to the bearer token -- need to check how that would be implmented in jwtrequestfilter to search for different header key and values (specifically related to google id tokens)
  
 # longTermTodo
 

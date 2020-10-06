@@ -68,39 +68,6 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 		return userDao.save(daoUser);
 	}
-
-  public String getPublicUserDetails(String username) throws JsonProcessingException{
-	
-	try{
-		DAOUser user = userDao.findByUsername(username);
-
-		UserDTO userDTO = new UserDTO();
-		  userDTO.setUsername(user.getUsername());
-		  userDTO.setFirstName(user.getFirstName());
-		  userDTO.setLastName(user.getLastName());
-      userDTO.setRole(user.getRole());
-	
-		ObjectMapper mapper = new ObjectMapper();
-	
-		String json = mapper.writeValueAsString(userDTO);
-		return json;
-	} catch(java.lang.NullPointerException e){
-		throw new UserDetailsNotFoundFromUsernameException();
-	}
-
-  }
-
-  
-	public String getAllPublicInfoFromAllUsers() throws JsonProcessingException{
-
-		List<DAOUser> users = userDao.findAll();
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
-		return json;
-	
-	}
   
 	public DAOUser save(Customer user) {
 

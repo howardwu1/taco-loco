@@ -269,7 +269,7 @@ class PricingCalculatorServiceTests {
 
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
 
-    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
+    Assertions.assertTrue(service.getPublicUserDetails("SirSnoopy").equals(mockUserDTOJson));
 
   }
 
@@ -277,7 +277,7 @@ class PricingCalculatorServiceTests {
   @DisplayName("Unsuccessfully Get public info from invalid username")
   void getPublicInfoFromInvalidUsername() throws JsonProcessingException{
  
-    assertThrows(UserDetailsNotFoundFromUsernameException.class, () -> jwtService.getPublicUserDetails("FakeUser"), "UserDetailsNotFoundFromUsernameException expected but wasn't thrown");
+    assertThrows(UserDetailsNotFoundFromUsernameException.class, () -> service.getPublicUserDetails("FakeUser"), "UserDetailsNotFoundFromUsernameException expected but wasn't thrown");
 
   }
 
@@ -302,7 +302,7 @@ class PricingCalculatorServiceTests {
 
     doReturn(mockUsers).when(mockUserDao).findAll();
 
-    DocumentContext context = JsonPath.parse(jwtService.getAllPublicInfoFromAllUsers());
+    DocumentContext context = JsonPath.parse(service.getAllPublicInfoFromAllUsers());
 
     Assertions.assertTrue(context.read("$.length()").equals(2));
     Assertions.assertTrue(context.read("$[0].length()").equals(5));

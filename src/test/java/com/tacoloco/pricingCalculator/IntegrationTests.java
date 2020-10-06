@@ -114,7 +114,7 @@ class IntegrationTests {
       ObjectMapper mapper = new ObjectMapper();
 
       String mockUserDTOJson = mapper.writeValueAsString(mockUserDTO);
-    Assertions.assertTrue(jwtService.getPublicUserDetails("SirSnoopy7").equals(mockUserDTOJson));
+    Assertions.assertTrue(service.getPublicUserDetails("SirSnoopy7").equals(mockUserDTOJson));
   }
   
   @Test

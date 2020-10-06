@@ -26,11 +26,16 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.tacoloco.dao.UserDao;
+import com.tacoloco.controller.PricingCalculatorController.UserDetailsNotFoundFromUsernameException;
 
 @Service
 public class PricingCalculatorService {
   
   @Autowired PricingCalculatorRepository pricingCalculatorRepository;
+
+  @Autowired
+	private UserDao userDao;
 
   @Autowired
   AuthenticationManager authenticationManager; //not being used in this class however is a dependency that is needed for a spring boot to resolve a circular reference that also has been made @lazy
@@ -72,6 +77,39 @@ public class PricingCalculatorService {
   public void insertIntoCustomers(String username, String firstName, String lastName, String encodedPassword){
     pricingCalculatorRepository.insertIntoCustomers(username, firstName, lastName, encodedPassword);
   }
+
+  public String getPublicUserDetails(String username) throws JsonProcessingException{
+    
+    try{
+      DAOUser user = userDao.findByUsername(username);
+
+      UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(user.getUsername());
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        userDTO.setRole(user.getRole());
+    
+      ObjectMapper mapper = new ObjectMapper();
+    
+      String json = mapper.writeValueAsString(userDTO);
+      return json;
+    } catch(java.lang.NullPointerException e){
+      throw new UserDetailsNotFoundFromUsernameException();
+    }
+
+  }
+
+  
+	public String getAllPublicInfoFromAllUsers() throws JsonProcessingException{
+
+		List<DAOUser> users = userDao.findAll();
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
+		return json;
+	
+	}
 
   public void checkPassword(String firstName, String lastName, String password){
 

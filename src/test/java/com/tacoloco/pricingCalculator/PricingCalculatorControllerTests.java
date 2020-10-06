@@ -299,13 +299,13 @@ class PricingCalculatorControllerTests {
       
       ObjectMapper mapper = new ObjectMapper();
 
-     doReturn(mapper.writeValueAsString(mockUserDTO)).when(userDetailsService).getPublicUserDetails("SirSnoopy");
+     doReturn(mapper.writeValueAsString(mockUserDTO)).when(service).getPublicUserDetails("SirSnoopy");
       
       mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());
 
-      verify(userDetailsService).getPublicUserDetails("SirSnoopy");
+      verify(service).getPublicUserDetails("SirSnoopy");
   }
   
     
@@ -314,7 +314,7 @@ class PricingCalculatorControllerTests {
   void getPublicInfoFromInvalidUsername() throws Exception{
     String mockUserName = "FakeName";
 
-    doThrow(new UserDetailsNotFoundFromUsernameException()).when(userDetailsService).getPublicUserDetails("FakeName");
+    doThrow(new UserDetailsNotFoundFromUsernameException()).when(service).getPublicUserDetails("FakeName");
 
     mockMvc.perform(get("/publicUserDetails/{username}", mockUserName)
     .contentType(MediaType.APPLICATION_JSON))
@@ -344,7 +344,7 @@ class PricingCalculatorControllerTests {
       mockUserDTOs.add(mockUserDTO2);
       ObjectMapper mapper = new ObjectMapper();
 
-     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs)).when(userDetailsService).getAllPublicInfoFromAllUsers();
+     doReturn(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mockUserDTOs)).when(service).getAllPublicInfoFromAllUsers();
 
      mockMvc.perform(get("/allPublicUserDetails")
                     .contentType(MediaType.APPLICATION_JSON))
@@ -361,7 +361,7 @@ class PricingCalculatorControllerTests {
                     .andExpect(jsonPath("$[0].length()",is(4)))
                     .andExpect(jsonPath("$[1].length()",is(4)));
 
-      verify(userDetailsService).getAllPublicInfoFromAllUsers();
+      verify(service).getAllPublicInfoFromAllUsers();
 	}
 
 

@@ -320,9 +320,8 @@ if (idToken != null) {
 
 	@RequestMapping(value = "/addNewSession", method = RequestMethod.POST)
 	public ResponseEntity<?> saveNewSession(@RequestBody Session session, @RequestHeader (name="Authorization", required = false) String token) throws Exception {
-
-
    if(token == null || jwtTokenUtil.getUsernameFromToken(token.substring(7)).equals(session.getSessionCreator())){
+   
     return ResponseEntity.ok(pricingCalculatorService.saveSession(session));
    } else{
      return ResponseEntity.status(403).build();
@@ -382,7 +381,7 @@ if (idToken != null) {
         DAOSession daoSession = sessionDao.findById(idOfOverwrite);
 
         //catches an overwrite where the person overwriting is not a teammate of the original story
-        if (!Arrays.asList(daoSession.getTeammates()).contains(usernameToken) && !daoSession.getSessionCreator().equals(usernameToken)){
+        if (!daoSession.getTeammates().contains(usernameToken) && !daoSession.getSessionCreator().equals(usernameToken)){
           return ResponseEntity.status(403).build();
         } 
       }

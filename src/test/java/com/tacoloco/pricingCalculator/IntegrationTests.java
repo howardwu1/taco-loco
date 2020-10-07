@@ -399,8 +399,6 @@ class IntegrationTests {
       //add a new session
       mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"SirSnoopy10\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask29u\",\"teammates\": [\"SirSnoopy10\",\"SirSnoopy9\"]}";    
 
-
-
       mockMvc.perform(post("/addNewSession")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mockJson))
@@ -417,13 +415,8 @@ class IntegrationTests {
 
     String storyId = JsonPath.read(result.getResponse().getContentAsString(), "$[0].sessionStoryId");
 
-
-  
-  
-       mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy8\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\": \"" + storyId + "\", \"id\": " + id +", \"teammates\": [\"SirSnoopy10\",\"SirSnoopy9\"]}]";    
-
             
-      //login in as sirsnoopy9 now
+      //login in as sirsnoopy9 now useing mockJson9
       mvcResult = mockMvc.perform(post("/authenticate")
       .contentType(MediaType.APPLICATION_JSON)
       .content(mockJson9))
@@ -432,6 +425,8 @@ class IntegrationTests {
 
       //get sirsnoopy9's token
       String token = JsonPath.read(mvcResult.getResponse().getContentAsString(), "$.token");
+
+      mockJson = "[{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"SirSnoopy8\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\": \"" + storyId + "\", \"id\": " + id +", \"teammates\": [\"SirSnoopy10\",\"SirSnoopy9\"]}]";    
 
       //overwrite as sirsnoopy9
         mockMvc.perform(post("/overwriteSession")
@@ -550,7 +545,7 @@ class IntegrationTests {
   @DisplayName("post /addNewSession twice with the same storyId info")
 	public void postAddNewSessionSameStoryId() throws Exception{
       
-    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\"}";    
+    String mockJson = "{\"time\":\"Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)\",\"sessionCreator\":\"A\",\"sessionMentor\":null,\"sessionMentee\":\"A\",\"sessionAction\":\"Debug code for\",\"sessionSubjectMatter\":\"Java\",\"sessionMentorRating\":null,\"sessionMenteeRating\":null,\"sessionMentorComments\":null,\"sessionMenteeComments\":null,\"sessionStoryId\":\"SomeTask2\", \"teammates\":[\"A\"]}";    
 
       mockMvc.perform(post("/addNewSession")
                     .contentType(MediaType.APPLICATION_JSON)

@@ -137,6 +137,7 @@ public class PricingCalculatorService {
 
     try{
       DAOSession daoSession = new DAOSession();
+      System.out.println("sessionSTory*****" + session.getSessionStoryId());
       daoSession.setSessionStoryId(session.getSessionStoryId());
       daoSession.setTime(session.getTime());
       daoSession.setSessionCreator(session.getSessionCreator());
@@ -154,8 +155,8 @@ public class PricingCalculatorService {
   }
 
   public List<DAOSession> overwriteSession(DAOSession[] sessions){
-
-     return (List<DAOSession>) sessionDao.saveAll((List<DAOSession>) new ArrayList(Arrays.asList(sessions)));
+    System.out.println("sessions****" + sessions[0]);
+     return (List<DAOSession>) sessionDao.saveAll(new ArrayList<DAOSession>(Arrays.asList(sessions)));
  
   }
 

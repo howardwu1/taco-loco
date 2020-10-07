@@ -358,8 +358,8 @@ class PricingCalculatorControllerTests {
                     .andExpect(jsonPath("$[0].password").doesNotExist())
                     .andExpect(jsonPath("$[1].password").doesNotExist())
                     .andExpect(jsonPath("$.length()",is(2)))
-                    .andExpect(jsonPath("$[0].length()",is(4)))
-                    .andExpect(jsonPath("$[1].length()",is(4)));
+                    .andExpect(jsonPath("$[0].length()",is(5)))
+                    .andExpect(jsonPath("$[1].length()",is(5)));
 
       verify(service).getAllPublicInfoFromAllUsers();
 	}

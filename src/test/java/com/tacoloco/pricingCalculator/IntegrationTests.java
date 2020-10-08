@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.test.web.servlet.MockMvc;
 
 import org.junit.jupiter.api.DisplayName;
@@ -62,6 +63,17 @@ import org.springframework.http.HttpHeaders;
 
 import static org.hamcrest.core.AnyOf.*;
 
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+
+import static org.mockito.Mockito.doReturn;
+
+import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest(classes = TestConfiguration.class)
 @ActiveProfiles(value="test")
@@ -81,13 +93,50 @@ class IntegrationTests {
   @Autowired
   JdbcTemplate jdbcTemplate;
 
-
   @Autowired
   private JwtUserDetailsService jwtService;
 
   @Autowired
   private PricingCalculatorService service;
 
+  @MockBean
+  private GoogleIdToken mockToken;
+
+  @MockBean
+  private GoogleIdTokenVerifier mockVerifier;
+
+  @MockBean
+  private Payload mockPayload;
+
+
+  @Test
+  @DisplayName("post /tokensignin valid user info")
+  public void postTokenSigninUserValid() throws Exception {
+ 
+    String mockURLEncoded = "idTokenString=faketokenforgoogle";
+ 
+    doReturn(mockToken).when(mockVerifer.verify("faketokenforgoogle"));
+    
+    doReturn(mockPayload).when(mockToken.getPayload());
+    
+    doReturn("23493849239").when(mockPayload.getSubject());
+    
+    doReturn("sirsnoopy@gmail.com").when(mockPayload.getEmail());
+    
+    doReturn("sirsnoopy").when((String)mockPayload.get("name"));
+    
+    doReturn("Cool").when((String) mockPayload.get("family_name"));
+    
+    doReturn("Joe").when((String) mockPayload.get("given_name"));
+    
+    mockMvc.perform(post("/tokensignin")
+          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+          .content(mockURLEncoded))
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$.length()", is(1)))
+          .andExpect(jsonPath("$[0].jwttoken", is(any(String().class)));
+    
+	}
 
   @Test
   @DisplayName("get /publicUserDetails valid after registering")

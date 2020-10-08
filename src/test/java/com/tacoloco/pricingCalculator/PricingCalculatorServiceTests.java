@@ -152,6 +152,7 @@ class PricingCalculatorServiceTests {
     mockDaoSession.setSessionCreator(mockSession.getSessionCreator());
     mockDaoSession.setSessionAction(mockSession.getSessionAction());
     mockDaoSession.setSessionSubjectMatter(mockSession.getSessionSubjectMatter());
+    mockDaoSession.setTeammates(mockSession.getTeammates());
 
     mockDaoSession.setSessionMentor(mockSession.getSessionMentor());
     mockDaoSession.setSessionMentee(mockSession.getSessionMentee());
@@ -160,7 +161,8 @@ class PricingCalculatorServiceTests {
     mockDaoSession.setSessionMenteeComments(mockSession.getSessionMenteeComments());
 
 
-    Session mockSession2 = new Session("SomeTask3", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "overwriteSessionServiceUser", "Debug code for", "Javascript");
+    Session mockSession2 = new Session("SomeTask4", "Thu Aug 20 2020 13:08:59 GMT-0400 (EDT)", "overwriteSessionServiceUser", "Debug code for", "Javascript");
+    mockSession2.setTeammates(new String[]{"Snoopy1", "Snoopy2"});
     DAOSession mockDaoSession2 = new DAOSession();
     mockDaoSession2.setSessionStoryId(mockSession2.getSessionStoryId());
     mockDaoSession2.setTime(mockSession2.getTime());
@@ -168,6 +170,7 @@ class PricingCalculatorServiceTests {
     mockDaoSession2.setSessionAction(mockSession2.getSessionAction());
     mockDaoSession2.setSessionSubjectMatter(mockSession2.getSessionSubjectMatter());
 
+    mockDaoSession2.setTeammates2(mockSession.getTeammates());
     mockDaoSession2.setSessionMentor(mockSession2.getSessionMentor());
     mockDaoSession2.setSessionMentee(mockSession2.getSessionMentee());
     

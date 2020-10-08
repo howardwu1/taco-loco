@@ -241,60 +241,56 @@ public class PricingCalculatorController {
     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
     .build();
 
-// (Receive idTokenString by HTTPS POST)
+    // (Receive idTokenString by HTTPS POST)
 
-    System.out.println("********************1" + token.getIdTokenString());
-GoogleIdToken idToken = verifier.verify(token.getIdTokenString());
-if (idToken != null) {
-  Payload payload = idToken.getPayload();
+    GoogleIdToken idToken = verifier.verify(token.getIdTokenString());
+    if (idToken != null) {
+      Payload payload = idToken.getPayload();
 
-  // Print user identifier
-  String userId = payload.getSubject();
-  System.out.println("User ID: " + userId);
+      // Print user identifier
+      String userId = payload.getSubject();
+      System.out.println("User ID: " + userId);
 
 
-  // Get profile information from payload
-  String email = payload.getEmail();
-  boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-  String name = (String) payload.get("name");
+      // Get profile information from payload
+      String email = payload.getEmail();
+      boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+      String name = (String) payload.get("name");
 
-  String pictureUrl = (String) payload.get("picture");
-  String locale = (String) payload.get("locale");
-  String familyName = (String) payload.get("family_name");
-  String givenName = (String) payload.get("given_name");
+      String pictureUrl = (String) payload.get("picture");
+      String locale = (String) payload.get("locale");
+      String familyName = (String) payload.get("family_name");
+      String givenName = (String) payload.get("given_name");
 
-  // Use or store profile information
-  Customer user = new Customer();
-  user.setUsername(email.substring(0,email.length()-4));
- System.out.println("user.getUsername() " +user.getUsername());
+      // Use or store profile information
+      Customer user = new Customer();
+      user.setUsername(email.substring(0,email.length()-4));
 
-  user.setFirstName(givenName);
-  user.setLastName(familyName);
-  //need to set a password or will get a null pointer in the service user save function 
-  user.setPassword("placeholder");
+      user.setFirstName(givenName);
+      user.setLastName(familyName);
+      //need to set a password or will get a null pointer in the service user save function 
+      user.setPassword("placeholder");
 
-  try{
-  DAOUser newUser = userDetailsService.save(user);
-      System.out.println("********6");
+      try{
+        DAOUser newUser = userDetailsService.save(user);
 
-  }
-  catch(DuplicateUsernameException e){
-    System.out.println("User already registered");
-  }
-  
-        
-		final String jwttoken = getToken(user);
+      }
+      catch(DuplicateUsernameException e){
+        System.out.println("User already registered");
+      }
+      
+            
+      final String jwttoken = getToken(user);
 
-		return ResponseEntity.ok(new JwtResponse(jwttoken));
+      return ResponseEntity.ok(new JwtResponse(jwttoken));
+      
+    } else {
+
+      System.out.println("Invalid ID token.");
+      return ResponseEntity.status(403).build();
+
     
-  } else {
-        System.out.println("********4");
-
-  System.out.println("Invalid ID token.");
-  return ResponseEntity.status(403).build();
-
-  
-  }
+    }
   }
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

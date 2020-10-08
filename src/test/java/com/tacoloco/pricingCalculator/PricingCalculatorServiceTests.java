@@ -170,7 +170,7 @@ class PricingCalculatorServiceTests {
     mockDaoSession2.setSessionAction(mockSession2.getSessionAction());
     mockDaoSession2.setSessionSubjectMatter(mockSession2.getSessionSubjectMatter());
 
-    mockDaoSession2.setTeammates2(mockSession.getTeammates());
+    mockDaoSession2.setTeammates(mockSession2.getTeammates());
     mockDaoSession2.setSessionMentor(mockSession2.getSessionMentor());
     mockDaoSession2.setSessionMentee(mockSession2.getSessionMentee());
     

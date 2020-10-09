@@ -73,6 +73,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
 import static org.mockito.Mockito.doReturn;
 
+import static org.mockito.Mockito.when;
+
 import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest(classes = TestConfiguration.class)
@@ -105,7 +107,7 @@ class IntegrationTests {
   @MockBean
   private GoogleIdTokenVerifier mockVerifier;
 
-  @MockBean
+  @Autowired
   private Payload mockPayload;
 
 
@@ -115,26 +117,31 @@ class IntegrationTests {
  
     String mockURLEncoded = "idTokenString=faketokenforgoogle";
  
-    doReturn(mockToken).when(mockVerifer.verify("faketokenforgoogle"));
+    doReturn(mockToken).when(mockVerifier).verify("faketokenforgoogle");
     
-    doReturn(mockPayload).when(mockToken.getPayload());
+    mockPayload.setSubject("23493849239");
+    mockPayload.setEmail("sirsnoopy@gmail.com");
+
+    mockPayload.set("name", "sirsnoopy");
+
+    mockPayload.set("family_name", "Cool");
+
+    mockPayload.set("given_name", "Joe");
+
+    //when((String) mockPayload.get("name")).thenReturn("sirsnoopy");
+
+    doReturn(mockPayload).when(mockToken).getPayload(); 
     
-    doReturn("23493849239").when(mockPayload.getSubject());
+    //doReturn("Cool").when(mockPayload).get("family_name");
     
-    doReturn("sirsnoopy@gmail.com").when(mockPayload.getEmail());
-    
-    doReturn("sirsnoopy").when((String)mockPayload.get("name"));
-    
-    doReturn("Cool").when((String) mockPayload.get("family_name"));
-    
-    doReturn("Joe").when((String) mockPayload.get("given_name"));
+    //doReturn("Joe").when(mockPayload).get("given_name");
     
     mockMvc.perform(post("/tokensignin")
           .contentType(MediaType.APPLICATION_FORM_URLENCODED)
           .content(mockURLEncoded))
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.length()", is(1)))
-          .andExpect(jsonPath("$[0].jwttoken", is(any(String().class)));
+          .andExpect(jsonPath("$[0].jwttoken", is(any(String.class))));
     
 	}
 

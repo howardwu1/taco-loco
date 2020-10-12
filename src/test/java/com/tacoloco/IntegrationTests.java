@@ -1,5 +1,5 @@
 
-package com.tacoloco.pricingCalculator;
+package com.tacoloco;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -25,6 +25,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import org.springframework.http.MediaType;
+
+import com.tacoloco.controller.PricingCalculatorController;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -76,7 +78,15 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 import static org.mockito.ArgumentMatchers.any;
+import org.junit.runner.RunWith;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 
+import org.powermock.api.mockito.PowerMockito;  
+
+@RunWith(PowerMockRunner.class)
+//@PrepareForTest(fullyQualifiedNames = "com.baeldung.powermockito.introduction.*")
+@PrepareForTest(PricingCalculatorController.class)
 @SpringBootTest(classes = TestConfiguration.class)
 @ActiveProfiles(value="test")
 @AutoConfigureMockMvc
@@ -116,7 +126,9 @@ class IntegrationTests {
   public void postTokenSigninUserValid() throws Exception {
  
     String mockURLEncoded = "idTokenString=faketokenforgoogle";
- 
+    
+    GoogleIdTokenVerifier.Builder mockVerifierBuilder = mock(GoogleIdTokenVerifier.Builder.class);
+    PowerMockito.whenNew(GoogleIdTokenVerifier.Builder.class).withAnyArguments().thenReturn(mockVerifierBuilder);
     doReturn(mockToken).when(mockVerifier).verify("faketokenforgoogle");
     
     mockPayload.setSubject("23493849239");

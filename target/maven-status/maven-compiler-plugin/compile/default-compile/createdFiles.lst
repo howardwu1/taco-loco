@@ -1,7 +1,7 @@
 com/tacoloco/customDeserializer/StringOnlyDeserializer.class
 com/tacoloco/config/WebSecurityConfig$2.class
-com/tacoloco/model/DAOSession.class
 com/tacoloco/model/Order.class
+com/tacoloco/model/DAOSession.class
 com/tacoloco/model/UserDTO.class
 com/tacoloco/config/WebSecurityConfig.class
 com/tacoloco/controller/PricingCalculatorController$UnprocessableEntityException.class

@@ -78,18 +78,28 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 import static org.mockito.ArgumentMatchers.any;
-import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.core.classloader.annotations.PrepareForTest;
+import static org.mockito.ArgumentMatchers.anyCollection;
 
-import org.powermock.api.mockito.PowerMockito;  
+//import org.junit.runner.RunWith;
+//import org.powermock.modules.junit4.PowerMockRunner;
+//import org.powermock.core.classloader.annotations.PrepareForTest;
 
-@RunWith(PowerMockRunner.class)
+//import org.powermock.api.mockito.PowerMockito;  
+import static org.mockito.Mockito.mock;
+//import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+//import org.powermock.core.classloader.annotations.PowerMockIgnore;
+//import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.MockedConstruction;
+
+//@RunWith(PowerMockRunner.class)
 //@PrepareForTest(fullyQualifiedNames = "com.baeldung.powermockito.introduction.*")
-@PrepareForTest(PricingCalculatorController.class)
-@SpringBootTest(classes = TestConfiguration.class)
+//@PrepareForTest({PricingCalculatorController.class, GoogleIdTokenVerifier.class, GoogleIdTokenVerifier.Builder.class})
 @ActiveProfiles(value="test")
+//@SpringBootTest(classes = TestConfiguration.class)
+@SpringBootTest(classes = TestConfiguration.class)
 @AutoConfigureMockMvc
+//@PowerMockIgnore("com.fasterxml.*")
+//@PowerMockRunnerDelegate(SpringRunner.class)
 class IntegrationTests {
 
 
@@ -117,8 +127,6 @@ class IntegrationTests {
   @MockBean
   private GoogleIdTokenVerifier mockVerifier;
 
-  @Autowired
-  private Payload mockPayload;
 
 
   @Test
@@ -127,8 +135,19 @@ class IntegrationTests {
  
     String mockURLEncoded = "idTokenString=faketokenforgoogle";
     
-    GoogleIdTokenVerifier.Builder mockVerifierBuilder = mock(GoogleIdTokenVerifier.Builder.class);
-    PowerMockito.whenNew(GoogleIdTokenVerifier.Builder.class).withAnyArguments().thenReturn(mockVerifierBuilder);
+
+    Payload mockPayload = new Payload();
+    //GoogleIdTokenVerifier.Builder mockVerifierBuilder = mock(GoogleIdTokenVerifier.Builder.class);
+    
+    try (MockedConstruction mocked = mockConstruction(GoogleIdTokenVerifier.class)) {
+      GoogleIdTokenVerifier.Builder mockVerifierBuilder = new GoogleIdTokenVerifier.Builder(any(), any());
+      when(mockVerifierBuilder.setAudience(anyCollection())).thenReturn(mockVerifierBuilder);
+      when(mockVerifierBuilder.build()).thenReturn(mockVerifier);
+     
+    }
+    // PowerMockito.whenNew(GoogleIdTokenVerifier.Builder.class).withAnyArguments().thenReturn(mockVerifierBuilder);
+    //when(mockVerifierBuilder.setAudience(anyCollection())).thenReturn(mockVerifierBuilder);
+    //when(mockVerifierBuilder.build()).thenReturn(mockVerifier);
     doReturn(mockToken).when(mockVerifier).verify("faketokenforgoogle");
     
     mockPayload.setSubject("23493849239");

@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 //needed to import Customer class since we put it in a different folder (model)
 import com.tacoloco.model.Customer;
 import com.tacoloco.services.*;
+import org.springframework.test.context.ContextConfiguration;
 
 
 @SpringBootApplication

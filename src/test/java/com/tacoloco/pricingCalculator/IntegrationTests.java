@@ -102,23 +102,28 @@ class IntegrationTests {
   private PricingCalculatorService service;
 
   @MockBean
+  private GoogleToken mockParentToken;
+
+  @MockBean
   private GoogleIdToken mockToken;
 
   @MockBean
   private GoogleIdTokenVerifier mockVerifier;
 
-  @Autowired
-  private Payload mockPayload;
-
-
   @Test
   @DisplayName("post /tokensignin valid user info")
   public void postTokenSigninUserValid() throws Exception {
  
-    String mockURLEncoded = "idTokenString=faketokenforgoogle";
+    String mockTokenIdString = "faketokenforgoogle";
+    // Note: this does not verify if mockTokenIdString is correctly parsed
+    // as the mock overrides getIdTokenString
+    String mockURLEncoded = "idTokenString=" + mockTokenIdString;
  
-    doReturn(mockToken).when(mockVerifier).verify("faketokenforgoogle");
+    doReturn(mockTokenIdString).when(mockParentToken).getIdTokenString();
+    doReturn(mockToken).when(mockVerifier).verify(mockTokenIdString);
     
+    Payload mockPayload = new Payload();
+
     mockPayload.setSubject("23493849239");
     mockPayload.setEmail("sirsnoopy@gmail.com");
 

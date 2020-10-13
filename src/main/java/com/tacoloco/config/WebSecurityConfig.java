@@ -33,6 +33,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
 import org.springframework.context.ApplicationContextAware;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+
 @Configuration
 @EnableWebSecurity
 @Order(103)
@@ -50,12 +55,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
-
+  public static final String CLIENT_ID =   "222585927316-l7u0i85iuu3la1putev56uv5hs4mhikl.apps.googleusercontent.com";
 
   @Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
+  @Bean
+  public GoogleIdTokenVerifier tokenVerifier() {
+    return new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
+      // Specify the CLIENT_ID of the app that accesses the backend:
+      .setAudience(Collections.singletonList(CLIENT_ID))
+      // Or, if multiple clients access the backend:
+      //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+      .build();
+  }
 
 
   @Bean

@@ -107,7 +107,8 @@ public class PricingCalculatorController {
   @Autowired
   private PricingCalculatorService pricingCalculatorService;
 
-  public static final String CLIENT_ID =   "222585927316-l7u0i85iuu3la1putev56uv5hs4mhikl.apps.googleusercontent.com";
+  @Autowired
+  private GoogleIdTokenVerifier verifier;
 
   private static final Logger log = LogManager.getLogger(PricingCalculatorController.class);
 
@@ -232,14 +233,6 @@ public class PricingCalculatorController {
 
   @PostMapping(value = "/tokensignin", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 	public ResponseEntity<?> saveUserOrValidate (GoogleToken token) throws Exception {
-
-
-    GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
-    // Specify the CLIENT_ID of the app that accesses the backend:
-    .setAudience(Collections.singletonList(CLIENT_ID))
-    // Or, if multiple clients access the backend:
-    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
-    .build();
 
     // (Receive idTokenString by HTTPS POST)
 

@@ -1,6 +1,0 @@
-#surefire_0
-#Thu Oct 08 23:06:03 EDT 2020
-user.dir=/home/dothewu/Downloads/Testing/taco-loco
-localRepository=/home/dothewu/.m2/repository
-basedir=/home/dothewu/Downloads/Testing/taco-loco
-test=IntegrationTests

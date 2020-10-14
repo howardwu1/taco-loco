@@ -146,7 +146,7 @@ class IntegrationTests {
           .content(mockURLEncoded))
           .andExpect(status().isOk())
           .andExpect(jsonPath("$.length()", is(1)))
-          .andExpect(jsonPath("$[0].jwttoken", is(any(String.class))));
+          .andExpect(jsonPath("$.token").isNotEmpty());
     
 	}
 

@@ -267,7 +267,8 @@ public class PricingCalculatorController {
       user.setPassword("placeholder");
 
       try{
-        DAOUser newUser = userDetailsService.save(user);
+
+       userDetailsService.save(user);
 
       }
       catch(DuplicateUsernameException e){
@@ -276,7 +277,6 @@ public class PricingCalculatorController {
       
             
       final String jwttoken = getToken(user);
-
       return ResponseEntity.ok(new JwtResponse(jwttoken));
       
     } else {

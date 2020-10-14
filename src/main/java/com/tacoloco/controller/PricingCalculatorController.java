@@ -107,6 +107,7 @@ public class PricingCalculatorController {
   @Autowired
   private PricingCalculatorService pricingCalculatorService;
 
+//note GoogleIdTokenVerifier has been constructed in websecuityconfig now
   @Autowired
   private GoogleIdTokenVerifier verifier;
 

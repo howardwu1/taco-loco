@@ -110,7 +110,76 @@ class PricingCalculatorControllerTests {
 
   @MockBean
   private SessionDao sessionDao;
+  
+  @MockBean
+  private GoogleToken mockParentToken;
 
+  @MockBean
+  private GoogleIdToken mockToken;
+
+  @MockBean
+  private GoogleIdTokenVerifier mockVerifier;
+
+
+ @Test
+  @DisplayName("post /tokensignin valid user info")
+  public void postTokenSigninUserValid() throws Exception {
+ 
+    String mockTokenIdString = "faketokenforgoogle";
+    // Note: this does not verify if mockTokenIdString is correctly parsed
+    // as the mock overrides getIdTokenString
+    String mockURLEncoded = "idTokenString=" + mockTokenIdString;
+ 
+    doReturn(mockTokenIdString).when(mockParentToken).getIdTokenString();
+    doReturn(mockToken).when(mockVerifier).verify(mockTokenIdString);
+    
+    Payload mockPayload = new Payload();
+
+    mockPayload.setSubject("23493849239");
+    mockPayload.setEmail("sirsnoopy@gmail.com");
+
+    mockPayload.set("name", "sirsnoopy");
+
+    mockPayload.set("family_name", "Cool");
+
+    mockPayload.set("given_name", "Joe");
+
+    //when((String) mockPayload.get("name")).thenReturn("sirsnoopy");
+
+    doReturn(mockPayload).when(mockToken).getPayload(); 
+    
+    //doReturn("Cool").when(mockPayload).get("family_name");
+    
+    //doReturn("Joe").when(mockPayload).get("given_name");
+    
+    mockMvc.perform(post("/tokensignin")
+          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+          .content(mockURLEncoded))
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$.length()", is(1)))
+          .andExpect(jsonPath("$.token").isNotEmpty());
+    
+	}
+
+  @Test
+  @DisplayName("post /tokensignin invalid user info")
+  public void postTokenSigninUserInvalid() throws Exception {
+ 
+    String mockTokenIdString = "faketokenforgoogle";
+    // Note: this does not verify if mockTokenIdString is correctly parsed
+    // as the mock overrides getIdTokenString
+    String mockURLEncoded = "idTokenString=" + mockTokenIdString;
+ 
+    doReturn(mockTokenIdString).when(mockParentToken).getIdTokenString();
+    doReturn(null).when(mockVerifier).verify(mockTokenIdString);
+    
+    
+    mockMvc.perform(post("/tokensignin")
+          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+          .content(mockURLEncoded))
+          .andExpect(status().is(403));
+    
+	}
   @Test
   @DisplayName("post /overwriteSession valid info")
 	public void postOverwriteSessionValid() throws Exception{

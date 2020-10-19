@@ -110,45 +110,61 @@ class IntegrationTests {
   @MockBean
   private GoogleIdTokenVerifier mockVerifier;
 
-  // @Test
-  // @DisplayName("post /tokensignin valid user info")
-  // public void postTokenSigninUserValid() throws Exception {
+  @Test
+  @DisplayName("post /tokensignin valid user info")
+  public void postTokenSigninUserValid() throws Exception {
  
-  //   String mockTokenIdString = "faketokenforgoogle";
-  //   // Note: this does not verify if mockTokenIdString is correctly parsed
-  //   // as the mock overrides getIdTokenString
-  //   String mockURLEncoded = "idTokenString=" + mockTokenIdString;
+    String mockTokenIdString = "faketokenforgoogle";
+    // Note: this does not verify if mockTokenIdString is correctly parsed
+    // as the mock overrides getIdTokenString
+    String mockURLEncoded = "idTokenString=" + mockTokenIdString;
  
-  //   doReturn(mockTokenIdString).when(mockParentToken).getIdTokenString();
-  //   doReturn(mockToken).when(mockVerifier).verify(mockTokenIdString);
+    doReturn(mockTokenIdString).when(mockParentToken).getIdTokenString();
+    doReturn(mockToken).when(mockVerifier).verify(mockTokenIdString);
     
-  //   Payload mockPayload = new Payload();
+    Payload mockPayload = new Payload();
 
-  //   mockPayload.setSubject("23493849239");
-  //   mockPayload.setEmail("sirsnoopy@gmail.com");
+    mockPayload.setSubject("23493849239");
+    mockPayload.setEmail("sirsnoopy@gmail.com");
 
-  //   mockPayload.set("name", "sirsnoopy");
+    mockPayload.set("name", "sirsnoopy");
 
-  //   mockPayload.set("family_name", "Cool");
+    mockPayload.set("family_name", "Cool");
 
-  //   mockPayload.set("given_name", "Joe");
+    mockPayload.set("given_name", "Joe");
 
-  //   //when((String) mockPayload.get("name")).thenReturn("sirsnoopy");
+    //when((String) mockPayload.get("name")).thenReturn("sirsnoopy");
 
-  //   doReturn(mockPayload).when(mockToken).getPayload(); 
+    doReturn(mockPayload).when(mockToken).getPayload(); 
     
-  //   //doReturn("Cool").when(mockPayload).get("family_name");
+    //doReturn("Cool").when(mockPayload).get("family_name");
     
-  //   //doReturn("Joe").when(mockPayload).get("given_name");
-    
-  //   mockMvc.perform(post("/tokensignin")
-  //         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-  //         .content(mockURLEncoded))
-  //         .andExpect(status().isOk())
-  //         .andExpect(jsonPath("$.length()", is(1)))
-  //         .andExpect(jsonPath("$.token").isNotEmpty());
-    
-	// }
+    //doReturn("Joe").when(mockPayload).get("given_name");
+  
+
+        //count current users in the database -- before adding the new user
+
+    Integer orig_user_count = userDao.findAll().size();
+
+    mockMvc.perform(post("/tokensignin")
+          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+          .content(mockURLEncoded))
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$.length()", is(1)))
+          .andExpect(jsonPath("$.token").isNotEmpty());
+
+           //verify that save was called by counting the list and seeing it's 1 + orig_user_count
+      Assertions.assertTrue(userDao.findAll().size() == orig_user_count + 1);
+      //tokensignin with the same account name -- but verify that save was not called
+      mockMvc.perform(post("/tokensignin")
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .content(mockURLEncoded))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.length()", is(1)))
+            .andExpect(jsonPath("$.token").isNotEmpty());
+  //verify that service still only called save once and thus the number is still 1+ orig_user_count
+  Assertions.assertTrue(userDao.findAll().size() == orig_user_count + 1);
+	}
 
   @Test
   @DisplayName("post /tokensignin invalid user info")

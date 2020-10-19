@@ -17,3 +17,4 @@
 
 * Functional vs class components when to use which?
 * Review redux
+* react hooks not built-in? maybe add to the project too

@@ -151,6 +151,26 @@ class IntegrationTests {
 	}
 
   @Test
+  @DisplayName("post /tokensignin invalid user info")
+  public void postTokenSigninUserInvalid() throws Exception {
+ 
+    String mockTokenIdString = "faketokenforgoogle";
+    // Note: this does not verify if mockTokenIdString is correctly parsed
+    // as the mock overrides getIdTokenString
+    String mockURLEncoded = "idTokenString=" + mockTokenIdString;
+ 
+    doReturn(mockTokenIdString).when(mockParentToken).getIdTokenString();
+    doReturn(null).when(mockVerifier).verify(mockTokenIdString);
+    
+    
+    mockMvc.perform(post("/tokensignin")
+          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+          .content(mockURLEncoded))
+          .andExpect(status().is(403))
+    
+	}
+
+  @Test
   @DisplayName("get /publicUserDetails valid after registering")
 	public void getPublicDetailsForExistingUser() throws Exception{
       

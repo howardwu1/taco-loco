@@ -421,7 +421,6 @@ public class PricingCalculatorController {
   public String getToken(Customer authenticationRequest) {
     
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-
 		return jwtTokenUtil.generateToken(userDetails);
 
   }

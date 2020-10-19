@@ -90,6 +90,13 @@ import com.tacoloco.dao.SessionDao;
 
 import java.util.Optional;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+
+import org.springframework.security.core.userdetails.UserDetails;
 
 @SpringBootTest(classes = TestConfiguration.class)
 @ActiveProfiles(value="test")
@@ -152,6 +159,11 @@ class PricingCalculatorControllerTests {
     
     //doReturn("Joe").when(mockPayload).get("given_name");
     
+    doReturn(new org.springframework.security.core.userdetails.User("fake", "fakepassword",
+    new ArrayList<>())).when(userDetailsService).loadUserByUsername(any(String.class));
+
+    doReturn("fakeToken").when(mockJwtTokenUtil).generateToken(any(UserDetails.class));
+
     mockMvc.perform(post("/tokensignin")
           .contentType(MediaType.APPLICATION_FORM_URLENCODED)
           .content(mockURLEncoded))
@@ -159,6 +171,15 @@ class PricingCalculatorControllerTests {
           .andExpect(jsonPath("$.length()", is(1)))
           .andExpect(jsonPath("$.token").isNotEmpty());
     
+   //simulate second call with a duplicate username exception 
+   doThrow(new DuplicateUsernameException()).when(userDetailsService).save(any(Customer.class));
+
+   mockMvc.perform(post("/tokensignin")
+   .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+   .content(mockURLEncoded))
+   .andExpect(status().isOk())
+   .andExpect(jsonPath("$.length()", is(1)))
+   .andExpect(jsonPath("$.token").isNotEmpty());
 	}
 
   @Test
